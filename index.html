@@ -2,11 +2,12 @@
 <html lang="en">
   <head>
     <meta name="charset" content="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Gread | Your library of entertainment</title>
     <link rel="icon" href="./assets/logo/brand_logo.png">
     <link rel="stylesheet" href="./utilities/css/header.css"/>
     <link rel="stylesheet" href="./utilities/css/footer.css"/>
+    <link rel="stylesheet" href="./utilities/css/component_style.css">
     <link rel="stylesheet" href="./utilities/css/index.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -15,26 +16,26 @@
 
   <body>
     <!-- Header -->
-    <header>
+    <header class="header-container">
       <!-- Logo -->
-      <div>
-        <img src="./assets/logo/logo.png" alt="Gread Logo">
+      <div class="logo-box">
+        <img class="logo" src="./assets/logo/logo512.png" alt="Gread Logo">
       </div>
       <!-- Navigation -->
-      <div>
+      <div class="navigation-box">
         <!-- Hamburger Menu -->
-        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="open-menu nav-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M3.75 21.25H26.25" stroke="#4A4A4A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M3.75 15H26.25" stroke="#4A4A4A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M3.75 8.75H26.25" stroke="#4A4A4A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>          
         <!-- Close Menu -->
-        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="close-menu nav-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M26.2499 26.2499L3.75 3.75" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M26.2501 3.75L3.75 26.2501" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <!-- Menu -->
-        <nav>
+        <nav class="navigation">
           <!-- Menu Items -->
           <div>
             <!-- Home -->
@@ -89,29 +90,28 @@
       </div>
     </header>
     <!-- Main -->
-    <main>
+    <main class="main-container">
       <!-- Texts -->
-      <div>
-        <h1>Keep track of your entertainment</h1>
-        <p>GRead allows you to keep a collection of your favorite anime, manga, novel and many more.</p>
+      <div class="hero-texts-box">
+        <h1 class="hero-heading">Keep track of your entertainment</h1>
+        <p class="hero-sub-heading">GRead allows you to keep a collection of your favorite anime, manga, novel and many more.</p>
         <!-- CTA -->
-        <div>
-          <span>
-            <a href="./signup/signup.php">Get Started</a>
-            <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="cta-box">
+          <span class="get-started-box">
+            <a class="btn primary-btn" href="./signup/signup.php">Get Started</a>
+            <svg class="cta-btn-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M21.9584 16.0084L14.025 7.93336C13.4584 7.3667 12.6084 7.3667 12.0417 7.93336C11.475 8.50003 11.475 9.35003 12.0417 9.9167L18.9834 16.8584L12.0417 23.8C11.7584 24.0834 11.6167 24.3667 11.6167 24.7917C11.6167 25.6417 12.1834 26.2084 13.0334 26.2084C13.4584 26.2084 13.7417 26.0667 14.025 25.7834L22.1 17.7084C22.525 17.425 22.525 16.575 21.9584 16.0084Z" fill="white"/>
             </svg>              
           </span>
-          <span>or</span>
-          <a href="./about.html">Learn more</a>
+          <a class="btn learn-btn" href="./about.html">Learn more</a>
         </div>
       </div>
       <!-- Hero -->
-      <div>
-        <img src="./assets/hero/desktop_hero.png" alt="Gread platform">
+      <div class="hero-img-box">
+        <img class="hero-img" src="./assets/hero/desktop_hero.png" alt="Gread platform">
       </div>
       <!-- Social Links -->
-      <div>
+      <div class="hero-social-box">
         <!-- LinkedIn -->
         <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M21.1846 2.06982H3.65316C3.45609 2.06708 3.26041 2.10319 3.0773 2.17609C2.89419 2.24898 2.72723 2.35723 2.58595 2.49466C2.44468 2.63209 2.33187 2.796 2.25395 2.97703C2.17603 3.15807 2.13454 3.35268 2.13184 3.54975V21.2882C2.13454 21.4853 2.17603 21.6799 2.25395 21.8609C2.33187 22.042 2.44468 22.2059 2.58595 22.3433C2.72723 22.4807 2.89419 22.589 3.0773 22.6619C3.26041 22.7348 3.45609 22.7709 3.65316 22.7681H21.1846C21.3817 22.7709 21.5774 22.7348 21.7605 22.6619C21.9436 22.589 22.1106 22.4807 22.2519 22.3433C22.3931 22.2059 22.5059 22.042 22.5839 21.8609C22.6618 21.6799 22.7033 21.4853 22.706 21.2882V3.54975C22.7033 3.35268 22.6618 3.15807 22.5839 2.97703C22.5059 2.796 22.3931 2.63209 22.2519 2.49466C22.1106 2.35723 21.9436 2.24898 21.7605 2.17609C21.5774 2.10319 21.3817 2.06708 21.1846 2.06982V2.06982ZM8.37238 19.3943H5.26763V10.0801H8.37238V19.3943ZM6.82001 8.77607C6.39182 8.77607 5.98118 8.60598 5.6784 8.30321C5.37563 8.00043 5.20554 7.58979 5.20554 7.1616C5.20554 6.73342 5.37563 6.32277 5.6784 6.02C5.98118 5.71723 6.39182 5.54713 6.82001 5.54713C7.04737 5.52135 7.27762 5.54388 7.49568 5.61325C7.71373 5.68262 7.91468 5.79726 8.08535 5.94968C8.25603 6.10209 8.39259 6.28884 8.48609 6.49769C8.57959 6.70654 8.62792 6.93278 8.62792 7.1616C8.62792 7.39043 8.57959 7.61667 8.48609 7.82552C8.39259 8.03437 8.25603 8.22112 8.08535 8.37353C7.91468 8.52594 7.71373 8.64059 7.49568 8.70996C7.27762 8.77933 7.04737 8.80186 6.82001 8.77607V8.77607ZM19.5702 19.3943H16.4654V14.3957C16.4654 13.1434 16.0204 12.3258 14.8924 12.3258C14.5432 12.3284 14.2033 12.4379 13.9183 12.6396C13.6334 12.8413 13.4171 13.1255 13.2986 13.4539C13.2176 13.6971 13.1825 13.9533 13.1951 14.2094V19.384H10.0903C10.0903 19.384 10.0903 10.9183 10.0903 10.0697H13.1951V11.3841C13.4771 10.8947 13.8874 10.4915 14.3816 10.2179C14.8758 9.94437 15.4352 9.81084 15.9997 9.83169C18.0695 9.83169 19.5702 11.1667 19.5702 14.0334V19.3943Z" fill="white"/>
@@ -127,13 +127,13 @@
       </div>
     </main>
     <!-- Footer -->
-    <footer>
+    <footer class="footer-container">
       <!-- Gread -->
-      <div>
-        <span>
-          <p>Gread</p>
+      <div class="footer-box gread-box">
+        <span class="section-box">
+          <p class="gread">Gread</p>
         </span>
-        <div>
+        <div class="footer-links-box">
           <a href="./about.html">About</a>
           <a href="#">Services</a>
           <a href="#">Contact</a>
@@ -141,11 +141,11 @@
         </div>
       </div>
       <!-- Others -->
-      <div>
-        <span>
-          <p>Others</p>
+      <div class="footer-box others-box">
+        <span class="section-box">
+          <p class="others">Others</p>
         </span>
-        <div>
+        <div class="footer-links-box">
           <a href="#">Blog</a>
           <a href="#">Help</a>
           <a href="#">Terms</a>
@@ -153,26 +153,23 @@
         </div>
       </div>
       <!-- Newsletter -->
-      <div>
-        <span>
-          <p>Newsletter</p>
+      <div class="footer-box newsletter-box">
+        <span class="section-box">
+          <p class="newsletter">Newsletter</p>
         </span>
         <!-- Email -->
-        <div>
-          <div>
-            <input type="email" name="newsletter_email" placeholder="Get notified...">
-            <button type="submit">
-              <i>
-                <svg width="41" height="33" viewBox="0 0 41 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M17.5205 9.68376C16.9619 9.23693 16.1469 9.32749 15.7001 9.88602C15.2533 10.4446 15.3438 11.2596 15.9024 11.7064L17.5205 9.68376ZM23.3959 16.0426L24.2049 17.0539C24.5121 16.8082 24.691 16.4361 24.691 16.0426C24.691 15.6492 24.5121 15.2771 24.2049 15.0313L23.3959 16.0426ZM15.9024 20.3789C15.3438 20.8257 15.2533 21.6407 15.7001 22.1992C16.1469 22.7578 16.9619 22.8483 17.5205 22.4015L15.9024 20.3789ZM15.9024 11.7064L22.5868 17.0539L24.2049 15.0313L17.5205 9.68376L15.9024 11.7064ZM22.5868 15.0313L15.9024 20.3789L17.5205 22.4015L24.2049 17.0539L22.5868 15.0313Z" fill="white"/>
-                </svg>
-              </i>
+        <div class="email-box">
+            <input class="email-input" type="email" name="newsletter_email" placeholder="Get notified...">
+            <button class="email-btn" type="submit">
+              <svg class="email-icon" width="41" height="33" viewBox="0 0 41 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.5205 9.68376C16.9619 9.23693 16.1469 9.32749 15.7001 9.88602C15.2533 10.4446 15.3438 11.2596 15.9024 11.7064L17.5205 9.68376ZM23.3959 16.0426L24.2049 17.0539C24.5121 16.8082 24.691 16.4361 24.691 16.0426C24.691 15.6492 24.5121 15.2771 24.2049 15.0313L23.3959 16.0426ZM15.9024 20.3789C15.3438 20.8257 15.2533 21.6407 15.7001 22.1992C16.1469 22.7578 16.9619 22.8483 17.5205 22.4015L15.9024 20.3789ZM15.9024 11.7064L22.5868 17.0539L24.2049 15.0313L17.5205 9.68376L15.9024 11.7064ZM22.5868 15.0313L15.9024 20.3789L17.5205 22.4015L24.2049 17.0539L22.5868 15.0313Z" fill="white"/>
+              </svg>
             </button> 
-          </div>
         </div>
-        <div>
-          <p>&copy; 2022 Roweme. All rights reserved.</p>
-        </div>
+      </div>
+      <!-- Copy -->
+      <div class="copy-box">
+        <p>&copy; 2022 Roweme. All rights reserved.</p>
       </div>
     </footer>
     <script src="./utilities/js/index.js"></script>

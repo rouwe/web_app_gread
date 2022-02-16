@@ -1,0 +1,27 @@
+/* Header */
+.header-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 17px 30px;
+    border-bottom: 1.5px solid #999999CC;
+    box-shadow: 0px 2px 4px 0px #00000040;
+}
+/* Logo */
+.logo-box {
+    width: 40%;
+    transform: translate(-1px, 3px);
+}
+.logo {
+    width: 92%;
+}
+/* Navigation */
+.navigation-box {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+.close-menu, .navigation {
+    display: none;
+}
