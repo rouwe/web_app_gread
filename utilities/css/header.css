@@ -63,7 +63,7 @@
     font-size: 1.250rem;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    letter-spacing: -0.4px;
+    letter-spacing: -0.2px;
     text-decoration: none;
     color: #1523168C;
 }
@@ -83,4 +83,36 @@
     font-weight: 300;
     text-shadow: 1px 0px 0px #ffffff3d;
     color: #FFFFFFE6;
+}
+/* CTA */
+.header-cta-box {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    padding: 15px 0px 11px;
+    background-color: #F0F0F0;
+    box-shadow: 0px -1px 1px hsla(0, 0%, 0%, 0.4), 0px 4px 4px #00000040;
+}
+/* Header Social Links */
+.header-social-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 14px 0px;
+    background-color: #F0F0F0;
+    box-shadow: 0px -1px 1px hsla(0, 0%, 0%, 0.4), 0px 6px 2px hsla(0, 0%, 0%, 0.23);
+}
+.header-social-icon {
+    width: 30px;
+    height: auto;
+}
+.header-linkedin {
+    margin-right: 24px;
+}
+.header-instagram {
+    margin-left: 24px;
+}
+.header-social-icon path {
+    fill: var(--secondary);
 }
