@@ -146,6 +146,14 @@
     }
 }
 @media all and (min-width: 500px) {
+    .header-container {
+        padding-right: 55px;
+        padding-left: 55px;
+    }
+    .header-link-box {
+        padding-right: 55px;
+        padding-left: 55px; 
+    }
     .logo {
         width: 132px;
         max-height: 44px;
@@ -165,6 +173,14 @@
     }
 }
 @media all and (min-width: 568px) {
+    .header-container {
+        padding-right: 75px;
+        padding-left: 75px;
+    }
+    .header-link-box {
+        padding-right: 75px;
+        padding-left: 75px; 
+    }
     .logo {
         width: 140px;
         max-height: 48px;
@@ -184,6 +200,14 @@
     }
 }
 @media all and (min-width: 640px) {
+    .header-container {
+        padding-right: 95px;
+        padding-left: 95px;
+    }
+    .header-link-box {
+        padding-right: 95px;
+        padding-left: 95px; 
+    }
     .logo {
         width: 148px;
         max-height: 52px;
@@ -201,4 +225,7 @@
     .header-social-icon {
         width: 38px;
     }
+}
+@media all and (min-width: 768px) {
+    
 }

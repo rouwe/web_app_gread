@@ -8,6 +8,7 @@
     "gread"
     "others"
     "copy";
+    justify-content: center;
     padding: 50px 36px;
     border-top: 2px solid var(--primary);
     background-color: #292929;
@@ -140,7 +141,49 @@
     .footer-container {
         padding: 90px 48px;
     }
+    .gread, .others, .newsletter {
+        font-size: 1rem;
+    }
+    .footer-links-box a, .email-input {
+        font-size: 0.8rem;
+    }
+    .email-box {
+        height: 36px;
+    }
     .email-input {
-        width: 300px;
+        width: 250px;
+    }
+    .email-icon {
+        height: 33px;
+    }
+}
+@media all and (min-width: 768px) {
+    .footer-container {
+        grid-template-columns: repeat(3, max-content);
+        grid-template-rows: repeat(2, min-content);
+        grid-template-areas: 
+        "gread others newsletter"
+        "copy copy copy";
+    }
+    .footer-box {
+        padding: 20px 20px 25px;
+    }
+    .gread, .others, .newsletter {
+        font-size: 0.9rem;
+    }
+    .footer-links-box a, .email-input {
+        font-size: 0.7rem;
+    }
+    .email-box {
+        height: 32px;
+    }
+    .email-input {
+        width: 200px;
+    }
+    .email-icon {
+        height: 30px;
+    }
+    .copy-box p {
+        font-size: 0.8rem;
     }
 }

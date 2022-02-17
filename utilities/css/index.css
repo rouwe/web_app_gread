@@ -136,6 +136,12 @@ body {
         font-size: 19px;
     }
     .hero-texts-box {
-        padding: 106px 75px 110px;
+        padding: 106px 95px 110px;
+    }
+    .hero-img-box {
+        background-size: 125%;
+    }
+    .hero-img {
+        max-height: 680px;
     }
 }
