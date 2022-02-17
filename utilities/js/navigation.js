@@ -4,6 +4,7 @@
     const closeMenuButton = document.getElementsByClassName('close-menu')[0];
     const navigationBox = document.getElementsByClassName('navigation')[0];
     const header = document.getElementsByClassName('header-container')[0];
+    const mainContainer = document.getElementsByClassName('main-container')[0];
     // Functionalities
     const openMenu = () => {
         // Display the navigation menu
@@ -13,6 +14,7 @@
         navigationBox.style.display = 'flex';
         header.style.borderBottomWidth = '2.5px';
         header.style.borderBottomColor = 'var(--primary)';
+        mainContainer.style.marginTop = '266px';
         menuIsActive = true;
     }
     const closeMenu = () => {
@@ -23,6 +25,7 @@
         navigationBox.style.display = 'none';
         header.style.borderBottomWidth = '1.5px';
         header.style.borderBottomColor = '#999999CC';
+        mainContainer.style.marginTop = '0px';
     }
     // Add Event Listener
     openMenuButton.addEventListener('click', openMenu);
