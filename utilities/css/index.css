@@ -19,7 +19,7 @@ body {
 /* Main */
 /* Hero */
 .main-container {
-    background-image: linear-gradient(160deg, #DEDEDECC, #FFFFFF);
+    background-image: linear-gradient(145deg, #DEDEDECC 0% , #FFFFFF 40%);
 }
 /* Texts */
 .hero-texts-box {
@@ -50,6 +50,9 @@ body {
     display: flex;
     align-items: center;
     margin-top: 49px;
+}
+.cta-divider {
+    display: none;
 }
 .hero-img-box {
     width: 100%;
@@ -143,5 +146,164 @@ body {
     }
     .hero-img {
         max-height: 680px;
+    }
+}
+/*  */
+@media all and (min-width: 1024px) {
+    :root {
+        font-size: 16px;
+    }
+    /* Main */
+    .main-container {
+        position: relative; 
+        display: flex;
+        flex-direction: row;
+    }
+    .hero-texts-box, .hero-img-box {
+        margin-bottom: 0px;
+    }
+    .hero-texts-box {
+        width: 50%;
+        padding: 110px 0px 110px 50px;
+        text-align: left;
+    }
+    .hero-heading {
+        font-size: 2.7rem;
+        letter-spacing: 1.6px;
+        line-height: 130%;
+        margin-bottom: 35px;
+    }
+    .hero-sub-heading {
+        letter-spacing: 0.2px;
+        line-height: 145%;
+    }
+    .cta-box {
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 70px;
+    }
+    .cta-btn-icon {
+        width: 34px;
+    }
+    .get-started-box {
+        margin-right: 25px;
+    }
+    .primary-btn, .learn-btn {
+        letter-spacing: 1px;
+    }
+    .cta-divider {
+        display: block;
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin: 0px 15px;
+    }
+    .learn-btn {
+        margin-left: 25px;
+    }
+    .hero-img-box {
+        width: 50%;
+        justify-content: flex-end;
+        background-image: url(../../assets/hero/desktop_hero_bg.png);
+        background-size: 125%;
+        background-position: 0% 200%;
+        padding: 80px 0px 140px
+    }
+    .hero-img {
+        max-height: 400px;
+        margin-right: 50px;
+    }
+    /* Social */
+    .hero-social-box {
+        position: absolute;
+        bottom: 10px;
+        left: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transform: scale(0.8) translateX(-5px);
+        padding: 2.5px 5px;
+        background-color: var(--secondary);
+    }
+    .hero-social-box:hover {
+        background-color: var(--primary);
+    }
+    .hero-social-box svg {
+        cursor: pointer;
+        padding: 1.5px 0px;
+        transition: transform 250ms ease-out;
+    }
+    .hero-social-box svg:hover {
+        transform: scale(1.1);
+    }
+}
+@media all and (min-width: 1366px) {
+    :root {
+        font-size: 20px;
+    }
+    .hero-texts-box {
+        width: 55%;
+        padding: 110px 0px 110px 75px;
+    }
+    .hero-img-box {
+        width: 45%;
+        background-position: 0% 250%;
+    }
+    .hero-img {
+        max-height: 500px;
+        margin-right: 75px;
+    }
+    .cta-box {
+        margin-top: 75px;
+    }
+    .hero-social-box {
+        transform: scale(1);
+    }
+    .hero-social-box svg {
+        margin: 2.5px 0px;
+    }
+    .get-started-box {
+        padding: 10px 20px;
+    }
+    .learn-btn {
+        padding: 12px 26px; 
+    }
+}
+@media all and (min-width: 1440px) {
+    .hero-texts-box {
+        padding: 180px 0px 150px 100px;
+    }
+    .hero-sub-heading, .primary-btn, .learn-btn {
+        font-size: 1.2rem;
+    }
+    .hero-img-box {
+        padding: 100px 0px 150px;
+        background-size: 133%;
+        background-position: 2% 210%;
+    }
+    .hero-img {
+        max-height: 580px;
+        margin-right: 90px;
+    }
+    .hero-heading {
+        font-size: 3.2rem;
+    }
+    .get-started-box {
+        padding: 14px 22px 14px 33px;
+        margin-right: 17px;
+    }
+    .learn-btn {
+        padding: 14px 22px 14px 33px;
+        margin-left: 16px;
+    }
+    .cta-divider {
+        margin: 0px 21px;
+    }
+    .hero-social-box {
+        padding: 6px 10px;
+    }
+    .hero-social-box svg {
+        width: 25px;
+        height: auto;
+        margin: 4px 0px;
     }
 }
