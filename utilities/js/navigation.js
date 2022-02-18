@@ -41,10 +41,10 @@ let menuIsOpen = false;
         if (menuIsOpen) {
             // console.log(screenWidth, menuIsOpen);
             if (screenWidth <= 375) {mainContainer.style.marginTop = '266px';}
-            else if (screenWidth <= 425) {mainContainer.style.marginTop = '272px';}
-            else if (screenWidth <= 500) {mainContainer.style.marginTop = '279px';}
-            else if (screenWidth <= 568) {mainContainer.style.marginTop = '287px';}
-            else if (screenWidth <= 640) {mainContainer.style.marginTop = '298px';}
+            else if (screenWidth <= 425) {mainContainer.style.marginTop = '267px';}
+            else if (screenWidth <= 500) {mainContainer.style.marginTop = '273px';}
+            else if (screenWidth <= 568) {mainContainer.style.marginTop = '280px';}
+            else if (screenWidth <= 640) {mainContainer.style.marginTop = '288px';}
             else if (screenWidth <= 768 || screenWidth <= 836) {mainContainer.style.marginTop = '299px';}
         } else {
             mainContainer.style.marginTop = '0px';
