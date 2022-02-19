@@ -31,10 +31,13 @@ session_start();
     ?>
     <main class="main-container">
         <section class="about-container">
-            <h1 class="main-heading">About</h1>
+            <div class="about-heading-box">
+                <h1 class="main-heading">About</h1>
+                <hr class="about-divider">
+            </div>
             <div class="about-text-box">
                 <p class="about-text">
-                    Gread is an online application that allows you to save all of your favorite entertainments information. You don't need to worry about remembering their basic information.
+                    <span class="gread-word">Gread</span> is an online application that allows you to save all of your favorite entertainments information. You don't need to worry about remembering their basic information.
                 </p>
             </div>
         </section>
