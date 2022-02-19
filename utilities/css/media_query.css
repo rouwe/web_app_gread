@@ -1,0 +1,57 @@
+:root {
+    font-size: 16px;
+    --primary: #790073;
+    --secondary: #4A4A4A;
+    --light-paragraph: #666666BF;
+    --active: #3A3838;
+    --inactive: #A6A6A6;
+}
+* {
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+}
+body {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    color: var(--secondary);
+}
+
+@media all and (min-width: 425px) {
+    :root {
+        font-size: 16.5px;
+    }
+    body {
+        position: static;
+    }
+}
+@media all and (min-width: 500px) {
+    :root {
+        font-size: 17px;
+    }
+}
+@media all and (min-width: 568px) {
+    :root {
+        font-size: 17.5px;
+    }
+}
+@media all and (min-width: 640px) {
+    :root {
+        font-size: 18px;
+    }
+}
+@media all and (min-width: 768px) {
+    :root {
+        font-size: 19px;
+    }
+}
+@media all and (min-width: 1024px) {
+    :root {
+        font-size: 16px;
+    }
+}
+@media all and (min-width: 1366px) {
+    :root {
+        font-size: 20px;
+    }
+}
