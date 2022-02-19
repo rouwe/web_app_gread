@@ -9,6 +9,8 @@
 * {
     box-sizing: border-box;
     font-family: 'Raleway', sans-serif;
+    outline-color: var(--primary);
+    outline-offset: 5px;
 }
 body {
     position: absolute;

@@ -46,7 +46,7 @@ session_start();
           </svg>
         </span>
         <span class="cta-divider">or</span>
-        <a class="btn learn-btn" href="./about.html">Learn more</a>
+        <a class="btn learn-btn" href="./about.php">Learn more</a>
       </div>
     </div>
     <!-- Hero -->
