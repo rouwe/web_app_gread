@@ -40,7 +40,7 @@ session_start();
       <!-- CTA -->
       <div class="cta-box">
         <span class="get-started-box">
-          <a class="btn primary-btn" href="./signup/signup.php">Get Started</a>
+          <a class="btn primary-btn" href="./signup.php">Get Started</a>
           <svg class="cta-btn-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M21.9584 16.0084L14.025 7.93336C13.4584 7.3667 12.6084 7.3667 12.0417 7.93336C11.475 8.50003 11.475 9.35003 12.0417 9.9167L18.9834 16.8584L12.0417 23.8C11.7584 24.0834 11.6167 24.3667 11.6167 24.7917C11.6167 25.6417 12.1834 26.2084 13.0334 26.2084C13.4584 26.2084 13.7417 26.0667 14.025 25.7834L22.1 17.7084C22.525 17.425 22.525 16.575 21.9584 16.0084Z" fill="white" />
           </svg>

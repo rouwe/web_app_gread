@@ -108,10 +108,10 @@ function index_header($active_page = 'index')
             <!-- CTA -->
             <div class="header-cta-box">
               <div class="header-signup-box">
-                <a class="btn header-signup" href="./signup/signup.php">Sign up</a>
+                <a class="btn header-signup" href="./signup.php">Sign up</a>
               </div>
               <div class="header-login-box">
-                <a class="btn header-login" href="./login/login.php">Log in</a>
+                <a class="btn header-login" href="./login.php">Log in</a>
               </div>
             </div>
             <!-- Social Links -->
@@ -137,4 +137,27 @@ function index_header($active_page = 'index')
 function dashboard_header()
 {
   // Display this header template if logged in
+}
+
+function auth_header()
+{
+  // Header for logging and signup page
+  echo ('<header class="header-container">
+  <!-- Logo -->
+  <div class="logo-box">
+    <a href="./index.php">
+      <img class="logo" src="./assets/logo/logo512.png" alt="Gread Logo">
+    </a>
+  </div>
+  <!-- Navigation -->
+  <div class="navigation-box">
+    <!-- Close Menu -->
+    <a href="./index.php">
+      <svg class="auth-close-icon nav-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M26.2499 26.2499L3.75 3.75" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M26.2501 3.75L3.75 26.2501" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+  </header>');
 }

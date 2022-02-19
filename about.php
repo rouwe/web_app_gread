@@ -22,6 +22,7 @@ session_start();
 
 <body>
     <?php
+    // Header
     // Check if user is logged in
     if (isset($_SESSION['user'])) {
         // call logged_header()
@@ -30,11 +31,14 @@ session_start();
     }
     ?>
     <main class="main-container">
+        <!-- About -->
         <section class="about-container">
+            <!-- Heading -->
             <div class="about-heading-box">
                 <h1 class="main-heading">About</h1>
                 <hr class="about-divider">
             </div>
+            <!-- About Content -->
             <div class="about-text-box">
                 <p class="about-text">
                     <span class="gread-word">Gread</span> is an online application that allows you to save all of your favorite entertainments information. You don't need to worry about remembering their basic information.

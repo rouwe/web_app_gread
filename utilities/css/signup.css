@@ -1,0 +1,93 @@
+.main-container {
+    overflow-x: hidden;
+}
+/* Signup Form */
+.signup-container {
+    padding: 42px 35px 50px;
+}
+/* Text Box */
+.signup-text-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 18px;
+}
+.signup-heading {
+    font-size: 1.79rem;
+    font-weight: 400;
+    letter-spacing: -1.1px;
+    line-height: 135%;
+    margin-top: 0px;
+    margin-bottom: 8px;
+    color: #242424;
+}
+.signup-sub-heading {
+    width: 50%;
+    font-size: 0.75rem;
+    letter-spacing: -0.3px;
+    line-height: 140%;
+    padding: 1px 0px 2px;
+    margin-top: 0px;
+    color: var(--secondary);
+}
+/* Form */
+.form-container {
+    padding: 0px 2px;
+}
+.inpt-field-box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.inpt-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    text-transform: uppercase;
+    margin-bottom: 5.5px;
+    color: var(--secondary);
+}
+.inpt-field {
+    font-size: 0.895rem;
+    letter-spacing: -0.3px;
+    padding: 8px 7.5px 8.5px;
+    border: 0.8px solid #A3A3A3;
+    border-radius: 2.5px;
+    color: var(--secondary);
+}
+.pass-field {
+    margin-bottom: 7px;
+}
+.inpt-field::placeholder {
+    color: #A3A3A3;
+}
+.pass-length-info {
+    font-size: 0.75rem;
+    letter-spacing: -0.25px;
+    text-align: left;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    color: #878787E6;
+}
+.join-btn {
+    width: 100%;
+    font-size: 1.045rem; 
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    padding: 6px 0px 9px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 2.5px;
+    color: #FFFFFF;
+    background-color: var(--primary);
+}
+.is-user {
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: -0.2px;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    color: #4a4a4ab3;
+}
