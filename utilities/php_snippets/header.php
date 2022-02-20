@@ -134,10 +134,6 @@ function index_header($active_page = 'index')
       </div>
     </header>');
 }
-function dashboard_header()
-{
-  // Display this header template if logged in
-}
 
 function auth_header()
 {
@@ -215,4 +211,9 @@ function auth_header()
       </nav>
   </div>
   </header>');
+}
+
+function dashboard_header()
+{
+  // Display this header template if logged in
 }

@@ -59,7 +59,7 @@
     font-size: 0.895rem;
     letter-spacing: -0.3px;
     padding: 0.5rem 0.4685rem 0.53rem;
-    border: 0.8px solid #A3A3A3;
+    border: 0.8px solid #888888;
     border-radius: 2.5px;
     color: var(--secondary);
 }
@@ -67,7 +67,7 @@
     margin-bottom: 7px;
 }
 .inpt-field::placeholder {
-    color: #A3A3A3;
+    color: #a3a3a3cc;
 }
 .pass-length-info {
     font-size: 0.75rem;
@@ -82,19 +82,24 @@
     font-size: 1.045rem; 
     font-weight: 600;
     letter-spacing: 0.2px;
-    padding: 6px 0px 9px;
+    padding:  0.375rem 0px 0.562rem;
     margin-top: 20px;
     border: none;
     border-radius: 2.5px;
     color: #FFFFFF;
     background-color: var(--primary);
 }
+.join-divider {
+    display: none;
+    margin-top: 1rem;
+    margin-bottom: 0px;
+}
 .is-user {
     font-size: 0.75rem;
     font-weight: 400;
     letter-spacing: -0.2px;
     text-align: center;
-    margin-top: 0.95rem;
+    margin-top: 0.75rem;
     margin-bottom: 0px;
     color: #4a4a4ab3;
 }
@@ -140,8 +145,11 @@
     }
     .signup-container {
         width: 60%;
-        padding: 30px 45px;
+        padding: 35px 45px 50px;
         box-shadow: 0px 0px 10px #00000026;
+    }
+    .join-divider {
+        display: block;
     }
 }
 @media all and (min-width: 768px) {
@@ -150,7 +158,6 @@
     }
     .signup-container {
         width: 55%;
-        padding: 45px 50px;
     }
 }
 @media all and (min-width: 1024px) {
@@ -165,6 +172,47 @@
 }
 @media all and (min-width: 1440px) {
     .signup-container {
-        width: 37.23%;
+        width: 30.23%;
+        padding: 1.45rem 2.5rem 2.5rem;
+    }
+    .signup-text-box {
+        margin-bottom: 1.3rem;
+    }
+    .signup-heading {
+        font-size: 1.6rem;
+        margin-bottom: 0.75rem;
+    }
+    .signup-sub-heading {
+        font-size: 0.7rem;
+        width: 60%;
+    }
+    .form-container {
+        padding: 0px;
+    }
+    .inpt-field-box {
+        margin-bottom: 0.65rem;
+    }
+    .pass-field {
+        margin-bottom: 0.35rem;
+    }
+    .inpt-label {
+        font-size: 0.6rem;
+        margin-bottom: 0.4rem;
+    }
+    .inpt-field {
+        font-size: 0.7rem;
+        padding: 12px 9px 12px;
+    }
+    .pass-length-info {
+        font-size: 0.6rem;
+        line-height: normal;
+    }
+    .join-btn {
+        font-size: 0.9rem;
+        padding: 0.45rem 0rem;
+        margin-top: 25px;
+    }
+    .is-user {
+        font-size: 0.7rem;
     }
 }

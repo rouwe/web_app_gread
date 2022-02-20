@@ -53,6 +53,7 @@ session_start();
                 <p class="pass-length-info">Between 8 and 72 characters</p>
                 <button class="join-btn" type="submit" name="join">Join now</button>
             </form>
+            <hr class="join-divider">
             <p class="is-user">Already have an account? <a href="./login.php">Log in</a></p>
         </section>
     </main>
