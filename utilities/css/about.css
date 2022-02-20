@@ -91,6 +91,7 @@
 @media all and (min-width: 1024px) {
     .about-container {
         padding: 15px 50px 46vh;
+        background-color: #FDFDFD;
     }
     .main-heading {
         font-size: 1.2rem;
