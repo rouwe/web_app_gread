@@ -22,9 +22,6 @@ a {
     text-decoration: none;
     color: #2769E9;
 }
-a:hover {
-    text-decoration: underline;
-}
 @media all and (min-width: 300px) {
     body {
         position: relative;
