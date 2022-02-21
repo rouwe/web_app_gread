@@ -98,8 +98,18 @@
     display: none;
     margin-bottom: 0px;
 }
+.signup-divider {
+    margin-top: 1rem;
+}
+.login-text-box {
+    margin-bottom: 26px;
+}
+.login-divider {
+    display: block;
+    margin-top: 0.7rem;
+}
 .forgot-pass {
-    font-size: 0.68rem;
+    font-size: 0.75rem;
     font-weight: 400;
     letter-spacing: -0.1px;
     text-align: center;
@@ -224,7 +234,7 @@
         padding: 0.45rem 0rem;
         margin-top: 25px;
     }
-    .is-user {
+    .is-user, .is-not-user, .forgot-pass {
         font-size: 0.7rem;
     }
 }

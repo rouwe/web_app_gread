@@ -1,7 +1,7 @@
 <?php
+session_start();
 require_once "./utilities/php_snippets/header.php";
 require_once "./utilities/php_snippets/footer.php";
-session_start();
 
 ?>
 <!DOCTYPE html>
@@ -32,7 +32,7 @@ session_start();
         <!-- Signup Form -->
         <section class="auth-container">
             <!-- Text Box -->
-            <div class="form-text-box">
+            <div class="form-text-box login-text-box">
                 <h1 class="form-heading">Welcome Back</h1>
             </div>
             <!-- Form -->

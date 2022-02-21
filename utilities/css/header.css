@@ -51,7 +51,7 @@
     width: 100%;
     padding: 16px 30px 9px;
     background-color: #F0F0F0;
-    box-shadow: 0px -1px 1px hsla(0, 0%, 0%, 0.4), 0px 4px 4px #00000040;
+    box-shadow: 0px -1px 1px #00000066, 0px 4px 4px #00000040;
 }
 .header-link-icon {
     width: 18px;
@@ -226,9 +226,6 @@
         width: 38px;
     }
 }
-/* @media all and (min-width: 768px) {
-    
-} */
 /* Desktop */
 @media all and (min-width: 1024px) {
     /* Hide */

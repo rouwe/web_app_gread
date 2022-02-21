@@ -7,7 +7,7 @@ function index_header($active_page = 'index')
     <header class="header-container">
       <!-- Logo -->
       <div class="logo-box">
-        <a href="./index.php">
+        <a href="./">
           <img class="logo" src="./assets/logo/logo512.png" alt="Gread Logo">
         </a>
       </div>
@@ -37,7 +37,7 @@ function index_header($active_page = 'index')
             <svg class="header-link-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M14.7439 7.2759L9.49388 2.68215C9.21111 2.43473 8.78889 2.43473 8.50612 2.68215L3.25612 7.2759C3.09336 7.41832 3 7.62406 3 7.84033V14.25C3 14.6642 3.33579 15 3.75 15H6.75C7.16421 15 7.5 14.6642 7.5 14.25V11.25C7.5 10.8358 7.83579 10.5 8.25 10.5H9.75C10.1642 10.5 10.5 10.8358 10.5 11.25V14.25C10.5 14.6642 10.8358 15 11.25 15H14.25C14.6642 15 15 14.6642 15 14.25V7.84033C15 7.62406 14.9066 7.41832 14.7439 7.2759Z" stroke="#4A4A4A" stroke-opacity="0.8" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <a class="header-nav-link" href="./index.php">Home</a>
+            <a class="header-nav-link" href="./">Home</a>
           </span>
           <!-- About -->
           <span class="header-link-box"> 
@@ -61,7 +61,7 @@ function index_header($active_page = 'index')
         <svg class="header-link-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M14.7439 7.2759L9.49388 2.68215C9.21111 2.43473 8.78889 2.43473 8.50612 2.68215L3.25612 7.2759C3.09336 7.41832 3 7.62406 3 7.84033V14.25C3 14.6642 3.33579 15 3.75 15H6.75C7.16421 15 7.5 14.6642 7.5 14.25V11.25C7.5 10.8358 7.83579 10.5 8.25 10.5H9.75C10.1642 10.5 10.5 10.8358 10.5 11.25V14.25C10.5 14.6642 10.8358 15 11.25 15H14.25C14.6642 15 15 14.6642 15 14.25V7.84033C15 7.62406 14.9066 7.41832 14.7439 7.2759Z" stroke="#4A4A4A" stroke-opacity="0.8" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <a class="header-nav-link" href="./index.php">Home</a>
+        <a class="header-nav-link" href="./">Home</a>
       </span>
       <!-- About -->
       <span class="header-link-box active-link"> 
@@ -81,11 +81,11 @@ function index_header($active_page = 'index')
       </span>');
   } elseif ($active_page === 'contact') {
     // Contact is active
-    echo ('<span class="header-link-box . active-link">
+    echo ('<span class="header-link-box">
         <svg class="header-link-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M14.7439 7.2759L9.49388 2.68215C9.21111 2.43473 8.78889 2.43473 8.50612 2.68215L3.25612 7.2759C3.09336 7.41832 3 7.62406 3 7.84033V14.25C3 14.6642 3.33579 15 3.75 15H6.75C7.16421 15 7.5 14.6642 7.5 14.25V11.25C7.5 10.8358 7.83579 10.5 8.25 10.5H9.75C10.1642 10.5 10.5 10.8358 10.5 11.25V14.25C10.5 14.6642 10.8358 15 11.25 15H14.25C14.6642 15 15 14.6642 15 14.25V7.84033C15 7.62406 14.9066 7.41832 14.7439 7.2759Z" stroke="#4A4A4A" stroke-opacity="0.8" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <a class="header-nav-link" href="./index.php">Home</a>
+        <a class="header-nav-link" href="./">Home</a>
       </span>
       <!-- About -->
       <span class="header-link-box"> 
@@ -97,7 +97,7 @@ function index_header($active_page = 'index')
         <a class="header-nav-link" href="./about.php">About</a>
       </span>
       <!-- Contact -->
-      <span class="header-link-box">
+      <span class="header-link-box active-link">
         <svg class="header-link-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M15 3.75H3C2.58579 3.75 2.25 4.08579 2.25 4.5V14.1895C2.25 14.8184 2.97745 15.168 3.46852 14.7752L5.79456 12.9143C5.92755 12.808 6.09278 12.75 6.26309 12.75H15C15.4142 12.75 15.75 12.4142 15.75 12V4.5C15.75 4.08579 15.4142 3.75 15 3.75Z" stroke="#4A4A4A" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>              
@@ -141,14 +141,14 @@ function auth_header()
   echo ('<header class="header-container">
   <!-- Logo -->
   <div class="logo-box">
-    <a href="./index.php">
+    <a href="./">
       <img class="logo" src="./assets/logo/logo512.png" alt="Gread Logo">
     </a>
   </div>
   <!-- Navigation -->
   <div class="navigation-box">
     <!-- Close Menu -->
-    <a href="./index.php">
+    <a href="./">
       <svg class="auth-close-icon nav-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M26.2499 26.2499L3.75 3.75" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M26.2501 3.75L3.75 26.2501" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -164,7 +164,7 @@ function auth_header()
             <svg class="header-link-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M14.7439 7.2759L9.49388 2.68215C9.21111 2.43473 8.78889 2.43473 8.50612 2.68215L3.25612 7.2759C3.09336 7.41832 3 7.62406 3 7.84033V14.25C3 14.6642 3.33579 15 3.75 15H6.75C7.16421 15 7.5 14.6642 7.5 14.25V11.25C7.5 10.8358 7.83579 10.5 8.25 10.5H9.75C10.1642 10.5 10.5 10.8358 10.5 11.25V14.25C10.5 14.6642 10.8358 15 11.25 15H14.25C14.6642 15 15 14.6642 15 14.25V7.84033C15 7.62406 14.9066 7.41832 14.7439 7.2759Z" stroke="#4A4A4A" stroke-opacity="0.8" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <a class="header-nav-link" href="./index.php">Home</a>
+            <a class="header-nav-link" href="./">Home</a>
           </span>
           <!-- About -->
           <span class="header-link-box"> 
@@ -182,7 +182,7 @@ function auth_header()
             </svg>              
             <a class="header-nav-link" href="./contact.php">Contact</a>
           </span>
-          </div>
+        </div>
           <!-- CTA -->
           <div class="header-cta-box">
             <div class="header-signup-box">

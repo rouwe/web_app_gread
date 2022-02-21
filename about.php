@@ -1,6 +1,6 @@
 <?php
-require_once "./utilities/php_snippets/header.php";
 session_start();
+require_once "./utilities/php_snippets/header.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

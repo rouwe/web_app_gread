@@ -1,7 +1,7 @@
 <?php
+session_start();
 require_once "./utilities/php_snippets/header.php";
 require_once "./utilities/php_snippets/footer.php";
-session_start();
 
 ?>
 <!DOCTYPE html>
@@ -18,7 +18,7 @@ session_start();
     <link rel="stylesheet" href="./utilities/css/footer.css">
     <link rel="stylesheet" href="./utilities/css/media_query.css">
     <link rel="stylesheet" href="./utilities/css/auth.css">
-    <link rel="stylesheet" href="./utilities/css/signup.css">
+    <!-- <link rel="stylesheet" href="./utilities/css/signup.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
