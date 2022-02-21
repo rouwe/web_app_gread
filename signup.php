@@ -1,7 +1,7 @@
 <?php
+session_start();
 require_once "./utilities/php_snippets/header.php";
 require_once "./utilities/php_snippets/footer.php";
-session_start();
 
 ?>
 <!DOCTYPE html>
@@ -17,7 +17,8 @@ session_start();
     <link rel="stylesheet" href="./utilities/css/header.css">
     <link rel="stylesheet" href="./utilities/css/footer.css">
     <link rel="stylesheet" href="./utilities/css/media_query.css">
-    <link rel="stylesheet" href="./utilities/css/signup.css">
+    <link rel="stylesheet" href="./utilities/css/auth.css">
+    <!-- <link rel="stylesheet" href="./utilities/css/signup.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
@@ -30,11 +31,11 @@ session_start();
     ?>
     <main class="main-container">
         <!-- Signup Form -->
-        <section class="signup-container">
+        <section class="auth-container">
             <!-- Text Box -->
-            <div class="signup-text-box">
-                <h1 class="signup-heading">Sign Up</h1>
-                <p class="signup-sub-heading">Start a collection of your favorite entertainment now.</p>
+            <div class="form-text-box">
+                <h1 class="form-heading">Sign Up</h1>
+                <p class="form-sub-heading">Start a collection of your favorite entertainment now.</p>
             </div>
             <!-- Form -->
             <form class="form-container" method="POST" enc>
@@ -53,7 +54,7 @@ session_start();
                 <p class="pass-length-info">Between 8 and 72 characters</p>
                 <button class="join-btn" type="submit" name="join">Join now</button>
             </form>
-            <hr class="join-divider">
+            <hr class="join-divider signup-divider">
             <p class="is-user">Already have an account? <a href="./login.php">Log in</a></p>
         </section>
     </main>

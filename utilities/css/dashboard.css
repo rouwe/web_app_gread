@@ -1,0 +1,124 @@
+/* Dashboard Header */
+/* Desktop Search */
+.desktop-search-box {
+    display: none;
+}
+/* Dashboard Logo */
+.d-logo-box {
+    width: fit-content; 
+    transform: translate(3px, 3px);
+}
+/* Dashboard Close Icon */
+.d-close-icon {
+    display: none;
+}
+
+/* Dashboard GREADS */
+.navigation-outline {
+    align-items: center;
+}
+/* Mobile Search */
+.d-nav-box {
+    width: 100%;
+    box-shadow: 0px -1px 1px #00000066, 0px 6px 4px #00000040;
+    background-color: var(--secondary);
+}
+.mobile-search-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0.625rem 2.8125rem;
+}
+.mobile-search-box {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.19rem 1.25rem;
+    border: 1px solid #4A4A4A99;
+    border-radius: 25px;
+    background-color: #F4F4F4;
+}
+.mobile-search-field {
+    display: inline-block;
+    height: 100%;
+    font-size: 1rem;
+    letter-spacing: -0.2px;
+    padding: 0px;
+    border: none;
+    background-color: #F4F4F4;
+}
+.mobile-search-field::placeholder {
+    color: #959595;
+}
+.mobile-search-icon {
+    width: 1.96875rem;
+    height: auto;
+}
+.mobile-search-icon path {
+    stroke: #959595;
+}
+/* Actions */
+.navigation-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.2rem 2.8125rem 0.3125rem;
+}
+.action-box {
+    padding: 0.5625rem 0.42rem 0.25rem;
+    border-radius: 5px;
+}
+.action-icon {
+    z-index: 1;
+}
+.action-icon path {
+    stroke: hsl(0, 0%, 100%, 50%)
+}
+/* Gread Content Header */
+.gread-content-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, min-content);
+    padding: 2.1875rem 1.875rem 3.125rem;
+}
+.gread-content-header {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, min-content);
+    grid-template-areas:
+    "header filter"
+    "divider divider";
+}
+.gread-header-box {
+    grid-area: header;
+}
+.filter-box {
+    grid-area: filter;
+}
+.gread-header-divider {
+    grid-area: divider;
+}
+.gread-header-box, .filter-box {
+    display: flex;
+    align-items: center;
+}
+.filter-box {
+    justify-content: flex-end;
+}
+.current-filter {
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: -0.2px;
+}
+.gread-header {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0rem;
+}
+@media all and (min-width: 1024px) {
+    .desktop-search-box {
+        display: flex;
+    }
+    .d-logout-icon {
+        display: block; 
+    }
+}
