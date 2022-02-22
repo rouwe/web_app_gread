@@ -27,7 +27,7 @@ require_once "./utilities/php_snippets/footer.php";
   ?>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Raleway:wght@300;400;500;600;700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -77,8 +77,7 @@ require_once "./utilities/php_snippets/footer.php";
     </div>
     <!-- Dashboard Logout Icon -->
     <svg class="d-logout-icon nav-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M14.2929 18.0429C13.9024 18.4334 13.9024 19.0666 14.2929 19.4571C14.6834 19.8476 15.3166 19.8476 15.7071 19.4571L14.2929 18.0429ZM18.75 15L19.4571 15.7071C19.6446 15.5196 19.75 15.2652 19.75 15C19.75 14.7348 19.6446 14.4804 19.4571 14.2929L18.75 15ZM15.7071 10.5429C15.3166 10.1524 14.6834 10.1524 14.2929 10.5429C13.9024 10.9334 13.9024 11.5666 14.2929 11.9571L15.7071 10.5429ZM5 14C4.44772 14 4 14.4477 4 15C4 15.5523 4.44772 16 5 16L5 14ZM15.7071 19.4571L19.4571 15.7071L18.0429 14.2929L14.2929 18.0429L15.7071 19.4571ZM19.4571 14.2929L15.7071 10.5429L14.2929 11.9571L18.0429 15.7071L19.4571 14.2929ZM5 16L18.75 16V14L5 14L5 16Z" fill="#4A4A4A" />
-      <path d="M11.25 8.75V6.25C11.25 5.55964 11.8096 5 12.5 5H23.75C24.4404 5 25 5.55964 25 6.25V23.75C25 24.4404 24.4404 25 23.75 25H12.5C11.8096 25 11.25 24.4404 11.25 23.75V21.25" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M14.2929 18.0429C13.9024 18.4334 13.9024 19.0666 14.2929 19.4571C14.6834 19.8476 15.3166 19.8476 15.7071 19.4571L14.2929 18.0429ZM18.75 15L19.4571 15.7071C19.6446 15.5196 19.75 15.2652 19.75 15C19.75 14.7348 19.6446 14.4804 19.4571 14.2929L18.75 15ZM15.7071 10.5429C15.3166 10.1524 14.6834 10.1524 14.2929 10.5429C13.9024 10.9334 13.9024 11.5666 14.2929 11.9571L15.7071 10.5429ZM5 14C4.44772 14 4 14.4477 4 15C4 15.5523 4.44772 16 5 16L5 14ZM10.25 8.75C10.25 9.30228 10.6977 9.75 11.25 9.75C11.8023 9.75 12.25 9.30228 12.25 8.75H10.25ZM12.25 21.25C12.25 20.6977 11.8023 20.25 11.25 20.25C10.6977 20.25 10.25 20.6977 10.25 21.25H12.25ZM15.7071 19.4571L19.4571 15.7071L18.0429 14.2929L14.2929 18.0429L15.7071 19.4571ZM19.4571 14.2929L15.7071 10.5429L14.2929 11.9571L18.0429 15.7071L19.4571 14.2929ZM5 16L18.75 16L18.75 14L5 14L5 16ZM12.5 6H23.75V4H12.5V6ZM24 6.25V23.75H26V6.25H24ZM23.75 24H12.5V26H23.75V24ZM12.25 8.75V6.25H10.25V8.75H12.25ZM12.25 23.75V21.25H10.25V23.75H12.25ZM12.5 24C12.3619 24 12.25 23.8881 12.25 23.75H10.25C10.25 24.9926 11.2574 26 12.5 26V24ZM24 23.75C24 23.8881 23.8881 24 23.75 24V26C24.9926 26 26 24.9926 26 23.75H24ZM23.75 6C23.8881 6 24 6.11193 24 6.25H26C26 5.00736 24.9926 4 23.75 4V6ZM12.5 4C11.2574 4 10.25 5.00736 10.25 6.25H12.25C12.25 6.11193 12.3619 6 12.5 6V4Z" fill="#4A4A4A" />
     </svg>
   </header>
   <!-- Main -->
@@ -163,17 +162,151 @@ require_once "./utilities/php_snippets/footer.php";
       <!-- GREADS -->
       <div class="gread-content-body">
         <!-- Gread Container -->
-        <div>
+        <div class="gread-box">
           <!-- Image Box -->
-          <div></div>
+          <div class="gread-thumbnail-box">
+            <img class="gread-thumbnail" src="./assets/temp_img.png" alt="Anime thumbnail">
+          </div>
           <!-- Text Box -->
-          <div>
+          <div class="gread-text-box">
             <!-- Title -->
-            <div></div>
+            <strong class="gread-title">Demon Slayer</strong>
             <!-- Description -->
-            <div></div>
+            <p class="gread-description">One of my favorite shounen anime...</p>
+          </div>
+          <!-- Select option box -->
+          <div class="select-option-box">
+            <svg class="checked select-state-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.5 14.5L13.3284 17.3285L18.9853 11.6716M8.25 7H20.75C21.4404 7 22 7.55964 22 8.25V20.75C22 21.4404 21.4404 22 20.75 22H8.25C7.55964 22 7 21.4404 7 20.75V8.25C7 7.55964 7.55964 7 8.25 7Z" stroke="#4A4A4A" stroke-width="2.13333" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <svg class="unchecked select-state-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21.25 7.5H8.75C8.05964 7.5 7.5 8.05964 7.5 8.75V21.25C7.5 21.9404 8.05964 22.5 8.75 22.5H21.25C21.9404 22.5 22.5 21.9404 22.5 21.25V8.75C22.5 8.05964 21.9404 7.5 21.25 7.5Z" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
           </div>
         </div>
+        <div class="gread-box">
+          <!-- Image Box -->
+          <div class="gread-thumbnail-box">
+            <img class="gread-thumbnail" src="./assets/temp_img.png" alt="Anime thumbnail">
+          </div>
+          <!-- Text Box -->
+          <div class="gread-text-box">
+            <!-- Title -->
+            <strong class="gread-title">Demon Slayer</strong>
+            <!-- Description -->
+            <p class="gread-description">One of my favorite shounen anime...</p>
+          </div>
+          <!-- Select option box -->
+          <div class="select-option-box">
+            <svg class="checked select-state-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.5 14.5L13.3284 17.3285L18.9853 11.6716M8.25 7H20.75C21.4404 7 22 7.55964 22 8.25V20.75C22 21.4404 21.4404 22 20.75 22H8.25C7.55964 22 7 21.4404 7 20.75V8.25C7 7.55964 7.55964 7 8.25 7Z" stroke="#4A4A4A" stroke-width="2.13333" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <svg class="unchecked select-state-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21.25 7.5H8.75C8.05964 7.5 7.5 8.05964 7.5 8.75V21.25C7.5 21.9404 8.05964 22.5 8.75 22.5H21.25C21.9404 22.5 22.5 21.9404 22.5 21.25V8.75C22.5 8.05964 21.9404 7.5 21.25 7.5Z" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+        <div class="gread-box">
+          <!-- Image Box -->
+          <div class="gread-thumbnail-box">
+            <img class="gread-thumbnail" src="./assets/temp_img.png" alt="Anime thumbnail">
+          </div>
+          <!-- Text Box -->
+          <div class="gread-text-box">
+            <!-- Title -->
+            <strong class="gread-title">Demon Slayer</strong>
+            <!-- Description -->
+            <p class="gread-description">One of my favorite shounen anime...</p>
+          </div>
+          <!-- Select option box -->
+          <div class="select-option-box">
+            <svg class="checked select-state-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.5 14.5L13.3284 17.3285L18.9853 11.6716M8.25 7H20.75C21.4404 7 22 7.55964 22 8.25V20.75C22 21.4404 21.4404 22 20.75 22H8.25C7.55964 22 7 21.4404 7 20.75V8.25C7 7.55964 7.55964 7 8.25 7Z" stroke="#4A4A4A" stroke-width="2.13333" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <svg class="unchecked select-state-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21.25 7.5H8.75C8.05964 7.5 7.5 8.05964 7.5 8.75V21.25C7.5 21.9404 8.05964 22.5 8.75 22.5H21.25C21.9404 22.5 22.5 21.9404 22.5 21.25V8.75C22.5 8.05964 21.9404 7.5 21.25 7.5Z" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+        <div class="gread-box">
+          <!-- Image Box -->
+          <div class="gread-thumbnail-box">
+            <img class="gread-thumbnail" src="./assets/temp_img.png" alt="Anime thumbnail">
+          </div>
+          <!-- Text Box -->
+          <div class="gread-text-box">
+            <!-- Title -->
+            <strong class="gread-title">Demon Slayer</strong>
+            <!-- Description -->
+            <p class="gread-description">One of my favorite shounen anime...</p>
+          </div>
+          <!-- Select option box -->
+          <div class="select-option-box">
+            <svg class="checked select-state-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.5 14.5L13.3284 17.3285L18.9853 11.6716M8.25 7H20.75C21.4404 7 22 7.55964 22 8.25V20.75C22 21.4404 21.4404 22 20.75 22H8.25C7.55964 22 7 21.4404 7 20.75V8.25C7 7.55964 7.55964 7 8.25 7Z" stroke="#4A4A4A" stroke-width="2.13333" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <svg class="unchecked select-state-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21.25 7.5H8.75C8.05964 7.5 7.5 8.05964 7.5 8.75V21.25C7.5 21.9404 8.05964 22.5 8.75 22.5H21.25C21.9404 22.5 22.5 21.9404 22.5 21.25V8.75C22.5 8.05964 21.9404 7.5 21.25 7.5Z" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+        <div class="gread-box">
+          <!-- Image Box -->
+          <div class="gread-thumbnail-box">
+            <img class="gread-thumbnail" src="./assets/temp_img.png" alt="Anime thumbnail">
+          </div>
+          <!-- Text Box -->
+          <div class="gread-text-box">
+            <!-- Title -->
+            <strong class="gread-title">Demon Slayer</strong>
+            <!-- Description -->
+            <p class="gread-description">One of my favorite shounen anime...</p>
+          </div>
+          <!-- Select option box -->
+          <div class="select-option-box">
+            <svg class="checked select-state-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.5 14.5L13.3284 17.3285L18.9853 11.6716M8.25 7H20.75C21.4404 7 22 7.55964 22 8.25V20.75C22 21.4404 21.4404 22 20.75 22H8.25C7.55964 22 7 21.4404 7 20.75V8.25C7 7.55964 7.55964 7 8.25 7Z" stroke="#4A4A4A" stroke-width="2.13333" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <svg class="unchecked select-state-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21.25 7.5H8.75C8.05964 7.5 7.5 8.05964 7.5 8.75V21.25C7.5 21.9404 8.05964 22.5 8.75 22.5H21.25C21.9404 22.5 22.5 21.9404 22.5 21.25V8.75C22.5 8.05964 21.9404 7.5 21.25 7.5Z" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+        <div class="gread-box">
+          <!-- Image Box -->
+          <div class="gread-thumbnail-box">
+            <img class="gread-thumbnail" src="./assets/temp_img.png" alt="Anime thumbnail">
+          </div>
+          <!-- Text Box -->
+          <div class="gread-text-box">
+            <!-- Title -->
+            <strong class="gread-title">Demon Slayer</strong>
+            <!-- Description -->
+            <p class="gread-description">One of my favorite shounen anime...</p>
+          </div>
+          <!-- Select option box -->
+          <div class="select-option-box">
+            <svg class="checked select-state-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.5 14.5L13.3284 17.3285L18.9853 11.6716M8.25 7H20.75C21.4404 7 22 7.55964 22 8.25V20.75C22 21.4404 21.4404 22 20.75 22H8.25C7.55964 22 7 21.4404 7 20.75V8.25C7 7.55964 7.55964 7 8.25 7Z" stroke="#4A4A4A" stroke-width="2.13333" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <svg class="unchecked select-state-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21.25 7.5H8.75C8.05964 7.5 7.5 8.05964 7.5 8.75V21.25C7.5 21.9404 8.05964 22.5 8.75 22.5H21.25C21.9404 22.5 22.5 21.9404 22.5 21.25V8.75C22.5 8.05964 21.9404 7.5 21.25 7.5Z" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <!-- Pagination -->
+      <div class="pagination-box">
+        <!-- Left Double -->
+        <a class="pagination-link multi-prev inactive" href="#">&laquo;</a>
+        <!-- Pages -->
+        <a class="pagination-link pagination-active" href="#php inserts here">1</a>
+        <a class="pagination-link" href="#php inserts here">2</a>
+        <a class="pagination-link" href="#php inserts here">3</a>
+        <a class="pagination-link" href="#php inserts here">4</a>
+        <a class="pagination-link" href="#php inserts here">5</a>
+        <!-- Right double -->
+        <a class="pagination-link multi-next" href="#">&raquo;</a>
       </div>
     </section>
   </main>
