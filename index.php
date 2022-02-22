@@ -27,7 +27,7 @@ require_once "./utilities/php_snippets/footer.php";
   ?>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -65,11 +65,15 @@ require_once "./utilities/php_snippets/footer.php";
     </div>
     <!-- Desktop Search -->
     <div class="desktop-search-box">
-      <input type="text" name="desktop-search" placeholder="Search something" aria-label="Desktop search">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M13.125 22.3125C18.1991 22.3125 22.3125 18.1991 22.3125 13.125C22.3125 8.05088 18.1991 3.9375 13.125 3.9375C8.05088 3.9375 3.9375 8.05088 3.9375 13.125C3.9375 18.1991 8.05088 22.3125 13.125 22.3125Z" stroke="#959595" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M19.6875 19.6875L27.5625 27.5625" stroke="#959595" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
+      <input class="desktop-search-field" type="text" name="desktop-search" placeholder="Search something..." aria-label="Desktop search">
+      <button type="button" class="desktop-search-button">
+        <i>
+          <svg class="desktop-search-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.125 22.3125C18.1991 22.3125 22.3125 18.1991 22.3125 13.125C22.3125 8.05088 18.1991 3.9375 13.125 3.9375C8.05088 3.9375 3.9375 8.05088 3.9375 13.125C3.9375 18.1991 8.05088 22.3125 13.125 22.3125Z" stroke="#959595" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M19.6875 19.6875L27.5625 27.5625" stroke="#959595" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </i>
+      </button>
     </div>
     <!-- Dashboard Logout Icon -->
     <svg class="d-logout-icon nav-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -77,6 +81,7 @@ require_once "./utilities/php_snippets/footer.php";
       <path d="M11.25 8.75V6.25C11.25 5.55964 11.8096 5 12.5 5H23.75C24.4404 5 25 5.55964 25 6.25V23.75C25 24.4404 24.4404 25 23.75 25H12.5C11.8096 25 11.25 24.4404 11.25 23.75V21.25" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
   </header>
+  <!-- Main -->
   <main class="main-container">
     <!-- Navigation -->
     <nav class="navigation">
@@ -85,17 +90,21 @@ require_once "./utilities/php_snippets/footer.php";
         <div class="mobile-search-container d-nav-box">
           <div class="mobile-search-box">
             <input class="mobile-search-field" type="text" name="mobile-search" placeholder="Search something..." aria-label="Mobile search">
-            <svg class="mobile-search-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M13.125 22.3125C18.1991 22.3125 22.3125 18.1991 22.3125 13.125C22.3125 8.05088 18.1991 3.9375 13.125 3.9375C8.05088 3.9375 3.9375 8.05088 3.9375 13.125C3.9375 18.1991 8.05088 22.3125 13.125 22.3125Z" stroke="#959595" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M19.6875 19.6875L27.5625 27.5625" stroke="#959595" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
+            <button type="button" class="search-button">
+              <i>
+                <svg class="mobile-search-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13.125 22.3125C18.1991 22.3125 22.3125 18.1991 22.3125 13.125C22.3125 8.05088 18.1991 3.9375 13.125 3.9375C8.05088 3.9375 3.9375 8.05088 3.9375 13.125C3.9375 18.1991 8.05088 22.3125 13.125 22.3125Z" stroke="#959595" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M19.6875 19.6875L27.5625 27.5625" stroke="#959595" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </i>
+            </button>
           </div>
         </div>
         <!-- Actions -->
         <div class="navigation-actions d-nav-box">
           <!-- Home -->
-          <div class="action-box">
-            <svg class="action-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <div class="action-box active-box">
+            <svg class="action-icon active-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M25.8018 12.7327L16.6143 4.69364C16.1194 4.26065 15.3806 4.26065 14.8857 4.69364L5.69821 12.7327C5.41338 12.9819 5.25 13.342 5.25 13.7205V24.9374C5.25 25.6623 5.83763 26.2499 6.5625 26.2499H11.8125C12.5374 26.2499 13.125 25.6623 13.125 24.9374V19.6874C13.125 18.9625 13.7126 18.3749 14.4375 18.3749H17.0625C17.7874 18.3749 18.375 18.9625 18.375 19.6874V24.9374C18.375 25.6623 18.9626 26.2499 19.6875 26.2499H24.9375C25.6624 26.2499 26.25 25.6623 26.25 24.9374V13.7205C26.25 13.342 26.0866 12.9819 25.8018 12.7327Z" stroke="#4A4A4A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </div>
@@ -120,11 +129,11 @@ require_once "./utilities/php_snippets/footer.php";
             </svg>
           </div>
           <!-- Info -->
-          <div class="action-box">
+          <div class="action-box info-box">
             <svg class="action-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15.75 27.5623C22.2739 27.5623 27.5625 22.2736 27.5625 15.7498C27.5625 9.22589 22.2739 3.93726 15.75 3.93726C9.22614 3.93726 3.9375 9.22589 3.9375 15.7498C3.9375 22.2736 9.22614 27.5623 15.75 27.5623Z" stroke="#4A4A4A" stroke-width="2.83333" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M15.7501 14.4375V21" stroke="#4A4A4A" stroke-width="2.83333" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M15.6847 10.5002H15.8159V10.6315H15.6847V10.5002Z" stroke="#4A4A4A" stroke-width="2.83333" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15.75 27.5625C22.2739 27.5625 27.5625 22.2739 27.5625 15.75C27.5625 9.22614 22.2739 3.9375 15.75 3.9375C9.22615 3.9375 3.93752 9.22614 3.93752 15.75C3.93752 22.2739 9.22615 27.5625 15.75 27.5625Z" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15.75 14.4375V21" stroke="#4A4A4A" stroke-width="2.83333" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15.6846 10.5H15.8159V10.6312H15.6846V10.5Z" stroke="#4A4A4A" stroke-width="2.83333" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </div>
         </div>
