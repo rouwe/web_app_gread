@@ -1,0 +1,179 @@
+/* Dashboard Header */
+/* Desktop Search */
+.desktop-search-box {
+    display: none;
+}
+/* Dashboard Logo */
+.d-logo-box {
+    width: fit-content; 
+    transform: translate(3px, 3px);
+}
+/* Dashboard Close Icon */
+.d-close-icon {
+    display: none;
+}
+/* Dashboard GREADS */
+.navigation-outline {
+    align-items: center;
+}
+/* Mobile Search */
+.d-nav-box {
+    width: 100%;
+    box-shadow: 0px -1px 1px #00000066, 0px 6px 4px #00000040;
+    background-color: var(--secondary);
+}
+.mobile-search-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0.625rem 2.8125rem;
+}
+.mobile-search-box {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem;
+    border: 1px solid #4A4A4A99;
+    border-radius: 25px;
+    background-color: #F4F4F4;
+}
+.mobile-search-field {
+    display: inline-block;
+    width: 100%;
+    height: 32px;
+    font-size: 1rem;
+    letter-spacing: -0.2px;
+    padding: 0.3rem 4rem 0.3rem 1.25rem;
+    border: none;
+    border-radius: 25px;
+    background-color: #F4F4F4;
+}
+.mobile-search-field::placeholder {
+    color: #959595;
+}
+.search-button {
+    position: absolute;
+    right: 1.25rem;
+    top: 0px;
+    height: 100%;
+    transform: scale(0.9);
+    padding: 0px;
+    border: none;
+    background-color: transparent;
+}
+.mobile-search-icon {
+    width: 1.96875rem;
+    height: auto;
+}
+.mobile-search-icon path {
+    stroke: #959595;
+}
+/* Actions */
+.navigation-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.2rem 2.8125rem 0.3125rem;
+}
+.action-box {
+    padding: 0.5625rem 0.42rem 0.25rem;
+    border-radius: 5px;
+}
+.action-icon {
+    z-index: 1;
+}
+.action-icon path {
+    stroke: #FFFFFF80
+}
+@media all and (min-width: 425px) {
+    .mobile-search-field {
+        padding-top: calc(0.3rem + 0.1rem);
+        padding-bottom: calc(0.3rem + 0.1rem);
+    }
+}
+@media all and (min-width: 500px) {
+    .mobile-search-field {
+        padding-top: calc(0.3rem + 0.2rem);
+        padding-bottom: calc(0.3rem + 0.2rem);
+    }
+}
+@media all and (min-width: 568px) {
+    .mobile-search-field {
+        padding-top: calc(0.3rem + 0.4rem);
+        padding-bottom: calc(0.3rem + 0.4rem);
+    }
+}
+@media all and (min-width: 640px) {
+    .mobile-search-field {
+        padding-top: calc(0.3rem + 0.7rem);
+        padding-bottom: calc(0.3rem + 0.7rem);
+    }
+}
+@media all and (min-width: 1024px) {
+    .d-logo-box {
+        margin-right: calc(5rem + 0.5rem);
+    }
+    .desktop-search-box {
+        position: relative;
+        top: 0px;
+        min-width: 35vw;
+        max-width: 40vw;
+        display: flex;
+        padding-left: 0.5rem;
+        margin-right: auto;
+        border-radius: 25px;
+        background-color: #f4f4f4;
+    }
+    .desktop-search-field {
+        width: 100%;
+        font-size: 0.875rem;
+        font-family: 'Roboto', sans-serif;
+        letter-spacing: -0.2px;
+        padding: 0.45rem 3rem 0.45rem 1.25rem;
+        border: 1px solid #4a4a4a80;
+        border-radius: 25px;
+        background-color: #f4f4f4;
+    }
+    .desktop-search-field::placeholder {
+        color: #959595;
+    }
+    .desktop-search-button {
+        position: absolute;
+        top: 0px;
+        right: 1rem;
+        height: 100%;
+        border: none;
+        background-color: transparent;
+    }
+    .desktop-search-icon {
+        transform: scale(0.8);
+    }
+    .d-logout-icon {
+        display: block; 
+    }
+    .mobile-search-container {
+        display: none;
+    }
+}
+@media all and (min-width: 1366px) {
+    .d-logo-box {
+        margin-right: 4.7rem;
+    }
+    .desktop-search-box {
+        min-width: 38vw;
+        max-width: 38vw;
+    }
+    .desktop-search-field {
+        padding: 0.45rem 3rem 0.45rem 1.1rem;
+    }
+    .desktop-search-button {
+        top: 1px;
+        right: 0.5rem;
+    }
+}
+@media all and (min-width: 1440px) {
+    .desktop-search-box {
+        min-width: 42.05vw;
+        max-width: 44vw;
+    }
+}

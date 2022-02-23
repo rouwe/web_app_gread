@@ -1,6 +1,6 @@
 let menuIsOpen = false;
 (function menuSystem() {
-    // Controls the mobile menu
+    // Controls the mobile menu for
     const openMenuButton = document.getElementsByClassName('open-menu')[0];
     const closeMenuButton = document.getElementsByClassName('close-menu')[0];
     const navigationBox = document.getElementsByClassName('navigation')[0];
