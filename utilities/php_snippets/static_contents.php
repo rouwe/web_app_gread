@@ -73,7 +73,6 @@ function gread_entry($img_src = null, $title = null, $description = null)
 function pagination($pages_count = 0)
 {
   // Template for pagination items
-  echo ('</div>');
   echo ('<!-- Pagination -->
       <div class="pagination-box">
         <!-- Left Double -->

@@ -16,7 +16,6 @@ $_SESSION['user'] = 'rowe';
   <link rel="icon" href="./assets/logo/brand_logo.png">
   <link rel="stylesheet" href="./utilities/css/component_style.css">
   <link rel="stylesheet" href="./utilities/css/index_header.css">
-  <link rel="stylesheet" href="./utilities/css/footer.css">
   <link rel="stylesheet" href="./utilities/css/media_query.css">
   <?php
   if (isset($_SESSION['user'])) {
@@ -24,6 +23,7 @@ $_SESSION['user'] = 'rowe';
     echo ('<link rel="stylesheet" href="./utilities/css/dashboard_header.css">');
     echo ('<link rel="stylesheet" href="./utilities/css/dashboard.css">');
   } else {
+    echo ('<link rel="stylesheet" href="./utilities/css/footer.css">');
     echo ('<link rel="stylesheet" href="./utilities/css/index.css">');
   }
   ?>
@@ -134,6 +134,8 @@ $_SESSION['user'] = 'rowe';
     foreach ($title_array as $title) {
       gread_entry('./assets/temp_img.png', $title, 'One of my favorite shonen anime...');
     }
+    // End <!-- GREADS -->
+    echo ('</div>');
     // Pagination
     pagination(5);
   } else {
