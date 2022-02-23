@@ -14,7 +14,7 @@ require_once "./utilities/php_snippets/footer.php";
     <title>Sign up | Your library of entertainment</title>
     <link rel="icon" href="./assets/logo/brand_logo.png">
     <link rel="stylesheet" href="./utilities/css/component_style.css">
-    <link rel="stylesheet" href="./utilities/css/header.css">
+    <link rel="stylesheet" href="./utilities/css/index_header.css">
     <link rel="stylesheet" href="./utilities/css/footer.css">
     <link rel="stylesheet" href="./utilities/css/media_query.css">
     <link rel="stylesheet" href="./utilities/css/auth.css">
