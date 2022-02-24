@@ -45,6 +45,7 @@
     font-size: 1rem;
     letter-spacing: -0.2px;
     padding: 0.3rem 4rem 0.3rem 1.25rem;
+    margin: 3px 0px;
     border: none;
     border-radius: 25px;
     background-color: #F4F4F4;
@@ -57,7 +58,6 @@
     right: 1.25rem;
     top: 0px;
     height: 100%;
-    transform: scale(0.9);
     padding: 0px;
     border: none;
     background-color: transparent;

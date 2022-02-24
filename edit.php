@@ -110,6 +110,8 @@ require_once "./utilities/php_snippets/static_contents.php";
         </div>
         <!-- GREADS -->
         <div class="gread-content-body">');
+  ?>
+  <?php
   // End <!-- GREADS -->
   echo ('</div>');
   ?>

@@ -7,26 +7,28 @@ require_once "./utilities/php_snippets/static_contents.php";
 <html lang="en">
 
 <head>
-    <meta name="charset" content="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Roweme B. Santos">
-    <title>Add Gread | Your library of entertainment</title>
-    <link rel="icon" href="./assets/logo/brand_logo.png">
-    <link rel="stylesheet" href="./utilities/css/component_style.css">
-    <link rel="stylesheet" href="./utilities/css/index_header.css">
-    <link rel="stylesheet" href="./utilities/css/media_query.css">
-    <link rel="stylesheet" href="./utilities/css/dashboard_header.css">
-    <link rel="stylesheet" href="./utilities/css/dashboard.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Raleway:wght@300;400;500;600;700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <meta name="charset" content="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Roweme B. Santos">
+  <title>Add Gread | Your library of entertainment</title>
+  <link rel="icon" href="./assets/logo/brand_logo.png">
+  <link rel="stylesheet" href="./utilities/css/component_style.css">
+  <link rel="stylesheet" href="./utilities/css/index_header.css">
+  <link rel="stylesheet" href="./utilities/css/media_query.css">
+  <link rel="stylesheet" href="./utilities/css/dashboard_header.css">
+  <link rel="stylesheet" href="./utilities/css/dashboard.css">
+  <link rel="stylesheet" href="./utilities/css/action.css">
+  <link rel="stylesheet" href="./utilities/css/add.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Raleway:wght@300;400;500;600;700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <?php
-    // Display user dashboard
-    dashboard_header();
-    echo ('<!-- Main -->
+  <?php
+  // Display user dashboard
+  dashboard_header();
+  echo ('<!-- Main -->
     <main class="main-container">
       <!-- Navigation -->
       <nav class="navigation">
@@ -110,12 +112,65 @@ require_once "./utilities/php_snippets/static_contents.php";
         </div>
         <!-- GREADS -->
         <div class="gread-content-body">');
-    // End <!-- GREADS -->
-    echo ('</div>');
-    ?>
-    </main>
-    <script src="./utilities/js/index.js"></script>
-    <script src="./utilities/js/navigation.js"></script>
+  ?>
+  <!-- Action heading -->
+  <div class="action-heading-box">
+    <h2 class="action-heading">New Gread</h2>
+  </div>
+  <!-- Action content -->
+  <div class="action-content-box">
+    <svg class="action-close-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M26.2499 26.2499L3.75 3.75" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M26.2501 3.75L3.75 26.2501" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    <!-- Preview box -->
+    <div class="preview-container">
+      <span class="preview-text">Preview</span>
+      <!-- Preview -->
+      <div class="preview-box">
+        <div class="preview-img-box">
+          <img class="preview-img" src="./assets/temp_preview.png" alt="">
+        </div>
+        <!-- Text box -->
+        <div class="preview-text-box">
+          <span class="preview-title">
+            <strong>Gread Title</strong>
+          </span>
+          <p class="preview-description">Description</p>
+        </div>
+      </div>
+    </div>
+    <!-- Add Form -->
+    <form class="action-form-container" method="POST" enctype="multipart/form-data">
+      <!-- Title -->
+      <div class="form-box inpt-title-box">
+        <label class="inpt-label" for="title">Title</label>
+        <input class="inpt-field inpt-title" type="text" id="title" name="add_title" placeholder="Gread title" required maxlength="128">
+      </div>
+      <!-- Description -->
+      <div class="form-box inpt-description-box">
+        <label class="inpt-label" for="description">Description</label>
+        <textarea class="inpt-field inpt-description" id="description" name="add_description" placeholder="Gread description" maxlength="256"></textarea>
+      </div>
+      <!-- Upload Image thumbnail -->
+      <div class="inpt-img-box">
+        <label class="inpt-label" for="thumbnail">Upload Image</label>
+        <input class="inpt-file" type="file" name="add_thumbnail" accept="image/*, image/png, image/jpeg">
+      </div>
+      <!-- Proceed and Cancel -->
+      <div class="decision-box">
+        <button class="add-btn" type="submit" name="submit" value="Add">Add</button>
+        <button class="cancel-btn" type="submit" name="cancel" value="Cancel">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <?php
+  // End <!-- GREADS -->
+  echo ('</div>');
+  ?>
+  </main>
+  <script src="./utilities/js/index.js"></script>
+  <script src="./utilities/js/navigation.js"></script>
 </body>
 
 </html>
