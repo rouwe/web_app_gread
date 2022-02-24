@@ -48,7 +48,7 @@
     justify-content: flex-start;
     column-gap: 1rem;
     padding: 0.75rem 0.71rem 0.6875rem;
-    border: 0.0375rem solid #66666640;
+    border: 0.0375rem solid #66666673;
     margin-bottom: 3.5rem;
     border-radius: 0.25rem;
 }
@@ -148,4 +148,171 @@
 .cancel-btn {
     margin-left: 0.9375rem;
     background-color: var(--secondary);
+}
+@media all and (min-width: 1024px) {
+    .gread-content-header {
+        display: grid;
+    }
+    .gread-content-body {
+        position: relative;
+        flex-direction: column;
+    }
+    .action-heading-box {
+        position: absolute;
+        top: 1.25rem;
+        left: 7.8125rem;
+    }
+    .action-content-box {
+        grid-template-columns: repeat(10, 1fr);
+        grid-template-rows: repeat(5, min-content);
+        grid-template-areas:
+        "form form form form blank preview preview preview preview preview"
+        "form form form form blank preview preview preview preview preview"
+        "form form form form blank preview preview preview preview preview"
+        "form form form form blank preview preview preview preview preview"
+        "form form form form blank preview preview preview preview preview";
+        column-gap: 2rem;
+        padding: 1.25rem 3.75rem 3.9375rem;
+    }
+    .preview-container {
+        grid-area: preview;
+    }
+    .action-form-container {
+        display: block;
+        grid-area: form;
+    }
+    .action-close-icon {
+        top: 1.25rem;
+        right: 1.25rem;
+        max-width: 1.875rem;
+        max-height: 1.875rem;
+    }
+    .action-form-container {
+        margin-top: 4rem;
+    }
+    .inpt-img-box {
+        margin-bottom: 0rem;
+    }
+    .decision-box {
+        position: absolute;
+        right: 3.75rem;
+        bottom: 4.0624rem;
+    }
+}
+@media all and (min-width: 1366px) {
+    .gread-content-header {
+        margin-bottom: 2.75rem;
+    }
+    .gread-content-body {
+        padding: 0rem 0rem 3.5rem 3.5rem; 
+    }
+    .action-heading-box {
+        left: 7.25rem;
+    }
+    .action-heading {
+        font-size: 1.1rem;
+    }
+    .action-content-box {
+        padding: 1.2rem 3.75rem 3.75rem;
+    }
+    .action-close-icon {
+        top: 1rem;
+        right: 1rem;
+        max-width: 1.4rem;
+        max-height: 1.4rem;
+    }
+    .preview-container {
+        margin-left: 2rem;
+    }
+    .preview-text, .preview-title {
+        font-size: 0.8rem;
+    }
+    .preview-description {
+        font-size: 0.6rem;
+    }
+    .action-form-container {
+        margin-top: 4.1rem;
+    }
+    .inpt-field {
+        font-size: 0.615rem;
+    }
+    .inpt-label, .inpt-file {
+        font-size: 0.6rem;
+    }
+    .add-btn, .cancel-btn {
+        font-size: 0.7rem;
+    }
+}
+@media all and (min-width: 1440px) {
+    .gread-content-container {
+        padding:  1.8rem 6.25rem 5rem 2.5rem;
+    }
+    .gread-content-header {
+        margin-bottom: 2.95rem;
+    }
+    .gread-content-body {
+        padding: 0rem 0rem 3.75rem 3.75rem;
+    }
+    .action-heading-box {
+        left: 7.75rem;
+    }
+    .action-heading {
+        font-size: 1.2rem;
+    }
+    .action-content-box {
+        padding: 1.4rem 4rem 3.85rem;
+    }
+    .action-close-icon {
+        max-width: 1.5rem;
+        max-height: 1.5rem;
+    }
+    .preview-container {
+        margin-top: 4.4rem; 
+    }
+    .preview-img {
+        max-width: 6.2rem;
+    }
+    .preview-text {
+        margin-bottom: 1rem;
+    }
+    .preview-text, .preview-title {
+        font-size: 0.9rem;
+    }
+    .preview-description, .inpt-label {
+        font-size: 0.7rem;
+    }
+    .action-form-container {
+        margin-top: 4.4rem;
+        margin-right: 2.2rem;
+    }
+    .form-box {
+        margin-bottom: 1.25rem;
+    }
+    .inpt-field {
+        font-size: 0.715rem;
+        padding: 0.5rem 0.4rem 0.5rem;
+    }
+    .inpt-file {
+        font-size: 0.65rem;
+    }
+    .inpt-file::-webkit-file-upload-button {
+        padding: 0.4rem 1.15rem;
+    }
+    .inpt-description {
+        min-height: 6.05rem;
+        max-height: 6.10rem;
+    }
+    .decision-box {
+        right: 4rem;
+        bottom: 3.85rem;
+    }
+    .add-btn, .cancel-btn {
+        padding: 0.3rem 0.74rem 0.32rem;
+    }
+    .add-btn {
+        margin-right: 0.75rem;
+    }
+    .cancel-btn {
+        margin-left: 0.75rem;
+    }
 }
