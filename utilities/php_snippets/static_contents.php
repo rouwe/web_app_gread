@@ -69,3 +69,20 @@ function gread_entry($img_src = null, $title = null, $description = null)
     </div>
   </div>');
 }
+
+function pagination($pages_count = 0)
+{
+  // Template for pagination items
+  echo ('<!-- Pagination -->
+      <div class="pagination-box">
+        <!-- Left Double -->
+        <a class="pagination-link multi-prev" href="">&laquo;</a>
+        <a class="pagination-link pagination-active" href="./?page=1">1</a>
+        <!-- Pages -->');
+  for ($i = 2; $i < $pages_count; $i++) {
+    echo ('<a class="pagination-link" href="./?' . "page=$i\">" . $i . "</a>\n");
+  }
+  echo ('<!-- Right double -->
+        <a class="pagination-link multi-next" href="#">&raquo;</a>
+      </div>');
+}

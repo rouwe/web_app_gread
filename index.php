@@ -3,7 +3,7 @@ session_start();
 require_once "./utilities/php_snippets/header.php";
 require_once "./utilities/php_snippets/static_contents.php";
 require_once "./utilities/php_snippets/footer.php";
-// $_SESSION['user'] = 'rowe';
+$_SESSION['user'] = 'rowe';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +16,6 @@ require_once "./utilities/php_snippets/footer.php";
   <link rel="icon" href="./assets/logo/brand_logo.png">
   <link rel="stylesheet" href="./utilities/css/component_style.css">
   <link rel="stylesheet" href="./utilities/css/index_header.css">
-  <link rel="stylesheet" href="./utilities/css/footer.css">
   <link rel="stylesheet" href="./utilities/css/media_query.css">
   <?php
   if (isset($_SESSION['user'])) {
@@ -24,6 +23,7 @@ require_once "./utilities/php_snippets/footer.php";
     echo ('<link rel="stylesheet" href="./utilities/css/dashboard_header.css">');
     echo ('<link rel="stylesheet" href="./utilities/css/dashboard.css">');
   } else {
+    echo ('<link rel="stylesheet" href="./utilities/css/footer.css">');
     echo ('<link rel="stylesheet" href="./utilities/css/index.css">');
   }
   ?>
@@ -134,20 +134,10 @@ require_once "./utilities/php_snippets/footer.php";
     foreach ($title_array as $title) {
       gread_entry('./assets/temp_img.png', $title, 'One of my favorite shonen anime...');
     }
+    // End <!-- GREADS -->
     echo ('</div>');
-    echo ('<!-- Pagination -->
-        <div class="pagination-box">
-          <!-- Left Double -->
-          <a class="pagination-link multi-prev inactive" href="#">&laquo;</a>
-          <!-- Pages -->
-          <a class="pagination-link pagination-active" href="#php inserts here">1</a>
-          <a class="pagination-link" href="#php inserts here">2</a>
-          <a class="pagination-link" href="#php inserts here">3</a>
-          <a class="pagination-link" href="#php inserts here">4</a>
-          <a class="pagination-link" href="#php inserts here">5</a>
-          <!-- Right double -->
-          <a class="pagination-link multi-next" href="#">&raquo;</a>
-        </div>');
+    // Pagination
+    pagination(5);
   } else {
     // display landing page
     index_header('index');

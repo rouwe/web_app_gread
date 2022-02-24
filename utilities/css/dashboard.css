@@ -29,6 +29,9 @@
     width: 100%;
     grid-area: divider;
     margin: 0.45rem 0rem;
+    border-width: 0.5px;
+    color: #4A4A4A;
+    opacity: 0.3;
 }
 .active-gread-icon, .filter-arrow {
     width: 1.25rem;

@@ -45,6 +45,7 @@
     font-size: 1rem;
     letter-spacing: -0.2px;
     padding: 0.3rem 4rem 0.3rem 1.25rem;
+    margin: 3px 0px;
     border: none;
     border-radius: 25px;
     background-color: #F4F4F4;
@@ -57,7 +58,6 @@
     right: 1.25rem;
     top: 0px;
     height: 100%;
-    transform: scale(0.9);
     padding: 0px;
     border: none;
     background-color: transparent;
@@ -170,10 +170,18 @@
         top: 1px;
         right: 0.5rem;
     }
+    .d-logout-icon {
+        width: 35px;
+        height: 35px;
+    }
 }
 @media all and (min-width: 1440px) {
     .desktop-search-box {
         min-width: 42.05vw;
         max-width: 44vw;
+    }
+    .d-logout-icon {
+        width: 40px;
+        height: 40px;
     }
 }
