@@ -1,8 +1,7 @@
 <?php
 session_start();
 require_once "./utilities/php_snippets/header.php";
-$user_is_logged_in = false;
-if (isset($_SESSION['user'])) {
+if (isset($_SESSION['active_user'])) {
   $user_is_logged_in = true;
 }
 ?>

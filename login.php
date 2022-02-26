@@ -1,8 +1,70 @@
 <?php
 session_start();
+require_once "./utilities/pdo/pdo.php";
+require_once "./utilities/php_snippets/helper.php";
 require_once "./utilities/php_snippets/header.php";
 require_once "./utilities/php_snippets/footer.php";
 
+// Prevents Access if already logged
+if (isset($_SESSION['active_user'])) {
+    $_SESSION['success'] = 'You are already logged in';
+    header("Location: ./");
+    return;
+}
+// Check if redirected from signup and logged in user automatically
+if (isset($_SESSION['signup_credentials'])) {
+    $query_id = "SELECT * FROM users
+    WHERE name = :signup_fname AND email = :signup_email
+    AND password = :signup_password AND hash = :hashed_password";
+    $stmt = $pdo->prepare($query_id);
+    $stmt->execute(array(
+        ':signup_fname' => $_SESSION['signup_credentials']['fname'],
+        ':signup_email' => $_SESSION['signup_credentials']['email'],
+        ':signup_password' => $_SESSION['signup_credentials']['password'],
+        ':hashed_password' => $_SESSION['signup_credentials']['password_hash']
+    ));
+    // Fetch query
+    $user_data = $stmt->fetch(PDO::FETCH_ASSOC);
+    $password_is_matched = password_verify($user_data['password'], $user_data['hash']);
+    // Failed Login
+    if ($password_is_matched === false) {
+        $_SESSION['error'] = "The password you've entered is incorrect.";
+        header("Location: ./login.php");
+        return false;
+    }
+    // Successful Login
+    $_SESSION['active_user'] = $user_data['email'];
+    $_SESSION['success'] = "You've successfuly logged in.";
+    unset($_SESSION['signup_credentials']);
+    header("Location: ./");
+    return true;
+}
+// Logged in user through log in page
+if (isset($_POST['usr_email']) && isset($_POST['usr_password'])) {
+    // Lookup database for a match
+    $query_id = "SELECT * FROM users
+    WHERE email = :email
+    AND password = :password";
+    $stmt = $pdo->prepare($query_id);
+    $stmt->execute(array(
+        ':email' => $_POST['usr_email'],
+        ':password' => $_POST['usr_password']
+    ));
+    // Fetch query
+    $user_data = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Failed Login
+    $password_is_matched = password_verify($user_data['password'], $user_data['hash']);
+    if ($password_is_matched === false) {
+        $_SESSION['error'] = "The password you've entered is incorrect.";
+        header("Location: ./login.php");
+        return false;
+    }
+    // Succesful Login
+    $_SESSION['active_user'] = $user_data['email'];
+    $_SESSION['success'] = "You've successfuly logged in.";
+    header("Location: ./");
+    return true;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,16 +98,20 @@ require_once "./utilities/php_snippets/footer.php";
                 <h1 class="form-heading">Welcome Back</h1>
             </div>
             <!-- Form -->
-            <form class="form-container" method="POST" enc>
+            <form class="form-container" method="POST">
                 <div class="inpt-field-box">
                     <label class="inpt-label" for="email">Email</label>
                     <input class="inpt-field" type="email" id="email" class="inpt_email" name="usr_email" required placeholder="yourname@email.com">
                 </div>
                 <div class="inpt-field-box pass-field">
                     <label class="inpt-label" for="password">Password</label>
-                    <input class="inpt-field" type="password" id="password" class="inpt_password" required placeholder="Enter your password" minLength="8" maxLength="72">
+                    <input class="inpt-field" type="password" id="password" name="usr_password" required placeholder="Enter your password" minLength="8" maxLength="72">
                 </div>
                 <p class="pass-length-info">Between 8 and 72 characters</p>
+                <?php
+                // Flash message
+                flash_message();
+                ?>
                 <button class="join-btn" type="submit" name="login">Login</button>
             </form>
             <p class="forgot-pass"><a href="#">Forgot password?</a></p>

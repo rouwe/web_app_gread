@@ -3,7 +3,6 @@ session_start();
 require_once "./utilities/php_snippets/header.php";
 require_once "./utilities/php_snippets/static_contents.php";
 require_once "./utilities/php_snippets/footer.php";
-$_SESSION['user'] = 'rowe';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +17,7 @@ $_SESSION['user'] = 'rowe';
   <link rel="stylesheet" href="./utilities/css/index_header.css">
   <link rel="stylesheet" href="./utilities/css/media_query.css">
   <?php
-  if (isset($_SESSION['user'])) {
+  if (isset($_SESSION['active_user'])) {
     // get dashboard style
     echo ('<link rel="stylesheet" href="./utilities/css/dashboard_header.css">');
     echo ('<link rel="stylesheet" href="./utilities/css/dashboard.css">');
@@ -35,7 +34,7 @@ $_SESSION['user'] = 'rowe';
 <body>
   <?php
   // Check if user is logged in
-  if (isset($_SESSION['user'])) {
+  if (isset($_SESSION['active_user'])) {
     // Display user dashboard
     dashboard_header();
     echo ('<!-- Main -->
@@ -132,14 +131,14 @@ $_SESSION['user'] = 'rowe';
         <!-- GREADS -->
         <div class="gread-content-body">');
     // Insert template here
-    $title_array = array('Demon Slayer', 'Hero Academia', 'Vanitas no Carte', 'One Piece', 'Nisekoi', 'Shingeki no Kyojin');
-    foreach ($title_array as $title) {
-      gread_entry('./assets/temp_img.png', $title, 'One of my favorite shonen anime...');
-    }
+    // $title_array = array('Demon Slayer', 'Hero Academia', 'Vanitas no Carte', 'One Piece', 'Nisekoi', 'Shingeki no Kyojin');
+    // foreach ($title_array as $title) {
+    //   gread_entry('./assets/temp_img.png', $title, 'One of my favorite shonen anime...');
+    // }
     // End <!-- GREADS -->
     echo ('</div>');
     // Pagination
-    pagination(5);
+    pagination();
   } else {
     // display landing page
     index_header('index');
