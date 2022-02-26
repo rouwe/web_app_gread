@@ -73,3 +73,35 @@ let menuIsOpen = false;
         }
     }, 100);
 })();
+(function activePage() {
+    // Controls the look of the active page
+    const pagesURL = {
+        home: {
+            href: 'http://localhost/web_apps/gread/'
+        },
+        add: {
+            href: 'http://localhost/web_apps/gread/add.php'
+        },
+        edit: {
+            href: 'http://localhost/web_apps/gread/edit.php'
+        },
+        delete: {
+            href: 'http://localhost/web_apps/gread/delete.php'
+        },
+        about: {
+            href: 'http://localhost/web_apps/gread/about.php'
+        }
+    }
+    const currentPageURL = document.URL;
+
+    for (const page in pagesURL ) {
+        if (pagesURL[page].href === currentPageURL) {
+            let targetElement = document.getElementById(`${page}`);
+            let targetElementBox = targetElement.firstElementChild;
+            let iconPath = targetElementBox.firstElementChild.firstElementChild;
+            targetElementBox.style.backgroundColor = 'var(--active)';
+            targetElementBox.style.boxShadow = '0px 0px 2px #FFFFFF'; 
+            iconPath.style.stroke = '#FFFFFFE6';
+        }
+    }
+})();

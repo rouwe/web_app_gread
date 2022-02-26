@@ -70,7 +70,7 @@ function gread_entry($img_src = null, $title = null, $description = null)
   </div>');
 }
 
-function pagination($pages_count = 0)
+function pagination($pages_count = 1)
 {
   // Template for pagination items
   echo ('<!-- Pagination -->
