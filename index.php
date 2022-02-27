@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once "./utilities/php_snippets/header.php";
+require_once "./utilities/php_snippets/helper.php";
 require_once "./utilities/php_snippets/static_contents.php";
 require_once "./utilities/php_snippets/footer.php";
 ?>
@@ -146,6 +147,12 @@ require_once "./utilities/php_snippets/footer.php";
     index_footer();
   }
   echo ('</div>');
+  ?>
+  <?php
+  // Flash message
+  echo ('<div>');
+  flash_message();
+  echo ("</div>\n");
   ?>
   </main>
   <script src="./utilities/js/index.js"></script>

@@ -3,7 +3,12 @@ session_start();
 require_once "./utilities/pdo/pdo.php";
 require_once "./utilities/php_snippets/helper.php";
 require_once "./utilities/php_snippets/header.php";
-require_once "./utilities/php_snippets/footer.php";
+// Prevents Access to login page or signup page if already logged
+if (isset($_SESSION['active_user'])) {
+    $_SESSION['success'] = 'You are already logged in';
+    header("Location: ./");
+    return;
+}
 // Check input field
 if (
     isset($_POST['usr_fname']) &&
@@ -11,8 +16,19 @@ if (
     isset($_POST['usr_password'])
 ) {
     $usr_inputs = array($_POST['usr_fname'], $_POST['usr_email'], $_POST['usr_password']);
-    // Validate input
-    validateinput($usr_inputs);
+    // Validate input length
+    validate_input_length($usr_inputs);
+    // Check if email already exists
+    $email_query = "SELECT * FROM users
+    WHERE email = :usr_email";
+    $email_stmt = $pdo->prepare($email_query);
+    $email_stmt->execute(array(':usr_email' => $_POST['usr_email']));
+    $email_row = $email_stmt->fetch(PDO::FETCH_ASSOC);
+    if ($email_row) {
+        $_SESSION['error'] = 'Account already exists. Try something else';
+        header("Location: ./signup.php");
+        return;
+    }
     // BCRYPT php password hashing and salting
     $options = array(
         'cost' => 9
@@ -97,10 +113,6 @@ if (
             <p class="is-user">Already have an account? <a href="./login.php">Log in</a></p>
         </section>
     </main>
-    <?php
-    // Footer template
-    index_footer();
-    ?>
 </body>
 
 </html>

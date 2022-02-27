@@ -3,9 +3,8 @@ session_start();
 require_once "./utilities/pdo/pdo.php";
 require_once "./utilities/php_snippets/helper.php";
 require_once "./utilities/php_snippets/header.php";
-require_once "./utilities/php_snippets/footer.php";
 
-// Prevents Access if already logged
+// Prevents Access to login page or signup page if already logged
 if (isset($_SESSION['active_user'])) {
     $_SESSION['success'] = 'You are already logged in';
     header("Location: ./");
@@ -30,14 +29,15 @@ if (isset($_SESSION['signup_credentials'])) {
     if ($password_is_matched === false) {
         $_SESSION['error'] = "The password you've entered is incorrect.";
         header("Location: ./login.php");
-        return false;
+        return;
     }
     // Successful Login
     $_SESSION['active_user'] = $user_data['email'];
+    $_SESSION['user_id'] = $user_data['user_id'];
     $_SESSION['success'] = "You've successfuly logged in.";
     unset($_SESSION['signup_credentials']);
     header("Location: ./");
-    return true;
+    return;
 }
 // Logged in user through log in page
 if (isset($_POST['usr_email']) && isset($_POST['usr_password'])) {
@@ -57,13 +57,14 @@ if (isset($_POST['usr_email']) && isset($_POST['usr_password'])) {
     if ($password_is_matched === false) {
         $_SESSION['error'] = "The password you've entered is incorrect.";
         header("Location: ./login.php");
-        return false;
+        return;
     }
     // Succesful Login
     $_SESSION['active_user'] = $user_data['email'];
+    $_SESSION['user_id'] = $user_data['user_id'];
     $_SESSION['success'] = "You've successfuly logged in.";
     header("Location: ./");
-    return true;
+    return;
 }
 ?>
 <!DOCTYPE html>
@@ -119,10 +120,6 @@ if (isset($_POST['usr_email']) && isset($_POST['usr_password'])) {
             <p class="is-not-user">Do not have an account yet? <a href="./signup.php">Sign up</a></p>
         </section>
     </main>
-    <?php
-    // Footer template
-    index_footer();
-    ?>
 </body>
 
 </html>

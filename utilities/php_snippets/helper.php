@@ -1,6 +1,6 @@
 <?php
 // Input validation
-function validateInput($inputArray)
+function validate_input_length($inputArray)
 {
     for ($i = 0; $i < count($inputArray); $i++) {
         // Validate inputs length
@@ -8,7 +8,7 @@ function validateInput($inputArray)
             strlen($inputArray[$i]) < 1
         ) {
             $_SESSION['error'] = 'All fields are required. Please try again.';
-            header("Location: ./signup.php");
+            header("Location: " . $_SERVER['PHP_SELF']);
             return;
         }
     }
