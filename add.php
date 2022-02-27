@@ -1,7 +1,27 @@
 <?php
 session_start();
 require_once "./utilities/php_snippets/header.php";
+require_once "./utilities/php_snippets/helper.php";
 require_once "./utilities/php_snippets/static_contents.php";
+require_once "./add_record_config.php";
+
+// Validate input
+if (
+  isset($_POST['add_title'])
+  && isset($_POST['add_description'])
+  && isset($_FILES['add_thumbnail'])
+) {
+  // Check input lengths
+  $user_input = array($_POST['add_title'], $_POST['add_description'], $_FILES['add_thumbnail']['name']);
+  validate_input_length($user_input);
+  // Add record in db
+  $file_attribute_key = 'add_thumbnail';
+  add_record($file_attribute_key);
+  // Redirect to homepage
+  $_SESSION['success'] = 'Gread has been added succesfuly.';
+  header("Location: ./");
+  return;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -137,7 +157,7 @@ require_once "./utilities/php_snippets/static_contents.php";
       </div>
     </div>
     <!-- Add Form -->
-    <form class="action-form-container" method="POST" enctype="multipart/form-data">
+    <form class="action-form-container" action="./add.php" method="POST" enctype="multipart/form-data">
       <!-- Title -->
       <div class="form-box inpt-title-box">
         <label class="inpt-label" for="title">Title</label>
@@ -151,7 +171,7 @@ require_once "./utilities/php_snippets/static_contents.php";
       <!-- Upload Image thumbnail -->
       <div class="inpt-img-box">
         <label class="inpt-label" for="thumbnail">Upload Image</label>
-        <input class="inpt-file" type="file" name="add_thumbnail" accept="image/*, image/png, image/jpeg">
+        <input class="inpt-file" type="file" name="add_thumbnail">
       </div>
       <!-- Proceed and Cancel -->
       <div class="decision-box">
@@ -165,6 +185,9 @@ require_once "./utilities/php_snippets/static_contents.php";
   echo ('</div>');
   ?>
   </main>
+  <?php
+  flash_message();
+  ?>
   <script src="./utilities/js/index.js"></script>
   <script src="./utilities/js/navigation.js"></script>
 </body>
