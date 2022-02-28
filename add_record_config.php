@@ -125,14 +125,15 @@ function add_record($inpt_img_key)
         $gread_img_row = $gread_img_id_stmt->fetch(PDO::FETCH_ASSOC);
         $gread_img_id = $gread_img_row['gread_img_id'];
         // Store title and description and  in 'gread' table
-        $gread_query = "INSERT INTO gread (gread_img_id, user_id, title, description)
-        VALUES(:gread_img_id, :user_id, :gread_title, :gread_description)";
+        $gread_query = "INSERT INTO gread (gread_img_id, user_id, title, description, date_recorded)
+        VALUES(:gread_img_id, :user_id, :gread_title, :gread_description, :date_of_record)";
         $gread_query_stmt = $pdo->prepare($gread_query);
         $gread_query_stmt->execute(array(
             ':gread_img_id' => $gread_img_id,
             ':user_id' => $user_id,
             ':gread_title' => $title,
-            ':gread_description' => $description
+            ':gread_description' => $description,
+            ':date_of_record' => date("Y-m-d") . ' ' . date("H:i:s")
         ));
         // Unset upload_success
         unset($_SESSION['upload_success']);

@@ -75,6 +75,15 @@
     justify-content: space-between;
     padding: 0.2rem 2.8125rem 0.3125rem;
 }
+#edit, #delete {
+    cursor: pointer;
+    padding: 0rem;
+    border: none;
+    background-color: transparent;
+}
+#edit:focus, #delete:focus, .action-link:focus {
+    background-color: #4a4a4a21;
+}
 .action-box {
     padding: 0.5625rem 0.42rem 0.25rem;
     border-radius: 5px;

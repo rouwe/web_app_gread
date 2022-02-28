@@ -41,6 +41,19 @@ if (isset($_SESSION['signup_credentials'])) {
 }
 // Logged in user through log in page
 if (isset($_POST['usr_email']) && isset($_POST['usr_password'])) {
+    $email_query = "SELECT COUNT(*) FROM users
+    WHERE email = :inpt_email";
+    $email_stmt = $pdo->prepare($email_query);
+    $email_stmt->execute(array(
+        ':inpt_email' => $_POST['usr_email']
+    ));
+    $email_row = $email_stmt->fetch(PDO::FETCH_ASSOC);
+    // Verify user email if it does not exists
+    if ($email_row['COUNT(*)'] < 1) {
+        $_SESSION['error'] = "The email you've provided is not connected to an account.";
+        header("Location: ./login.php");
+        return;
+    }
     // Lookup database for a match
     $query_id = "SELECT * FROM users
     WHERE email = :email

@@ -1,9 +1,44 @@
 <?php
 session_start();
+require_once "./utilities/pdo/pdo.php";
 require_once "./utilities/php_snippets/header.php";
 require_once "./utilities/php_snippets/helper.php";
 require_once "./utilities/php_snippets/static_contents.php";
 require_once "./utilities/php_snippets/footer.php";
+if (isset($_SESSION['active_user'])) {
+  // Fetch all data associated with current user
+  // Query gread table
+  $query = "SELECT gread_id, gread_img_id, title, date_recorded, description FROM gread
+  WHERE user_id = :uid
+  ORDER BY date_recorded DESC";
+  $gread_stmt = $pdo->prepare($query);
+  $gread_stmt->execute(array(
+    ':uid' => $_SESSION['user_id']
+  ));
+  $gread_rows = $gread_stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+// Get total records count
+$query_count = "SELECT COUNT(*) FROM gread
+    WHERE user_id = :uid";
+$query_stmt = $pdo->prepare($query_count);
+$query_stmt->execute(array(
+  ':uid' => $_SESSION['user_id']
+));
+$count_row = $query_stmt->fetch(PDO::FETCH_ASSOC);
+$record_count = $count_row['COUNT(*)'];
+// Record limit per page
+$records_per_page = 6;
+$pagination_count = ceil($record_count / $records_per_page);
+// Set previous row number
+if (
+  !isset($_GET['page']) ||
+  !isset($_SESSION['previous_row_number'])
+) {
+  $_SESSION['previous_row_number'] = 0;
+} else {
+  // Adjusts the previous_row_number by subtracting 1 (page=1) when GET['page'] value is true and it's not 1
+  $_SESSION['previous_row_number'] = ($_GET['page'] - 1) * $records_per_page;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +95,7 @@ require_once "./utilities/php_snippets/footer.php";
           <!-- Actions -->
           <div class="navigation-actions d-nav-box">
             <!-- Home -->
-            <a id="home" class="action-link" href="./">
+            <a id="home" class="action-link" href="./" title="Home">
               <div class="action-box">
                 <svg class="action-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M25.8018 12.7327L16.6143 4.69364C16.1194 4.26065 15.3806 4.26065 14.8857 4.69364L5.69821 12.7327C5.41338 12.9819 5.25 13.342 5.25 13.7205V24.9374C5.25 25.6623 5.83763 26.2499 6.5625 26.2499H11.8125C12.5374 26.2499 13.125 25.6623 13.125 24.9374V19.6874C13.125 18.9625 13.7126 18.3749 14.4375 18.3749H17.0625C17.7874 18.3749 18.375 18.9625 18.375 19.6874V24.9374C18.375 25.6623 18.9626 26.2499 19.6875 26.2499H24.9375C25.6624 26.2499 26.25 25.6623 26.25 24.9374V13.7205C26.25 13.342 26.0866 12.9819 25.8018 12.7327Z" stroke="#4A4A4A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
@@ -68,7 +103,7 @@ require_once "./utilities/php_snippets/footer.php";
               </div>
             </a>
             <!-- Add -->
-            <a id="add" class="action-link" href="./add.php">
+            <a id="add" class="action-link" href="./add.php" title="Add">
               <div class="action-box">
               <svg class="action-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 15.75H21M15.75 21V10.5M24.9375 26.25L6.5625 26.25C5.83763 26.25 5.25 25.6624 5.25 24.9375L5.25 6.5625C5.25 5.83763 5.83763 5.25 6.5625 5.25L24.9375 5.25C25.6624 5.25 26.25 5.83763 26.25 6.5625L26.25 24.9375C26.25 25.6624 25.6624 26.25 24.9375 26.25Z" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -76,23 +111,23 @@ require_once "./utilities/php_snippets/footer.php";
               </div>
             </a>
             <!-- Edit -->
-            <a id="edit" class="action-link" href="./edit.php">
+            <button id="edit" class="action-link" title="Edit">
               <div class="action-box">
                 <svg class="action-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M26.25 18.375V24.9375C26.25 25.6624 25.6624 26.25 24.9375 26.25H6.5625C5.83763 26.25 5.25 25.6624 5.25 24.9375V6.5625C5.25 5.83763 5.83763 5.25 6.5625 5.25H13.125M21 6.5625L24.9375 10.5M17.0625 18.375H13.125V14.4375L24.9375 2.625L28.875 6.5625L17.0625 18.375Z" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
               </div>
-            </a>
+            </button>
             <!-- Delete -->
-            <a id="delete" class="action-link" href="./delete.php">
+            <button id="delete" class="action-link" title="Delete">
               <div class="action-box">
                 <svg class="action-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M5.25 7.875H26.25M7.875 7.875H23.625V26.25C23.625 26.9749 23.0374 27.5625 22.3125 27.5625H9.1875C8.46263 27.5625 7.875 26.9749 7.875 26.25V7.875ZM11.8125 3.9375H19.6875C20.4124 3.9375 21 4.52513 21 5.25V7.875H10.5V5.25C10.5 4.52513 11.0876 3.9375 11.8125 3.9375Z" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
               </div>
-            </a>
+            </button>
             <!-- Info -->
-            <a id="about" class="action-link" href="./about.php">
+            <a id="about" class="action-link" href="./about.php" title="About">
               <div class="action-box info-box">
               <svg class="action-icon" width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M13.75 12.4375V19M25.5625 13.75C25.5625 20.2739 20.2739 25.5625 13.75 25.5625C7.22615 25.5625 1.93752 20.2739 1.93752 13.75C1.93752 7.22614 7.22615 1.9375 13.75 1.9375C20.2739 1.9375 25.5625 7.22614 25.5625 13.75ZM13.6846 8.49996H13.8159V8.63121H13.6846V8.49996Z" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -131,15 +166,38 @@ require_once "./utilities/php_snippets/footer.php";
         </div>
         <!-- GREADS -->
         <div class="gread-content-body">');
-    // Insert template here
-    // $title_array = array('Demon Slayer', 'Hero Academia', 'Vanitas no Carte', 'One Piece', 'Nisekoi', 'Shingeki no Kyojin');
-    // foreach ($title_array as $title) {
-    //   gread_entry('./assets/temp_img.png', $title, 'One of my favorite shonen anime...');
-    // }
+    for ($i = $_SESSION['previous_row_number']; $i < count($gread_rows); $i++) {
+      // Check records per page limiter
+      if ($i >= $records_per_page + $_SESSION['previous_row_number']) {
+        $_SESSION['previous_row_number'] = $i;
+        break;
+      }
+      $row = $gread_rows[$i];
+      // Get gread image
+      $img_query = "SELECT filepath FROM gread_img
+        WHERE gread_img_id = :gread_img_id";
+      $img_stmt = $pdo->prepare($img_query);
+      $img_stmt->execute(array(
+        ':gread_img_id' => $row['gread_img_id']
+      ));
+      $img_id = $img_stmt->fetch(PDO::FETCH_ASSOC);
+      // Display contents
+      $gread_id = $row['gread_id'];
+      $gread_img_id = $row['gread_img_id'];
+      $title = $row['title'];
+      $description = $row['description'];
+      $filepath = $img_id['filepath'];
+      $date_recorded = $row['date_recorded'];
+      gread_entry($filepath, $title, $description, $gread_id, $gread_img_id);
+    }
     // End <!-- GREADS -->
     echo ('</div>');
     // Pagination
-    pagination();
+    if ($record_count % $records_per_page >= 1) {
+      pagination($pagination_count + 1);
+    } else {
+      pagination($record_count);
+    }
   } else {
     // display landing page
     index_header('index');
@@ -150,7 +208,7 @@ require_once "./utilities/php_snippets/footer.php";
   ?>
   <?php
   // Flash message
-  echo ('<div>');
+  echo ('<div id="flash-message">');
   flash_message();
   echo ("</div>\n");
   ?>

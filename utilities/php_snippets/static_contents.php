@@ -42,31 +42,30 @@ function landing_page_content()
       </div>
     </main>');
 }
-function gread_entry($img_src = null, $title = null, $description = null)
+function gread_entry($img_src = null, $title = null, $description = null, $gread_id = null, $img_id = null)
 {
   // Template for gread
   echo ('<!-- Gread Container -->
   <div class="gread-box">
     <!-- Image Box -->
     <div class="gread-thumbnail-box">');
-  echo ("<img class=\"gread-thumbnail\" src=" . $img_src . " alt=\"Anime thumbnail\">");
+  echo ("<img class=\"gread-thumbnail\" src=" . htmlentities($img_src) . " alt=\"Anime thumbnail\">");
   echo ('</div>
     <!-- Text Box -->
     <div class="gread-text-box">
       <!-- Title -->
-      <strong class="gread-title">' . $title . '</strong>
+      <strong class="gread-title">' . htmlentities($title) . '</strong>
       <!-- Description -->
-      <p class="gread-description">' . $description . '</p>
+      <p class="gread-description">' . htmlentities($description) . '</p>
     </div>
     <!-- Select option box -->
-    <div class="select-option-box">
-      <svg class="checked select-state-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M10.5 14.5L13.3284 17.3285L18.9853 11.6716M8.25 7H20.75C21.4404 7 22 7.55964 22 8.25V20.75C22 21.4404 21.4404 22 20.75 22H8.25C7.55964 22 7 21.4404 7 20.75V8.25C7 7.55964 7.55964 7 8.25 7Z" stroke="#4A4A4A" stroke-width="2.13333" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-      <svg class="unchecked select-state-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M21.25 7.5H8.75C8.05964 7.5 7.5 8.05964 7.5 8.75V21.25C7.5 21.9404 8.05964 22.5 8.75 22.5H21.25C21.9404 22.5 22.5 21.9404 22.5 21.25V8.75C22.5 8.05964 21.9404 7.5 21.25 7.5Z" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-    </div>
+    <form class="select-option-box" method="GET">
+      <a class="redirect-action" href=".php?record_id=' . $gread_id . '&img_id=' . $img_id . '">
+        <svg class="unchecked select-state-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21.25 7.5H8.75C8.05964 7.5 7.5 8.05964 7.5 8.75V21.25C7.5 21.9404 8.05964 22.5 8.75 22.5H21.25C21.9404 22.5 22.5 21.9404 22.5 21.25V8.75C22.5 8.05964 21.9404 7.5 21.25 7.5Z" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </form>
   </div>');
 }
 

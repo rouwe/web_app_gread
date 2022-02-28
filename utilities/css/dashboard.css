@@ -107,16 +107,22 @@
     margin: 0rem;
     color: #000000;
 }
-.gread-thumbnail-box,.gread-thumbnail {
-    min-height: 73px;
-    max-height: 73px;
+.gread-thumbnail-box {
+    width: fit-content;
+    height: fit-content;
+}
+.gread-thumbnail {
+    min-width: 5.8125rem;
+    max-width: 5.8125rem;
+    min-height: 4.5625rem;
+    max-height: 4.5625rem;
 }
 .select-option-box {
     position: absolute;
     right: 0px;
     top: 0px;
 }
-.checked, .unchecked {
+.unchecked {
     display: none;
 }
 /* Pagination */

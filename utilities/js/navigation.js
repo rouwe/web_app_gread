@@ -77,23 +77,25 @@ let menuIsOpen = false;
     // Controls the look of the active page
     const pagesURL = {
         home: {
-            href: 'http://localhost/web_apps/gread/'
+            href: './'
         },
         add: {
-            href: 'http://localhost/web_apps/gread/add.php'
+            href: './add'
         },
         edit: {
-            href: 'http://localhost/web_apps/gread/edit.php'
+            href: './edi'
         },
         delete: {
-            href: 'http://localhost/web_apps/gread/delete.php'
+            href: './del'
         },
         about: {
-            href: 'http://localhost/web_apps/gread/about.php'
+            href: './abo'
         }
     }
-    const currentPageURL = document.URL;
-
+    let currentPageURL = document.URL;
+    const splitURL = currentPageURL.split('/');
+    const targURL = splitURL.slice(-1);
+    currentPageURL = './' + targURL[0].slice(0,3);
     for (const page in pagesURL ) {
         if (pagesURL[page].href === currentPageURL) {
             let targetElement = document.getElementById(`${page}`);
