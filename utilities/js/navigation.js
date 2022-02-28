@@ -95,15 +95,49 @@ let menuIsOpen = false;
     let currentPageURL = document.URL;
     const splitURL = currentPageURL.split('/');
     const targURL = splitURL.slice(-1);
-    currentPageURL = './' + targURL[0].slice(0,3);
+    pageActionURL = './' + targURL[0].slice(0,3);
     for (const page in pagesURL ) {
-        if (pagesURL[page].href === currentPageURL) {
+        if (pagesURL[page].href === pageActionURL) {
             let targetElement = document.getElementById(`${page}`);
             let targetElementBox = targetElement.firstElementChild;
             let iconPath = targetElementBox.firstElementChild.firstElementChild;
             targetElementBox.style.backgroundColor = 'var(--active)';
             targetElementBox.style.boxShadow = '0px 0px 2px #FFFFFF'; 
             iconPath.style.stroke = '#FFFFFFE6';
+        }
+    }
+    // Page that uses GET for 'page=' number 
+    const homePage = 'home';
+    const pattern = '/?page=';
+    const hasIndex = currentPageURL.indexOf(pattern);
+    if (hasIndex !== -1) {
+        let targetElement = document.getElementById(homePage);
+        let targetElementBox = targetElement.firstElementChild;
+        let iconPath = targetElementBox.firstElementChild.firstElementChild;
+        targetElementBox.style.backgroundColor = 'var(--active)';
+        targetElementBox.style.boxShadow = '0px 0px 2px #FFFFFF'; 
+        iconPath.style.stroke = '#FFFFFFE6';
+    }
+})();
+(function paginationIsActive() {
+    // Controls the look of pagination
+    const paginationLinks = document.getElementsByClassName('pagination-link');
+    // Reset active pagination to inactive
+    const currentPageURL = document.URL;
+    const homePage = 'http://localhost/web_apps/gread/';
+    if (currentPageURL !== homePage) {
+        paginationLinks[1].classList.remove('pagination-active');
+    }
+    for (const pageLink of paginationLinks) {
+        const classCount = pageLink.classList.length;
+        if (classCount === 1) {
+            const hrefAttr = pageLink.getAttribute("href").slice(1,);
+            const currentPageURL = document.URL;
+            const matchIndex = currentPageURL.indexOf(hrefAttr);
+            const isActive = currentPageURL.slice(matchIndex,) === hrefAttr;
+            if (isActive) {
+                pageLink.classList.add('pagination-active');
+            }
         }
     }
 })();

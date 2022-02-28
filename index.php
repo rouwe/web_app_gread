@@ -16,19 +16,19 @@ if (isset($_SESSION['active_user'])) {
     ':uid' => $_SESSION['user_id']
   ));
   $gread_rows = $gread_stmt->fetchAll(PDO::FETCH_ASSOC);
+  // Get total records count
+  $query_count = "SELECT COUNT(*) FROM gread
+      WHERE user_id = :uid";
+  $query_stmt = $pdo->prepare($query_count);
+  $query_stmt->execute(array(
+    ':uid' => $_SESSION['user_id']
+  ));
+  $count_row = $query_stmt->fetch(PDO::FETCH_ASSOC);
+  $record_count = $count_row['COUNT(*)'];
+  // Record limit per page
+  $records_per_page = 6;
+  $pagination_count = ceil($record_count / $records_per_page);
 }
-// Get total records count
-$query_count = "SELECT COUNT(*) FROM gread
-    WHERE user_id = :uid";
-$query_stmt = $pdo->prepare($query_count);
-$query_stmt->execute(array(
-  ':uid' => $_SESSION['user_id']
-));
-$count_row = $query_stmt->fetch(PDO::FETCH_ASSOC);
-$record_count = $count_row['COUNT(*)'];
-// Record limit per page
-$records_per_page = 6;
-$pagination_count = ceil($record_count / $records_per_page);
 // Set previous row number
 if (
   !isset($_GET['page']) ||
