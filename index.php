@@ -174,7 +174,7 @@ if (
       }
       $row = $gread_rows[$i];
       // Get gread image
-      $img_query = "SELECT filepath FROM gread_img
+      $img_query = "SELECT filename FROM gread_img
         WHERE gread_img_id = :gread_img_id";
       $img_stmt = $pdo->prepare($img_query);
       $img_stmt->execute(array(
@@ -186,17 +186,19 @@ if (
       $gread_img_id = $row['gread_img_id'];
       $title = $row['title'];
       $description = $row['description'];
-      $filepath = $img_id['filepath'];
+      $filename = urlencode($img_id['filename']);
+      $filepath = "./gread_images/" . $_SESSION['active_user'] . '/' . $filename;
       $date_recorded = $row['date_recorded'];
       gread_entry($filepath, $title, $description, $gread_id, $gread_img_id);
     }
     // End <!-- GREADS -->
     echo ('</div>');
     // Pagination
-    if ($record_count % $records_per_page >= 1) {
+    // There's an incomplete set
+    if ($record_count % $records_per_page > 0) {
       pagination($pagination_count + 1);
     } else {
-      pagination($record_count);
+      pagination($pagination_count);
     }
   } else {
     // display landing page

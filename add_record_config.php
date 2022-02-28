@@ -1,5 +1,5 @@
 <?php
-function upload_image($inpt_img_key)
+function upload_image($inpt_img_key, $filename)
 {
     /* Upload file configuration
     *@inpt_img_key - name attribute of the file input field.
@@ -12,7 +12,7 @@ function upload_image($inpt_img_key)
         mkdir($upload_dir);
     }
     // Path of the file to be uploaded
-    $target_file = $upload_dir . basename($_FILES[$inpt_img_key]["name"]);
+    $target_file = $upload_dir . basename($filename);
     $uploadOk = 0;
     // Type extension of the file
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -72,7 +72,7 @@ function upload_image($inpt_img_key)
         // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES[$inpt_img_key]["tmp_name"], $target_file)) {
-            $_SESSION['upload_success'] = "The file " . htmlspecialchars(basename($_FILES[$inpt_img_key]["name"])) . " has been uploaded.";
+            $_SESSION['upload_success'] = "The file " . htmlspecialchars(basename($filename)) . " has been uploaded.";
             header("./about.php");
             return;
         } else {
@@ -93,14 +93,14 @@ function add_record($inpt_img_key)
     $title = $_POST['add_title'];
     $description = $_POST['add_description'];
     // Image upload data needed
-    $filename = $_FILES[$inpt_img_key]['name'];
+    $filename = urlencode($_FILES[$inpt_img_key]['name']);
     $size = $_FILES[$inpt_img_key]['size'];
     $filepath = "./gread_images/" . $_SESSION['active_user'] . '/' . basename($filename);
     $error = $_FILES[$inpt_img_key]['error'];
     $user_id = $_SESSION['user_id'];
 
     // Upload image in server
-    upload_image($inpt_img_key);
+    upload_image($inpt_img_key, $filename);
     // Check if image upload is successful
     if (isset($_SESSION['upload_success'])) {
         // Store img data in 'gread_img' table
