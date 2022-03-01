@@ -1,9 +1,10 @@
 <?php
 session_start();
 require_once "./utilities/pdo/pdo.php";
+require_once "./add_record_config.php";
+require_once "./edit_record_config.php";
 require_once "./utilities/php_snippets/header.php";
 require_once "./utilities/php_snippets/static_contents.php";
-
 // Check if not login
 if (!isset($_SESSION['active_user'])) {
   $_SESSION['error'] = "You don't have access to this page. Please make sure that you are logged in.";
@@ -12,9 +13,41 @@ if (!isset($_SESSION['active_user'])) {
 }
 // Check GET
 if (!isset($_GET['record_id']) || !isset($_GET['img_id'])) {
-  $_SESSION['error'] = "Missing record identifiers";
+  $_SESSION['error'] = "Missing record identifiers. Please make sure that you selected a record in your homepage.";
   header("Location: ./");
   return;
+}
+// Check GET parameters validity
+$query_record = "SELECT title, description FROM gread
+WHERE gread_id = :record_id AND gread_img_id = :img_id";
+$record_check_stmt = $pdo->prepare($query_record);
+$record_check_stmt->execute(array(
+  ':record_id' => $_GET['record_id'],
+  ':img_id' => $_GET['img_id']
+));
+$record_row = $record_check_stmt->fetch(PDO::FETCH_ASSOC);
+// No records found => redirect
+if (!$record_row) {
+  $_SESSION['error'] = "No records found. Please try again.";
+  header("Location: ./");
+  return;
+}
+// Get current thumbnail record
+$query_img = "SELECT filename, filepath FROM gread_img
+WHERE gread_img_id = :img_id";
+$img_stmt = $pdo->prepare($query_img);
+$img_stmt->execute(array(
+  ':img_id' => $_GET['img_id']
+));
+$img_row = $img_stmt->fetch(PDO::FETCH_ASSOC);
+$filepath = $img_row['filepath'];
+$filename = rawurlencode($img_row['filename']);
+$thumbnail_src = $filepath . $filename;
+// Check form inputs
+if (
+  isset($_POST['submit'])
+) {
+  var_dump($_POST);
 }
 ?>
 <!DOCTYPE html>
@@ -42,6 +75,7 @@ if (!isset($_GET['record_id']) || !isset($_GET['img_id'])) {
   // Display user dashboard
   dashboard_header();
   print_r($_GET);
+  print_r($_FILES);
   echo ('<!-- Main -->
     <main class="main-container">
       <!-- Navigation -->
@@ -139,14 +173,14 @@ if (!isset($_GET['record_id']) || !isset($_GET['img_id'])) {
       <!-- Preview -->
       <div class="preview-box">
         <div class="preview-img-box">
-          <img class="preview-img" src="./assets/temp_preview.png" alt="">
+          <img class="preview-img gread-thumbnail" src="<?= htmlentities($thumbnail_src) ?>" alt="">
         </div>
         <!-- Text box -->
         <div class="preview-text-box">
           <span class="preview-title">
-            <strong></strong>
+            <strong><?= htmlentities($record_row['title']) ?></strong>
           </span>
-          <p class="preview-description"></p>
+          <p class="preview-description"><?= htmlentities($record_row['description']) ?></p>
         </div>
       </div>
     </div>
@@ -155,17 +189,17 @@ if (!isset($_GET['record_id']) || !isset($_GET['img_id'])) {
       <!-- Title -->
       <div class="form-box inpt-title-box">
         <label class="inpt-label" for="title"></label>
-        <input class="inpt-field inpt-title" type="text" id="title" name="add_title" placeholder="" required maxlength="128">
+        <input class="inpt-field inpt-title" type="text" id="title" name="add_title" placeholder="<?= htmlentities($record_row['title']) ?>" maxlength="128">
       </div>
       <!-- Description -->
       <div class="form-box inpt-description-box">
         <label class="inpt-label" for="description"></label>
-        <textarea class="inpt-field inpt-description" id="description" name="add_description" placeholder="" maxlength="256"></textarea>
+        <textarea class="inpt-field inpt-description" id="description" name="add_description" placeholder="<?= htmlentities($record_row['description']) ?>" maxlength="256"></textarea>
       </div>
       <!-- Upload Image thumbnail -->
       <div class="inpt-img-box">
         <label class="inpt-label" for="thumbnail">Upload Image</label>
-        <input class="inpt-file" type="file" name="add_thumbnail" accept="image/*, image/png, image/jpeg">
+        <input class="inpt-file" type="file" name="add_thumbnail">
       </div>
       <!-- Proceed and Cancel -->
       <div class="decision-box">
@@ -180,6 +214,7 @@ if (!isset($_GET['record_id']) || !isset($_GET['img_id'])) {
   ?>
   </main>
   <script src="./utilities/js/index.js"></script>
+  <script src="./utilities/js/edit.js"></script>
   <script src="./utilities/js/navigation.js"></script>
 </body>
 

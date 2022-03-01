@@ -4,7 +4,12 @@ require_once "./utilities/php_snippets/header.php";
 require_once "./utilities/php_snippets/helper.php";
 require_once "./utilities/php_snippets/static_contents.php";
 require_once "./add_record_config.php";
-
+// Check if not login
+if (!isset($_SESSION['active_user'])) {
+  $_SESSION['error'] = "You don't have access to this page. Please make sure that you are logged in.";
+  header("Location: ./login.php");
+  return;
+}
 // Validate input
 if (
   isset($_POST['add_title'])

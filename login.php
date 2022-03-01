@@ -6,7 +6,7 @@ require_once "./utilities/php_snippets/header.php";
 
 // Prevents Access to login page or signup page if already logged
 if (isset($_SESSION['active_user'])) {
-    $_SESSION['success'] = 'You are already logged in';
+    $_SESSION['success'] = 'You are already logged in.';
     header("Location: ./");
     return;
 }
