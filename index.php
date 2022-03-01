@@ -208,13 +208,14 @@ if (
   }
   echo ('</div>');
   ?>
+  </main>
   <?php
   // Flash message
+  // $_SESSION['error'] = 'Test';
   echo ('<div id="flash-message">');
   flash_message();
   echo ("</div>\n");
   ?>
-  </main>
   <script src="./utilities/js/index.js"></script>
   <script src="./utilities/js/navigation.js"></script>
 </body>

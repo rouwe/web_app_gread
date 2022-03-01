@@ -186,7 +186,10 @@ if (
   ?>
   </main>
   <?php
+  // Flash message
+  echo ('<div id="flash-message">');
   flash_message();
+  echo ("</div>\n");
   ?>
   <script src="./utilities/js/index.js"></script>
   <script src="./utilities/js/navigation.js"></script>

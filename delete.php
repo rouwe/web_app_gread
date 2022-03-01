@@ -1,7 +1,20 @@
 <?php
 session_start();
+require_once "./utilities/pdo/pdo.php";
 require_once "./utilities/php_snippets/header.php";
 require_once "./utilities/php_snippets/static_contents.php";
+// Check if not login
+if (!isset($_SESSION['active_user'])) {
+  $_SESSION['error'] = "You don't have access to this page. Please make sure that you are logged in.";
+  header("Location: ./login.php");
+  return;
+}
+// Check GET
+if (!isset($_GET['record_id']) || !isset($_GET['img_id'])) {
+  $_SESSION['error'] = "Missing record identifiers";
+  header("Location: ./");
+  return;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

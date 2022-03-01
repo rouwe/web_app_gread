@@ -54,3 +54,22 @@ function hideRecordLinks() {
         recordLink.style.display = 'none';
     }
 }
+(function flashMessage() {
+    // Display message container
+    const messageContainer = document.querySelector('#flash-message');
+    const childLength = messageContainer.children.length;
+    if (childLength > 0) {
+        const notificationIcon = document.getElementsByClassName('notification-icon')[0];
+        messageContainer.style.display = 'flex';
+        messageContainer.style.opacity = 1;
+        messageContainer.style.bottom = '1.5rem';
+    }
+    const hideMessage = () => {
+        // Hide message container
+        messageContainer.style.bottom = '-10rem';
+        setTimeout(() => {
+            messageContainer.style.display = 'none';
+        }, 2000);
+    }
+    setTimeout(hideMessage, 3000);
+})();
