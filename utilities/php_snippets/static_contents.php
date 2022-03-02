@@ -67,6 +67,8 @@ function gread_entry($img_src = null, $title = null, $description = null, $gread
       </a>
     </form>
   </div>');
+  // Reset thumbnail cache status
+  clearstatcache(true, basename($img_src));
 }
 
 function pagination($pages_count = 1)

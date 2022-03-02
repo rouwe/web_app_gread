@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once "./utilities/pdo/pdo.php";
-require_once "./add_record_config.php";
 require_once "./edit_record_config.php";
 require_once "./utilities/php_snippets/header.php";
 require_once "./utilities/php_snippets/static_contents.php";
@@ -9,6 +8,12 @@ require_once "./utilities/php_snippets/static_contents.php";
 if (!isset($_SESSION['active_user'])) {
   $_SESSION['error'] = "You don't have access to this page. Please make sure that you are logged in.";
   header("Location: ./login.php");
+  return;
+}
+// Canceled action
+if (isset($_POST['cancel'])) {
+  $_SESSION['success'] = "Action has been successfuly aborted.";
+  header("Location: ./");
   return;
 }
 // Check GET
@@ -33,7 +38,7 @@ if (!$record_row) {
   return;
 }
 // Get current thumbnail record
-$query_img = "SELECT filename, filepath FROM gread_img
+$query_img = "SELECT filename, filepath, size, error FROM gread_img
 WHERE gread_img_id = :img_id";
 $img_stmt = $pdo->prepare($query_img);
 $img_stmt->execute(array(
@@ -43,11 +48,22 @@ $img_row = $img_stmt->fetch(PDO::FETCH_ASSOC);
 $filepath = $img_row['filepath'];
 $filename = rawurlencode($img_row['filename']);
 $thumbnail_src = $filepath . $filename;
-// Check form inputs
+// Check form when submitted
 if (
   isset($_POST['submit'])
 ) {
-  var_dump($_POST);
+  // New thumbnail is selected
+  if (isset($_FILES['add_thumbnail'])) {
+    // Update records
+    $inpt_img_key = 'add_thumbnail';
+    $gread_id = $_GET['record_id'];
+    $gread_img_id = $_GET['img_id'];
+    edit_record($inpt_img_key, $img_row, $gread_id, $gread_img_id);
+    // Redirect
+    $_SESSION['success'] = "Gread has been updated successfuly.";
+    header("Location: ./");
+    return;
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -74,8 +90,9 @@ if (
   <?php
   // Display user dashboard
   dashboard_header();
-  print_r($_GET);
-  print_r($_FILES);
+  // print_r($_POST);
+  // var_dump($_FILES);
+  // print_r(strlen($_FILES['add_thumbnail']['tmp_name']));
   echo ('<!-- Main -->
     <main class="main-container">
       <!-- Navigation -->
@@ -132,7 +149,7 @@ if (
             <!-- Info -->
             <a id="about" class="action-link" href="./about.php" title="About">
               <div class="action-box info-box">
-                <svg class="action-icon" width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="action-icon" width="32" height="32" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M13.75 12.4375V19M25.5625 13.75C25.5625 20.2739 20.2739 25.5625 13.75 25.5625C7.22615 25.5625 1.93752 20.2739 1.93752 13.75C1.93752 7.22614 7.22615 1.9375 13.75 1.9375C20.2739 1.9375 25.5625 7.22614 25.5625 13.75ZM13.6846 8.49996H13.8159V8.63121H13.6846V8.49996Z" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
@@ -189,12 +206,12 @@ if (
       <!-- Title -->
       <div class="form-box inpt-title-box">
         <label class="inpt-label" for="title"></label>
-        <input class="inpt-field inpt-title" type="text" id="title" name="add_title" placeholder="<?= htmlentities($record_row['title']) ?>" maxlength="128">
+        <input class="inpt-field inpt-title" type="text" id="title" name="add_title" value="<?= htmlentities($record_row['title']) ?>" placeholder="<?= htmlentities($record_row['title']) ?>" maxlength="128">
       </div>
       <!-- Description -->
       <div class="form-box inpt-description-box">
         <label class="inpt-label" for="description"></label>
-        <textarea class="inpt-field inpt-description" id="description" name="add_description" placeholder="<?= htmlentities($record_row['description']) ?>" maxlength="256"></textarea>
+        <textarea class="inpt-field inpt-description" id="description" name="add_description" placeholder=" <?= htmlentities($record_row['description']) ?>" maxlength="256"> <?= htmlentities($record_row['description']) ?></textarea>
       </div>
       <!-- Upload Image thumbnail -->
       <div class="inpt-img-box">
@@ -214,7 +231,7 @@ if (
   ?>
   </main>
   <script src="./utilities/js/index.js"></script>
-  <script src="./utilities/js/edit.js"></script>
+  <script src="./utilities/js/action.js"></script>
   <script src="./utilities/js/navigation.js"></script>
 </body>
 

@@ -18,8 +18,3 @@ function textFieldLivePreview() {
         previewDescription.innerHTML = currentFieldText;
     }
 }
-function thumbnailLivePreview() {
-    // Allows the user to directly see changes when editing thumbnail
-    const fileField = document.getElementsByClassName('inpt-file')[0];
-    console.log(textFields, fileField)
-}

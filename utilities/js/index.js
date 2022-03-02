@@ -4,7 +4,7 @@
     */
     const recordsArr = document.getElementsByClassName('gread-description');
     const recordLength = recordsArr.length;
-    const maxLength = 56;
+    const maxLength = 45;
     if (recordLength > 0) {
         for (let i = 0; i < recordsArr.length; i++) {
             const targetElement = recordsArr[i];
