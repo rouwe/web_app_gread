@@ -178,6 +178,7 @@ if (!isset($_GET['record_id']) || !isset($_GET['img_id'])) {
   ?>
   </main>
   <script src="./utilities/js/index.js"></script>
+  <script src="./utilities/js/edit.js"></script>
   <script src="./utilities/js/navigation.js"></script>
 </body>
 

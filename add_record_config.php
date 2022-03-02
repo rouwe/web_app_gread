@@ -31,7 +31,7 @@ function upload_image($inpt_img_key, $filename)
         $error_code = $_FILES[$inpt_img_key]['error'];
         $_SESSION['error'] = $phpFileUploadErrors[$error_code];
         $uploadOk = 1;
-        header("Location: " . $_SERVER['PHP_SELF']);
+        header("Location: ./");
         return;
     }
     // Check if image file is a actual image or fake image
@@ -42,7 +42,7 @@ function upload_image($inpt_img_key, $filename)
         } else {
             $_SESSION['error'] = "File is not an image.";
             $uploadOk = 1;
-            header("Location: " . $_SERVER['PHP_SELF']);
+            header("Location: ./");
             return;
         }
     }
@@ -50,7 +50,7 @@ function upload_image($inpt_img_key, $filename)
     if ($_FILES[$inpt_img_key]["size"] > 2000000) {
         $_SESSION['error'] = "Sorry, your file is too large.";
         $uploadOk = 1;
-        header("Location: " . $_SERVER['PHP_SELF']);
+        header("Location: ./");
         return;
     }
     // Limit file type
@@ -61,19 +61,19 @@ function upload_image($inpt_img_key, $filename)
     ) {
         $_SESSION['error'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
         $uploadOk = 1;
-        header("Location: " . $_SERVER['PHP_SELF']);
+        header("Location: ./");
         return;
     }
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 1) {
         $_SESSION['error'] = "Sorry, your file was not uploaded.";
-        header("Location: " . $_SERVER['PHP_SELF']);
+        header("Location: ./");
         return;
         // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES[$inpt_img_key]["tmp_name"], $target_file)) {
             $_SESSION['upload_success'] = "The file " . htmlspecialchars($filename) . " has been uploaded.";
-            header("./about.php");
+            // header("./about.php");
             return;
         } else {
             $_SESSION['error'] = "Sorry, there was an error uploading your file.";
