@@ -77,6 +77,11 @@
     margin-bottom: 10px;
     color: #878787E6;
 }
+.notification-message {
+    font-size: 0.7rem;
+    font-style: italic;
+    text-align: center;
+}
 .join-btn {
     cursor: pointer;
     width: 100%;

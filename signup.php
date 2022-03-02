@@ -3,9 +3,15 @@ session_start();
 require_once "./utilities/pdo/pdo.php";
 require_once "./utilities/php_snippets/helper.php";
 require_once "./utilities/php_snippets/header.php";
+// Check if not login
+if (!isset($_SESSION['active_user'])) {
+    $_SESSION['error'] = "You don't have access to this page. Please make sure that you are logged in.";
+    header("Location: ./");
+    return;
+}
 // Prevents Access to login page or signup page if already logged
 if (isset($_SESSION['active_user'])) {
-    $_SESSION['success'] = 'You are already logged in';
+    $_SESSION['success'] = 'You are already logged in. If you want to create a new account, please log out first.';
     header("Location: ./");
     return;
 }

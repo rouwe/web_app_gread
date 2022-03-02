@@ -77,25 +77,27 @@ let menuIsOpen = false;
     // Controls the look of the active page
     const pagesURL = {
         home: {
-            href: 'http://localhost/web_apps/gread/'
+            href: './'
         },
         add: {
-            href: 'http://localhost/web_apps/gread/add.php'
+            href: './add'
         },
         edit: {
-            href: 'http://localhost/web_apps/gread/edit.php'
+            href: './edi'
         },
         delete: {
-            href: 'http://localhost/web_apps/gread/delete.php'
+            href: './del'
         },
         about: {
-            href: 'http://localhost/web_apps/gread/about.php'
+            href: './abo'
         }
     }
-    const currentPageURL = document.URL;
-
+    let currentPageURL = document.URL;
+    const splitURL = currentPageURL.split('/');
+    const targURL = splitURL.slice(-1);
+    pageActionURL = './' + targURL[0].slice(0,3);
     for (const page in pagesURL ) {
-        if (pagesURL[page].href === currentPageURL) {
+        if (pagesURL[page].href === pageActionURL) {
             let targetElement = document.getElementById(`${page}`);
             let targetElementBox = targetElement.firstElementChild;
             let iconPath = targetElementBox.firstElementChild.firstElementChild;
@@ -103,5 +105,17 @@ let menuIsOpen = false;
             targetElementBox.style.boxShadow = '0px 0px 2px #FFFFFF'; 
             iconPath.style.stroke = '#FFFFFFE6';
         }
+    }
+    // Page that uses GET for 'page=' number 
+    const homePage = 'home';
+    const pattern = '/?page=';
+    const hasIndex = currentPageURL.indexOf(pattern);
+    if (hasIndex !== -1) {
+        let targetElement = document.getElementById(homePage);
+        let targetElementBox = targetElement.firstElementChild;
+        let iconPath = targetElementBox.firstElementChild.firstElementChild;
+        targetElementBox.style.backgroundColor = 'var(--active)';
+        targetElementBox.style.boxShadow = '0px 0px 2px #FFFFFF'; 
+        iconPath.style.stroke = '#FFFFFFE6';
     }
 })();

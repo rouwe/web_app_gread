@@ -1,5 +1,5 @@
 <?php
-function upload_image($inpt_img_key)
+function upload_image($inpt_img_key, $filename)
 {
     /* Upload file configuration
     *@inpt_img_key - name attribute of the file input field.
@@ -12,7 +12,7 @@ function upload_image($inpt_img_key)
         mkdir($upload_dir);
     }
     // Path of the file to be uploaded
-    $target_file = $upload_dir . basename($_FILES[$inpt_img_key]["name"]);
+    $target_file = $upload_dir . $filename;
     $uploadOk = 0;
     // Type extension of the file
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -31,7 +31,7 @@ function upload_image($inpt_img_key)
         $error_code = $_FILES[$inpt_img_key]['error'];
         $_SESSION['error'] = $phpFileUploadErrors[$error_code];
         $uploadOk = 1;
-        header("Location: " . $_SERVER['PHP_SELF']);
+        header("Location: ./");
         return;
     }
     // Check if image file is a actual image or fake image
@@ -42,7 +42,7 @@ function upload_image($inpt_img_key)
         } else {
             $_SESSION['error'] = "File is not an image.";
             $uploadOk = 1;
-            header("Location: " . $_SERVER['PHP_SELF']);
+            header("Location: ./");
             return;
         }
     }
@@ -50,7 +50,7 @@ function upload_image($inpt_img_key)
     if ($_FILES[$inpt_img_key]["size"] > 2000000) {
         $_SESSION['error'] = "Sorry, your file is too large.";
         $uploadOk = 1;
-        header("Location: " . $_SERVER['PHP_SELF']);
+        header("Location: ./");
         return;
     }
     // Limit file type
@@ -61,19 +61,19 @@ function upload_image($inpt_img_key)
     ) {
         $_SESSION['error'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
         $uploadOk = 1;
-        header("Location: " . $_SERVER['PHP_SELF']);
+        header("Location: ./");
         return;
     }
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 1) {
         $_SESSION['error'] = "Sorry, your file was not uploaded.";
-        header("Location: " . $_SERVER['PHP_SELF']);
+        header("Location: ./");
         return;
         // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES[$inpt_img_key]["tmp_name"], $target_file)) {
-            $_SESSION['upload_success'] = "The file " . htmlspecialchars(basename($_FILES[$inpt_img_key]["name"])) . " has been uploaded.";
-            header("./about.php");
+            $_SESSION['upload_success'] = "The file " . htmlspecialchars($filename) . " has been uploaded.";
+            // header("./about.php");
             return;
         } else {
             $_SESSION['error'] = "Sorry, there was an error uploading your file.";
@@ -95,12 +95,12 @@ function add_record($inpt_img_key)
     // Image upload data needed
     $filename = $_FILES[$inpt_img_key]['name'];
     $size = $_FILES[$inpt_img_key]['size'];
-    $filepath = "./gread_images/" . $_SESSION['active_user'] . '/' . basename($filename);
+    $filepath = "./gread_images/" . $_SESSION['active_user'] . '/';
     $error = $_FILES[$inpt_img_key]['error'];
     $user_id = $_SESSION['user_id'];
 
     // Upload image in server
-    upload_image($inpt_img_key);
+    upload_image($inpt_img_key, $filename);
     // Check if image upload is successful
     if (isset($_SESSION['upload_success'])) {
         // Store img data in 'gread_img' table
@@ -125,14 +125,15 @@ function add_record($inpt_img_key)
         $gread_img_row = $gread_img_id_stmt->fetch(PDO::FETCH_ASSOC);
         $gread_img_id = $gread_img_row['gread_img_id'];
         // Store title and description and  in 'gread' table
-        $gread_query = "INSERT INTO gread (gread_img_id, user_id, title, description)
-        VALUES(:gread_img_id, :user_id, :gread_title, :gread_description)";
+        $gread_query = "INSERT INTO gread (gread_img_id, user_id, title, description, date_recorded)
+        VALUES(:gread_img_id, :user_id, :gread_title, :gread_description, :date_of_record)";
         $gread_query_stmt = $pdo->prepare($gread_query);
         $gread_query_stmt->execute(array(
             ':gread_img_id' => $gread_img_id,
             ':user_id' => $user_id,
             ':gread_title' => $title,
-            ':gread_description' => $description
+            ':gread_description' => $description,
+            ':date_of_record' => date("Y-m-d") . ' ' . date("H:i:s")
         ));
         // Unset upload_success
         unset($_SESSION['upload_success']);
