@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once "./utilities/pdo/pdo.php";
+require_once "./delete_record_config.php";
 require_once "./utilities/php_snippets/header.php";
 require_once "./utilities/php_snippets/static_contents.php";
 // Check if not login
@@ -9,11 +10,63 @@ if (!isset($_SESSION['active_user'])) {
   header("Location: ./login.php");
   return;
 }
-// Check GET
-if (!isset($_GET['record_id']) || !isset($_GET['img_id'])) {
-  $_SESSION['error'] = "Missing record identifiers";
+// Canceled deletion
+if (isset($_POST['cancel'])) {
+  $_SESSION['success'] = "Action has been successfuly aborted.";
   header("Location: ./");
   return;
+}
+// Check GET
+if (!isset($_GET['record_id']) || !isset($_GET['img_id'])) {
+  $_SESSION['error'] = "Missing record identifiers. Please make sure that you selected a record in your homepage.";
+  header("Location: ./");
+  return;
+}
+// Check GET parameters validity
+$query_record = "SELECT title, description FROM gread
+WHERE gread_id = :record_id AND gread_img_id = :img_id";
+$record_check_stmt = $pdo->prepare($query_record);
+$record_check_stmt->execute(array(
+  ':record_id' => $_GET['record_id'],
+  ':img_id' => $_GET['img_id']
+));
+$record_row = $record_check_stmt->fetch(PDO::FETCH_ASSOC);
+// No records found => redirect
+if (!$record_row) {
+  $_SESSION['error'] = "No records found. Please try again.";
+  header("Location: ./");
+  return;
+}
+// Get current thumbnail record
+$query_img = "SELECT filename, filepath, size, error FROM gread_img
+WHERE gread_img_id = :img_id";
+$img_stmt = $pdo->prepare($query_img);
+$img_stmt->execute(array(
+  ':img_id' => $_GET['img_id']
+));
+$img_row = $img_stmt->fetch(PDO::FETCH_ASSOC);
+$filepath = $img_row['filepath'];
+$filename = rawurlencode($img_row['filename']);
+$thumbnail_src = $filepath . $filename;
+// Check form when submitted
+if (
+  isset($_POST['submit'])
+) {
+  // User Validation
+  $gread_id = $_GET['record_id'];
+  $gread_img_id = $_GET['img_id'];
+  $user_is_verified = verify_user_record($gread_id, $gread_img_id);
+  if ($user_is_verified) {
+    $gread_is_deleted = delete_record($gread_id, $gread_img_id, $img_row);
+    if ($gread_is_deleted) {
+      $_SESSION['success'] = "Record has been successfuly deleted.";
+      header("Location: ./");
+      return;
+    }
+  } else {
+    header("Location: ./");
+    return;
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -137,14 +190,14 @@ if (!isset($_GET['record_id']) || !isset($_GET['img_id'])) {
       <!-- Preview -->
       <div class="preview-box">
         <div class="preview-img-box">
-          <img class="preview-img" src="./assets/temp_preview.png" alt="">
+          <img class="preview-img" src="<?= htmlentities($thumbnail_src) ?>" alt="<?= htmlentities($record_row['title']) ?>">
         </div>
         <!-- Text box -->
         <div class="preview-text-box">
           <span class="preview-title">
-            <strong>Gread Title</strong>
+            <strong><?= htmlentities($record_row['title']) ?></strong>
           </span>
-          <p class="preview-description">Description</p>
+          <p class="preview-description"><?= htmlentities($record_row['description']) ?></p>
         </div>
       </div>
     </div>
@@ -153,12 +206,12 @@ if (!isset($_GET['record_id']) || !isset($_GET['img_id'])) {
       <!-- Title -->
       <div class="form-box inpt-title-box">
         <label class="inpt-label" for="title">Title</label>
-        <input class="inpt-field inpt-title" type="text" id="title" name="add_title" placeholder="Gread title" required maxlength="128" disabled>
+        <input class="inpt-field inpt-title" type="text" id="title" name="add_title" value="<?= htmlentities($record_row['title']) ?>" placeholder="<?= htmlentities($record_row['title']) ?>" required maxlength="128" disabled>
       </div>
       <!-- Description -->
       <div class="form-box inpt-description-box">
         <label class="inpt-label" for="description">Description</label>
-        <textarea class="inpt-field inpt-description" id="description" name="add_description" placeholder="Gread description" maxlength="256" disabled></textarea>
+        <textarea class="inpt-field inpt-description" id="description" name="add_description" placeholder="<?= htmlentities($record_row['description']) ?>" maxlength="256" disabled><?= htmlentities($record_row['description']) ?></textarea>
       </div>
       <!-- Upload Image thumbnail -->
       <div class="inpt-img-box">

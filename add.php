@@ -23,7 +23,7 @@ if (
   $file_attribute_key = 'add_thumbnail';
   add_record($file_attribute_key);
   // Redirect to homepage
-  $_SESSION['success'] = 'Gread has been added succesfuly.';
+  $_SESSION['success'] = 'Record has been added succesfuly added.';
   header("Location: ./");
   return;
 }
