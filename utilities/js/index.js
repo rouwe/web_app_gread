@@ -1,26 +1,32 @@
+const isUserLoggedIn = document.getElementById('default-home') === null;
 (function shortenDescription() {
     /* Limits the number of characters being displayed
     * @selector - used for target element(s) to be shortened
     */
-    const recordsArr = document.getElementsByClassName('gread-description');
-    const recordLength = recordsArr.length;
-    const maxLength = 45;
-    if (recordLength > 0) {
-        for (let i = 0; i < recordsArr.length; i++) {
-            const targetElement = recordsArr[i];
-            const description = recordsArr[i].innerHTML;
-            // Check text length
-            if (description.length > maxLength) {
-                const trimmedText = description.slice(0, maxLength) + '...';
-                targetElement.innerHTML = trimmedText;
+    if (isUserLoggedIn) {
+        const recordsArr = document.getElementsByClassName('gread-description');
+        const recordLength = recordsArr.length;
+        const maxLength = 45;
+        if (recordLength > 0) {
+            for (let i = 0; i < recordsArr.length; i++) {
+                const targetElement = recordsArr[i];
+                const description = recordsArr[i].innerHTML;
+                // Check text length
+                if (description.length > maxLength) {
+                    const trimmedText = description.slice(0, maxLength) + '...';
+                    targetElement.innerHTML = trimmedText;
+                }
             }
         }
     }
 })();
-const targetActions = ['edit', 'delete'];
-for (const action of targetActions) {
-    const target = document.getElementById(action);
-    target.addEventListener("click", modifyRecordRedirect);
+// Check if user is logged in
+if (isUserLoggedIn) {
+    const targetActions = ['edit', 'delete'];
+    for (const action of targetActions) {
+        const target = document.getElementById(action);
+        target.addEventListener("click", modifyRecordRedirect);
+    }
 }
 
 function modifyRecordRedirect() {

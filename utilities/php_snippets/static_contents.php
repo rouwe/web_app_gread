@@ -4,7 +4,7 @@ function landing_page_content()
 {
   // Display the content of homepage if the user is not logged in
   echo ('<!-- Main -->
-    <main class="main-container">
+    <main id="default-home" class="main-container">
       <!-- Texts -->
       <div class="hero-texts-box">
         <h1 class="hero-heading">Keep track of your entertainment</h1>

@@ -16,6 +16,11 @@ require_once "./utilities/php_snippets/header.php";
   <link rel="stylesheet" href="./utilities/css/index_header.css">
   <link rel="stylesheet" href="./utilities/css/media_query.css">
   <link rel="stylesheet" href="./utilities/css/about.css">
+  <?php
+  if (isset($_SESSION['active_user'])) {
+    echo ('<link rel="stylesheet" href="./utilities//css/dashboard.css">');
+  }
+  ?>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
@@ -27,7 +32,14 @@ require_once "./utilities/php_snippets/header.php";
   // Check if user is logged in
   if (isset($_SESSION['active_user'])) {
     dashboard_header();
-    echo ('<!-- Navigation -->
+  } else {
+    index_header('about');
+  }
+  ?>
+  <main class="main-container">
+    <?php
+    if (isset($_SESSION['active_user'])) {
+      echo ('<!-- Navigation -->
         <nav class="navigation">
           <div class="navigation-outline">
             <!-- Mobile Search -->
@@ -89,11 +101,8 @@ require_once "./utilities/php_snippets/header.php";
             </div>
           </div>
         </nav>');
-  } else {
-    index_header('about');
-  }
-  ?>
-  <main class="main-container">
+    }
+    ?>
     <!-- About -->
     <section class="about-container">
       <!-- Heading -->

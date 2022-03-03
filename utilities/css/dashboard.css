@@ -247,6 +247,7 @@
     .navigation {
         background-color: #F9F9F9;
         box-shadow: 2px 0px 4px hsla(0, 0%, 0%, 0.2), -1px 0px 4px hsla(0, 0%, 0%, 0.2);
+        z-index: 2;
     }
     .navigation-actions {
         height: 100vh;

@@ -74,50 +74,53 @@ let menuIsOpen = false;
     }, 100);
 })();
 (function activePage() {
-    // Controls the look of the active page
-    const pagesURL = {
-        home: {
-            href: './'
-        },
-        add: {
-            href: './add'
-        },
-        edit: {
-            href: './edi'
-        },
-        delete: {
-            href: './del'
-        },
-        about: {
-            href: './abo'
+    const isUserLoggedIn = document.getElementById('default-home') === null;
+    if (isUserLoggedIn) {
+        // Controls the look of the active page
+        const pagesURL = {
+            home: {
+                href: './'
+            },
+            add: {
+                href: './add'
+            },
+            edit: {
+                href: './edi'
+            },
+            delete: {
+                href: './del'
+            },
+            about: {
+                href: './abo'
+            }
         }
-    }
-    let currentPageURL = document.URL;
-    const splitURL = currentPageURL.split('/');
-    const targURL = splitURL.slice(-1);
-    pageActionURL = './' + targURL[0].slice(0,3);
-    for (const page in pagesURL ) {
-        if (pagesURL[page].href === pageActionURL) {
-            let targetElement = document.getElementById(`${page}`);
-            let targetElementBox = targetElement.firstElementChild;
-            let iconPath = targetElementBox.firstElementChild.firstElementChild;
-            targetElementBox.style.backgroundColor = 'var(--active)';
-            targetElementBox.style.boxShadow = '0px 0px 2px #FFFFFF'; 
-            iconPath.style.stroke = '#FFFFFFE6';
+        let currentPageURL = document.URL;
+        const splitURL = currentPageURL.split('/');
+        const targURL = splitURL.slice(-1);
+        pageActionURL = './' + targURL[0].slice(0,3);
+        for (const page in pagesURL ) {
+            if (pagesURL[page].href === pageActionURL) {
+                let targetElement = document.getElementById(`${page}`);
+                let targetElementBox = targetElement.firstElementChild;
+                let iconPath = targetElementBox.firstElementChild.firstElementChild;
+                targetElementBox.style.backgroundColor = 'var(--active)';
+                targetElementBox.style.boxShadow = '0px 0px 2px #FFFFFF'; 
+                iconPath.style.stroke = '#FFFFFFE6';
+            }
         }
-    }
-    // Page that uses GET for 'page=' number 
-    const homePage = 'home';
-    const patterns = ['/?page=', '/?filter', '/?query'];
-    for (const pattern of patterns) {
-        const hasIndex = currentPageURL.indexOf(pattern);
-        if (hasIndex !== -1) {
-            let targetElement = document.getElementById(homePage);
-            let targetElementBox = targetElement.firstElementChild;
-            let iconPath = targetElementBox.firstElementChild.firstElementChild;
-            targetElementBox.style.backgroundColor = 'var(--active)';
-            targetElementBox.style.boxShadow = '0px 0px 2px #FFFFFF'; 
-            iconPath.style.stroke = '#FFFFFFE6';
+        // Page that uses GET for 'page=' number 
+        const homePage = 'home';
+        const patterns = ['/?page=', '/?filter', '/?query'];
+        for (const pattern of patterns) {
+            const hasIndex = currentPageURL.indexOf(pattern);
+            if (hasIndex !== -1) {
+                let targetElement = document.getElementById(homePage);
+                let targetElementBox = targetElement.firstElementChild;
+                let iconPath = targetElementBox.firstElementChild.firstElementChild;
+                targetElementBox.style.backgroundColor = 'var(--active)';
+                targetElementBox.style.boxShadow = '0px 0px 2px #FFFFFF'; 
+                iconPath.style.stroke = '#FFFFFFE6';
+            }
         }
     }
 })();
