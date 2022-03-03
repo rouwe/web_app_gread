@@ -7,7 +7,7 @@ require_once "./utilities/php_snippets/static_contents.php";
 require_once "./utilities/php_snippets/footer.php";
 if (isset($_SESSION['active_user'])) {
   // Fetch all data associated with current user
-  // Query gread table
+  // Query gread table DESCENDING
   $query = "SELECT gread_id, gread_img_id, title, date_recorded, description FROM gread
   WHERE user_id = :uid
   ORDER BY date_recorded DESC";
@@ -16,6 +16,34 @@ if (isset($_SESSION['active_user'])) {
     ':uid' => $_SESSION['user_id']
   ));
   $gread_rows = $gread_stmt->fetchAll(PDO::FETCH_ASSOC);
+  $currentFilter = 'Most recent';
+  // GET Filter 
+  if (isset($_GET['filter'])) {
+    $get_filter = $_GET['filter'];
+    if ($get_filter == 'recent') {
+      // Query gread table
+      $query = "SELECT gread_id, gread_img_id, title, date_recorded, description FROM gread
+      WHERE user_id = :uid
+      ORDER BY date_recorded DESC";
+      $gread_stmt = $pdo->prepare($query);
+      $gread_stmt->execute(array(
+        ':uid' => $_SESSION['user_id']
+      ));
+      $gread_rows = $gread_stmt->fetchAll(PDO::FETCH_ASSOC);
+      $currentFilter = 'Most recent';
+    } elseif ($get_filter == 'oldest') {
+      // Query gread table
+      $query = "SELECT gread_id, gread_img_id, title, date_recorded, description FROM gread
+      WHERE user_id = :uid
+      ORDER BY date_recorded ASC";
+      $gread_stmt = $pdo->prepare($query);
+      $gread_stmt->execute(array(
+        ':uid' => $_SESSION['user_id']
+      ));
+      $gread_rows = $gread_stmt->fetchAll(PDO::FETCH_ASSOC);
+      $currentFilter = 'Oldest';
+    }
+  }
   // Get total records count
   $query_count = "SELECT COUNT(*) FROM gread
       WHERE user_id = :uid";
@@ -152,10 +180,14 @@ if (isset($_SESSION['active_user'])) {
           </div>
           <!-- Filter -->
           <div class="filter-box">
-            <span class="current-filter">Most recent</span>
+            <span class="current-filter">' . $currentFilter . '</span>
             <svg class="filter-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M19.7071 9.70711C20.0976 9.31658 20.0976 8.68342 19.7071 8.29289C19.3166 7.90237 18.6834 7.90237 18.2929 8.29289L19.7071 9.70711ZM12 16L11.2929 16.7071C11.4804 16.8946 11.7348 17 12 17C12.2652 17 12.5196 16.8946 12.7071 16.7071L12 16ZM5.70711 8.29289C5.31658 7.90237 4.68342 7.90237 4.29289 8.29289C3.90237 8.68342 3.90237 9.31658 4.29289 9.70711L5.70711 8.29289ZM18.2929 8.29289L11.2929 15.2929L12.7071 16.7071L19.7071 9.70711L18.2929 8.29289ZM12.7071 15.2929L5.70711 8.29289L4.29289 9.70711L11.2929 16.7071L12.7071 15.2929Z" fill="#4A4A4A" />
             </svg>
+            <form class="filter-form" method="GET">
+              <button class="filter border-bottom" type="submit" name="filter" value="recent">Most recent</button>
+              <button class="filter" type="submit" name="filter" value="oldest">Oldest</button>
+            </form>
           </div>
           <!-- Divider -->
           <hr class="gread-header-divider">
@@ -208,6 +240,10 @@ if (isset($_SESSION['active_user'])) {
         ':uid' => $user_id
       ));
       $query_result_rows = $query_stmt->fetchAll(PDO::FETCH_ASSOC);
+      // No result found.
+      if (count($query_result_rows) < 1) {
+        $_SESSION['success'] = "No result found.";
+      }
       for ($i = 0; $i < count($query_result_rows); $i++) {
         // print_r($query_result_rows[$i]);
         $result_row = $query_result_rows[$i];
@@ -232,7 +268,7 @@ if (isset($_SESSION['active_user'])) {
     }
     // End <!-- GREADS -->
     echo ('</div>');
-    if (!isset($_GET['query'])) {
+    if (!isset($_GET['query']) && !isset($_GET['filter'])) {
       // Pagination
       pagination($pagination_count + 1);
     }

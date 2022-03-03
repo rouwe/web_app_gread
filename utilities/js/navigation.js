@@ -108,14 +108,16 @@ let menuIsOpen = false;
     }
     // Page that uses GET for 'page=' number 
     const homePage = 'home';
-    const pattern = '/?page=';
-    const hasIndex = currentPageURL.indexOf(pattern);
-    if (hasIndex !== -1) {
-        let targetElement = document.getElementById(homePage);
-        let targetElementBox = targetElement.firstElementChild;
-        let iconPath = targetElementBox.firstElementChild.firstElementChild;
-        targetElementBox.style.backgroundColor = 'var(--active)';
-        targetElementBox.style.boxShadow = '0px 0px 2px #FFFFFF'; 
-        iconPath.style.stroke = '#FFFFFFE6';
+    const patterns = ['/?page=', '/?filter', '/?query'];
+    for (const pattern of patterns) {
+        const hasIndex = currentPageURL.indexOf(pattern);
+        if (hasIndex !== -1) {
+            let targetElement = document.getElementById(homePage);
+            let targetElementBox = targetElement.firstElementChild;
+            let iconPath = targetElementBox.firstElementChild.firstElementChild;
+            targetElementBox.style.backgroundColor = 'var(--active)';
+            targetElementBox.style.boxShadow = '0px 0px 2px #FFFFFF'; 
+            iconPath.style.stroke = '#FFFFFFE6';
+        }
     }
 })();

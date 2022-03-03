@@ -45,12 +45,39 @@ function modifyRecordRedirect() {
     }
 };
 const greadContentContainer = document.getElementsByClassName('gread-content-container')[0];
-greadContentContainer.addEventListener("click", hideRecordLinks);
+if (greadContentContainer !== undefined) {
+    greadContentContainer.addEventListener("click", hideRecordLinks);
+}
 
 function hideRecordLinks() {
     // Hide record links
     const recordLinkArr = document.getElementsByClassName('unchecked');
     for (const recordLink of recordLinkArr) {
         recordLink.style.display = 'none';
+    }
+}
+
+const filterArrow = document.getElementsByClassName('filter-arrow')[0];
+if (filterArrow !== undefined) {
+    filterArrow.addEventListener("click", toggleFilter);
+}
+function toggleFilter() {
+    // Display options for filters
+    const filterForm = document.getElementsByClassName('filter-form')[0];
+    const displayStatus = filterForm.style.display;
+    const displayFilter = (filterForm) => {
+        filterForm.style.display = 'flex';
+        filterForm.style.opacity = '1';
+    }
+    const hideFilter = (filterForm) => {
+        filterForm.style.display = 'none';
+        filterForm.style.opacity = '0.6';
+    }
+    if (displayStatus === 'none' || displayStatus === '') {
+        // Display
+        displayFilter(filterForm);
+    } else {
+        // Hide
+        hideFilter(filterForm);
     }
 }

@@ -56,19 +56,51 @@
     margin-left: 0.3125rem;
 }
 .filter-arrow {
+    cursor: pointer;
     stroke-width: 1px;
+    z-index: 2;
 }
 .gread-header-box, .filter-box {
     display: flex;
     align-items: center;
 }
 .filter-box {
+    position: relative;
     justify-content: flex-end;
 }
 .current-filter {
     font-size: 0.875rem;
     font-weight: 500;
     letter-spacing: -0.2px;
+}
+.filter-form {
+    position: absolute;
+    bottom: calc(-3rem + -0.5rem);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0.25rem 0.5rem;
+    border-radius: 1px;
+    background-color: var(--secondary);
+    box-shadow: 0px 3px 5px hsl(0, 0%, 29%, 0.2);
+    opacity: 0.6;
+    z-index: 2;
+    transition: all 2250ms ease-in;
+}
+.filter {
+    cursor: pointer;
+    padding: 0.25rem;
+    border: none;
+    outline: none;
+    color: #FFFFFF;
+    background-color: var(--secondary);
+}
+.filter::selection {
+    background-color: transparent;
+}
+.border-bottom {
+    border-bottom: 1px solid #aaaaaa79;
 }
 /* Greads */
 .gread-content-body {
