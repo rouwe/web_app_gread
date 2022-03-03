@@ -237,15 +237,17 @@ function dashboard_header()
     </div>
     <!-- Desktop Search -->
     <div class="desktop-search-box">
-      <input class="desktop-search-field" type="text" name="desktop-search" placeholder="Search something..." aria-label="Desktop search">
-      <button type="button" class="desktop-search-button">
-        <i>
-          <svg class="desktop-search-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M13.125 22.3125C18.1991 22.3125 22.3125 18.1991 22.3125 13.125C22.3125 8.05088 18.1991 3.9375 13.125 3.9375C8.05088 3.9375 3.9375 8.05088 3.9375 13.125C3.9375 18.1991 8.05088 22.3125 13.125 22.3125Z" stroke="#959595" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M19.6875 19.6875L27.5625 27.5625" stroke="#959595" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </i>
-      </button>
+      <form class="desktop-search-form" method="GET">
+        <input class="desktop-search-field" type="text" name="query" placeholder="Search something..." aria-label="Desktop search">
+        <button type="submit" class="desktop-search-button">
+          <i>
+            <svg class="desktop-search-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13.125 22.3125C18.1991 22.3125 22.3125 18.1991 22.3125 13.125C22.3125 8.05088 18.1991 3.9375 13.125 3.9375C8.05088 3.9375 3.9375 8.05088 3.9375 13.125C3.9375 18.1991 8.05088 22.3125 13.125 22.3125Z" stroke="#959595" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M19.6875 19.6875L27.5625 27.5625" stroke="#959595" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </i>
+        </button>
+      </form>
     </div>
     <!-- Dashboard Logout Icon -->
     <a href="./logout.php">

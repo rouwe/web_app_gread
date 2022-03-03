@@ -80,7 +80,7 @@
     max-height: 8.5rem;
     display: flex;
     column-gap: 1.125rem;
-    padding: 0.9375rem;
+    padding: 0.9375rem 0.96rem 0.9375rem 0.9375rem;
     border: 0.7px solid #66666666;
     border-radius: 4px;
     margin-bottom: 1.5625rem;

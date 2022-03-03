@@ -190,7 +190,7 @@ if (
       <!-- Preview -->
       <div class="preview-box">
         <div class="preview-img-box">
-          <img class="preview-img gread-thumbnail" src="<?= htmlentities($thumbnail_src) ?>" alt="">
+          <img class="preview-img gread-thumbnail" src="<?= htmlentities($thumbnail_src) ?>" alt="<?= htmlentities($record_row['title']) ?>">
         </div>
         <!-- Text box -->
         <div class="preview-text-box">

@@ -70,7 +70,7 @@ function delete_record($gread_id, $gread_img_id, $thumbnail_info)
     ));
     // Delete thumbnail file in directory
     $thumbnail_exists = file_exists($fullpath);
-    clearstatcache($fullpath);
+    // clearstatcache($fullpath);
     if ($thumbnail_exists) {
         $realpath = realpath($fullpath);
         unlink($realpath);

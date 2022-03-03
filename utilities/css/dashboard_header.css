@@ -3,6 +3,9 @@
 .desktop-search-box {
     display: none;
 }
+.desktop-search-form {
+    width: 100%;
+}
 /* Dashboard Logo */
 .d-logo-box {
     width: fit-content; 
@@ -27,6 +30,9 @@
     display: flex;
     justify-content: center;
     padding: 0.625rem 2.8125rem;
+}
+.mobile-search-form {
+    width: 100%;
 }
 .mobile-search-box {
     position: relative;
