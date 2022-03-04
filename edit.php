@@ -74,6 +74,8 @@ if (
 
 <head>
   <meta name="charset" content="utf-8">
+  <meta name="keywords" content="Entertainment, Anime, manga, novel, movie, books, podcast">
+  <meta name="description" content="Collect all of your favorite entertainment in one place.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Roweme B. Santos">
   <title>Edit Gread | Your library of entertainment</title>
@@ -205,18 +207,18 @@ if (
     <form class="action-form-container" method="POST" enctype="multipart/form-data">
       <!-- Title -->
       <div class="form-box inpt-title-box">
-        <label class="inpt-label" for="title"></label>
+        <label class="inpt-label" for="title">Title</label>
         <input class="inpt-field inpt-title" type="text" id="title" name="add_title" value="<?= htmlentities($record_row['title']) ?>" placeholder="<?= htmlentities($record_row['title']) ?>" maxlength="128">
       </div>
       <!-- Description -->
       <div class="form-box inpt-description-box">
-        <label class="inpt-label" for="description"></label>
+        <label class="inpt-label" for="description">Description</label>
         <textarea class="inpt-field inpt-description" id="description" name="add_description" placeholder=" <?= htmlentities($record_row['description']) ?>" maxlength="256"> <?= htmlentities($record_row['description']) ?></textarea>
       </div>
       <!-- Upload Image thumbnail -->
       <div class="inpt-img-box">
         <label class="inpt-label" for="thumbnail">Upload Image</label>
-        <input class="inpt-file" type="file" name="add_thumbnail">
+        <input class="inpt-file" id="thumbnail" type="file" name="add_thumbnail">
       </div>
       <!-- Proceed and Cancel -->
       <div class="decision-box">

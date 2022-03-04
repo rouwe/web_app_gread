@@ -279,6 +279,10 @@
         border-top: 1px solid #66666666;
         border-bottom: 1px solid #66666666;
         border-radius: 0px;
+        transition: background-color 200ms ease; 
+    }
+    .action-box:hover {
+        background-color: #DDDDDD;
     }
     .info-box {
         position: relative;
@@ -298,6 +302,10 @@
     }
     .action-icon {
         width: 1.8rem;
+        transition: transform 200ms ease;
+    }
+    .action-icon:hover {
+        transform: scale(1.1);
     }
     .action-icon path {
         stroke: var(--secondary);

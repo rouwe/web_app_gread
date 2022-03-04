@@ -1,12 +1,19 @@
 <?php
 session_start();
 require_once "./utilities/php_snippets/header.php";
+require_once "./utilities/php_snippets/helper.php";
+if (isset($_GET['query'])) {
+  // Redirect to home
+  search_redirect($_GET['query']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta name="charset" content="utf-8">
+  <meta name="keywords" content="Entertainment, Anime, manga, novel, movie, books, podcast">
+  <meta name="description" content="Collect all of your favorite entertainment in one place.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Roweme B. Santos">
   <title>About | Your library of entertainment</title>
@@ -36,10 +43,17 @@ require_once "./utilities/php_snippets/header.php";
     index_header('about');
   }
   ?>
-  <main class="main-container">
-    <?php
-    if (isset($_SESSION['active_user'])) {
-      echo ('<!-- Navigation -->
+  <?php
+  // Exempt page from activePage js if user not logged in
+  if (isset($_SESSION['active_user'])) {
+    echo ('<main class="main-container">');
+  } else {
+    echo ('<main id="default-home" class="main-container">');
+  }
+  ?>
+  <?php
+  if (isset($_SESSION['active_user'])) {
+    echo ('<!-- Navigation -->
         <nav class="navigation">
           <div class="navigation-outline">
             <!-- Mobile Search -->
@@ -101,22 +115,22 @@ require_once "./utilities/php_snippets/header.php";
             </div>
           </div>
         </nav>');
-    }
-    ?>
-    <!-- About -->
-    <section class="about-container">
-      <!-- Heading -->
-      <div class="about-heading-box">
-        <h1 class="main-heading">About</h1>
-        <hr class="about-divider">
-      </div>
-      <!-- About Content -->
-      <div class="about-text-box">
-        <p class="about-text">
-          <span class="gread-word">Gread</span> is an online application that allows you to save all of your favorite entertainments information. You don't need to worry about remembering their basic information.
-        </p>
-      </div>
-    </section>
+  }
+  ?>
+  <!-- About -->
+  <section class="about-container">
+    <!-- Heading -->
+    <div class="about-heading-box">
+      <h1 class="main-heading">About</h1>
+      <hr class="about-divider">
+    </div>
+    <!-- About Content -->
+    <div class="about-text-box">
+      <p class="about-text">
+        <span class="gread-word">Gread</span> is an online application that allows you to save all of your favorite entertainments information. You don't need to worry about remembering their basic information.
+      </p>
+    </div>
+  </section>
   </main>
   <script src="./utilities/js/index.js"></script>
   <script src="./utilities/js/navigation.js"></script>

@@ -238,9 +238,10 @@ function dashboard_header()
     <!-- Desktop Search -->
     <div class="desktop-search-box">
       <form class="desktop-search-form" method="GET">
-        <input class="desktop-search-field" type="text" name="query" placeholder="Search something..." aria-label="Desktop search">
-        <button type="submit" class="desktop-search-button">
-          <i>
+        <label for="d-search" style="display: none;">Search</label>
+        <input class="desktop-search-field" id="d-search" type="text" name="query" placeholder="Search something..." aria-label="Desktop search">
+        <button type="submit" class="desktop-search-button" aria-label="Submit search">
+          <i aria-hidden="true">
             <svg class="desktop-search-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M13.125 22.3125C18.1991 22.3125 22.3125 18.1991 22.3125 13.125C22.3125 8.05088 18.1991 3.9375 13.125 3.9375C8.05088 3.9375 3.9375 8.05088 3.9375 13.125C3.9375 18.1991 8.05088 22.3125 13.125 22.3125Z" stroke="#959595" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
               <path d="M19.6875 19.6875L27.5625 27.5625" stroke="#959595" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />

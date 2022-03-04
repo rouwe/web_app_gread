@@ -85,6 +85,8 @@ if (isset($_POST['usr_email']) && isset($_POST['usr_password'])) {
 
 <head>
     <meta name="charset" content="utf-8">
+    <meta name="keywords" content="Entertainment, Anime, manga, novel, movie, books, podcast">
+    <meta name="description" content="Collect all of your favorite entertainment in one place.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Roweme B. Santos">
     <title>Log in | Your library of entertainment</title>

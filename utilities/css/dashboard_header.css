@@ -161,10 +161,21 @@
         background-color: transparent;
     }
     .desktop-search-icon {
+        cursor: pointer;
         transform: scale(0.8);
+        transition: transform 200ms ease; 
+    }
+    .desktop-search-icon:hover {
+        transform: scale(0.9);
     }
     .d-logout-icon {
+        cursor: pointer;
         display: block; 
+        transform: scale(1);
+        transition: transform 200ms ease;
+    }
+    .d-logout-icon:hover {
+        transform: scale(1.1);
     }
     .mobile-search-container {
         display: none;

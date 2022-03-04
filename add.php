@@ -18,14 +18,16 @@ if (
 ) {
   // Check input lengths
   $user_input = array($_POST['add_title'], $_POST['add_description'], $_FILES['add_thumbnail']['name']);
-  validate_input_length($user_input);
-  // Add record in db
-  $file_attribute_key = 'add_thumbnail';
-  add_record($file_attribute_key);
-  // Redirect to homepage
-  $_SESSION['success'] = 'Record has been added succesfuly added.';
-  header("Location: ./");
-  return;
+  $input_is_valid = validate_input_length($user_input);
+  if ($input_is_valid) {
+    // Add record in db
+    $file_attribute_key = 'add_thumbnail';
+    add_record($file_attribute_key);
+    // Redirect to homepage
+    $_SESSION['success'] = 'Record has been added succesfuly added.';
+    header("Location: ./");
+    return;
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -33,6 +35,8 @@ if (
 
 <head>
   <meta name="charset" content="utf-8">
+  <meta name="keywords" content="Entertainment, Anime, manga, novel, movie, books, podcast">
+  <meta name="description" content="Collect all of your favorite entertainment in one place.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Roweme B. Santos">
   <title>Add Gread | Your library of entertainment</title>
@@ -176,7 +180,7 @@ if (
       <!-- Upload Image thumbnail -->
       <div class="inpt-img-box">
         <label class="inpt-label" for="thumbnail">Upload Image</label>
-        <input class="inpt-file" type="file" name="add_thumbnail">
+        <input class="inpt-file" id="thumbnail" type="file" name="add_thumbnail">
       </div>
       <!-- Proceed and Cancel -->
       <div class="decision-box">

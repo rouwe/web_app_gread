@@ -39,7 +39,17 @@ let menuIsOpen = false;
         // 
         const mainContainer = document.getElementsByClassName('main-container')[0];
         const navigation = document.getElementsByClassName('navigation')[0];
-        if (menuIsOpen) {
+        const aboutPath = '/web_apps/gread/about.php';
+        const currentPageLocationPath = document.location.pathname;
+        // Check if current page is About page
+        if (aboutPath == currentPageLocationPath && menuIsOpen) {
+            const navHeight = document.getElementsByClassName('navigation-outline')[0].offsetHeight;
+            const aboutContainer = document.getElementsByClassName('about-container')[0];
+            marginTop = '0px';
+            aboutContainer.style.marginTop = `${navHeight}px`;
+            navigation.style.top = marginTop;
+        }
+        else if (menuIsOpen) {
             // console.log(screenWidth, menuIsOpen);
             const navHeight = document.getElementsByClassName('navigation-outline')[0].offsetHeight;
             const headerHeight = document.getElementsByClassName('header-container')[0].offsetHeight;
