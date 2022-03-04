@@ -28,26 +28,46 @@ if (isUserLoggedIn) {
         target.addEventListener("click", modifyRecordRedirect);
     }
 }
+function displaySelectOption(action) {
+    // Display each records modification links
+    const recordLinkArr = document.getElementsByClassName('unchecked');
+    for (const recordLink of recordLinkArr) {
+        recordLink.style.display = 'block';
+        // Modify parent URL based on action
+        const recordLinkParent = recordLink.parentElement;
+        const recordLinkParentGetDataIndex = recordLinkParent.getAttribute('href').indexOf('.php');
+        const recordLinkParentHref = recordLinkParent.getAttribute('href').slice(recordLinkParentGetDataIndex);
+        const newHref = './' + action + recordLinkParentHref;
+        recordLinkParent.setAttribute('href', newHref);
+    }
+}
+(function checkIfRedirect() {
+    // Check if redirect from other (action, delete) page
+    const currentURL = document.URL;
+    console.log(currentURL)
+    const pattern = '?act=';
+    const matchIdx = currentURL.indexOf(pattern);
+    if (matchIdx != -1) {
+        const redirectAction = currentURL.slice(matchIdx + pattern.length);
+        displaySelectOption(redirectAction);
+    }
+})();
 
-function modifyRecordRedirect() {
+function modifyRecordRedirect(redirectAction = null) {
     // Make sure that the user is in index when selecting record to modify
-    const action = this.getAttribute('id');
+    // let action = this;
+    let action = this.getAttribute('id');
     const homeURL = 'http://localhost/web_apps/gread/';
+    console.log(action)
     const currentURL = document.location.href;
     if (currentURL !== homeURL) {
-        window.open(homeURL, '_self');
-    } else {
-        // Display each records modification links
-        const recordLinkArr = document.getElementsByClassName('unchecked');
-        for (const recordLink of recordLinkArr) {
-            recordLink.style.display = 'block';
-            // Modify parent URL based on action
-            const recordLinkParent = recordLink.parentElement;
-            const recordLinkParentGetDataIndex = recordLinkParent.getAttribute('href').indexOf('.php');
-            const recordLinkParentHref = recordLinkParent.getAttribute('href').slice(recordLinkParentGetDataIndex);
-            const newHref = './' + action + recordLinkParentHref;
-            recordLinkParent.setAttribute('href', newHref);
+        const pattern = '?act=';
+        const matchIdx = currentURL.indexOf(pattern);
+        if (matchIdx == -1) {
+            window.open(homeURL + '?act=' + action, '_self');
         }
+    } else {
+        displaySelectOption(action);
     }
 };
 const greadContentContainer = document.getElementsByClassName('gread-content-container')[0];
@@ -67,18 +87,20 @@ const filterArrow = document.getElementsByClassName('filter-arrow')[0];
 if (filterArrow !== undefined) {
     filterArrow.addEventListener("click", toggleFilter);
 }
+function displayFilter(filterForm)  {
+    // Display filter
+    filterForm.style.display = 'flex';
+    filterForm.style.opacity = '1';
+}
+function hideFilter(filterForm) {
+    // Hides filter
+    filterForm.style.display = 'none';
+    filterForm.style.opacity = '0.6';
+}
 function toggleFilter() {
     // Display options for filters
     const filterForm = document.getElementsByClassName('filter-form')[0];
     const displayStatus = filterForm.style.display;
-    const displayFilter = (filterForm) => {
-        filterForm.style.display = 'flex';
-        filterForm.style.opacity = '1';
-    }
-    const hideFilter = (filterForm) => {
-        filterForm.style.display = 'none';
-        filterForm.style.opacity = '0.6';
-    }
     if (displayStatus === 'none' || displayStatus === '') {
         // Display
         displayFilter(filterForm);

@@ -110,7 +110,7 @@ let menuIsOpen = false;
         }
         // Page that uses GET for 'page=' number 
         const homePage = 'home';
-        const patterns = ['/?page=', '/?filter', '/?query'];
+        const patterns = ['/?page=', '/?filter', '/?query', '/?act='];
         for (const pattern of patterns) {
             const hasIndex = currentPageURL.indexOf(pattern);
             if (hasIndex !== -1) {
