@@ -44,7 +44,6 @@ function displaySelectOption(action) {
 (function checkIfRedirect() {
     // Check if redirect from other (action, delete) page
     const currentURL = document.URL;
-    console.log(currentURL)
     const pattern = '?act=';
     const matchIdx = currentURL.indexOf(pattern);
     if (matchIdx != -1) {
@@ -53,12 +52,11 @@ function displaySelectOption(action) {
     }
 })();
 
-function modifyRecordRedirect(redirectAction = null) {
+function modifyRecordRedirect() {
     // Make sure that the user is in index when selecting record to modify
     // let action = this;
     let action = this.getAttribute('id');
     const homeURL = 'http://localhost/web_apps/gread/';
-    console.log(action)
     const currentURL = document.location.href;
     if (currentURL !== homeURL) {
         const pattern = '?act=';

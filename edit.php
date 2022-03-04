@@ -24,11 +24,13 @@ if (!isset($_GET['record_id']) || !isset($_GET['img_id'])) {
 }
 // Check GET parameters validity
 $query_record = "SELECT title, description FROM gread
-WHERE gread_id = :record_id AND gread_img_id = :img_id";
+WHERE gread_id = :record_id AND gread_img_id = :img_id
+AND date_recorded = :date_recorded";
 $record_check_stmt = $pdo->prepare($query_record);
 $record_check_stmt->execute(array(
   ':record_id' => $_GET['record_id'],
-  ':img_id' => $_GET['img_id']
+  ':img_id' => $_GET['img_id'],
+  ':date_recorded' => $_GET['dr']
 ));
 $record_row = $record_check_stmt->fetch(PDO::FETCH_ASSOC);
 // No records found => redirect
@@ -48,6 +50,7 @@ $img_row = $img_stmt->fetch(PDO::FETCH_ASSOC);
 $filepath = $img_row['filepath'];
 $filename = rawurlencode($img_row['filename']);
 $thumbnail_src = $filepath . $filename;
+$get_date_recorded = $_GET['dr'];
 // Check form when submitted
 if (
   isset($_POST['submit'])
@@ -58,7 +61,7 @@ if (
     $inpt_img_key = 'add_thumbnail';
     $gread_id = $_GET['record_id'];
     $gread_img_id = $_GET['img_id'];
-    edit_record($inpt_img_key, $img_row, $gread_id, $gread_img_id);
+    edit_record($inpt_img_key, $img_row, $gread_id, $gread_img_id, $get_date_recorded);
     // Redirect
     $_SESSION['success'] = "Gread has been updated successfuly.";
     header("Location: ./");
@@ -90,9 +93,6 @@ if (
   <?php
   // Display user dashboard
   dashboard_header();
-  // print_r($_POST);
-  // var_dump($_FILES);
-  // print_r(strlen($_FILES['add_thumbnail']['tmp_name']));
   echo ('<!-- Main -->
     <main class="main-container">
       <!-- Navigation -->

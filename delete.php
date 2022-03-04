@@ -24,11 +24,13 @@ if (!isset($_GET['record_id']) || !isset($_GET['img_id'])) {
 }
 // Check GET parameters validity
 $query_record = "SELECT title, description FROM gread
-WHERE gread_id = :record_id AND gread_img_id = :img_id";
+WHERE gread_id = :record_id AND gread_img_id = :img_id AND
+date_recorded = :date_recorded";
 $record_check_stmt = $pdo->prepare($query_record);
 $record_check_stmt->execute(array(
   ':record_id' => $_GET['record_id'],
-  ':img_id' => $_GET['img_id']
+  ':img_id' => $_GET['img_id'],
+  ':date_recorded' => $_GET['dr']
 ));
 $record_row = $record_check_stmt->fetch(PDO::FETCH_ASSOC);
 // No records found => redirect
@@ -38,7 +40,7 @@ if (!$record_row) {
   return;
 }
 // Get current thumbnail record
-$query_img = "SELECT filename, filepath, size, error FROM gread_img
+$query_img = "SELECT filename, filepath, size, error, date_recorded FROM gread_img
 WHERE gread_img_id = :img_id";
 $img_stmt = $pdo->prepare($query_img);
 $img_stmt->execute(array(
@@ -48,6 +50,7 @@ $img_row = $img_stmt->fetch(PDO::FETCH_ASSOC);
 $filepath = $img_row['filepath'];
 $filename = rawurlencode($img_row['filename']);
 $thumbnail_src = $filepath . $filename;
+$old_date_recorded = $_GET['dr'];
 // Check form when submitted
 if (
   isset($_POST['submit'])
@@ -57,7 +60,7 @@ if (
   $gread_img_id = $_GET['img_id'];
   $user_is_verified = verify_user_record($gread_id, $gread_img_id);
   if ($user_is_verified) {
-    $gread_is_deleted = delete_record($gread_id, $gread_img_id, $img_row);
+    $gread_is_deleted = delete_record($gread_id, $gread_img_id, $img_row, $old_date_recorded);
     if ($gread_is_deleted) {
       $_SESSION['success'] = "Record has been successfuly deleted.";
       header("Location: ./");

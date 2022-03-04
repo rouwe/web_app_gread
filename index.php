@@ -224,7 +224,7 @@ if (isset($_SESSION['active_user'])) {
         $filename = rawurlencode($img_id['filename']);
         $filepath = $img_id['filepath'] . $filename;
         $date_recorded = $row['date_recorded'];
-        gread_entry($filepath, $title, $description, $gread_id, $gread_img_id);
+        gread_entry($filepath, $title, $description, $gread_id, $gread_img_id, $date_recorded);
       }
     } else {
       // Display query result

@@ -37,7 +37,7 @@ function verify_user_record($gread_id, $gread_img_id)
     }
     return true;
 }
-function delete_record($gread_id, $gread_img_id, $thumbnail_info)
+function delete_record($gread_id, $gread_img_id, $thumbnail_info, $old_date_recorded)
 {
     require_once "./utilities/pdo/pdo.php";
     global $pdo;
@@ -46,34 +46,42 @@ function delete_record($gread_id, $gread_img_id, $thumbnail_info)
     $filepath = $thumbnail_info['filepath'];
     $fullpath = $filepath . $filename;
     $size = $thumbnail_info['size'];
-    $error = $thumbnail_info['error'];
     // Delete gread record
     $delete_gread_query = "DELETE FROM gread
-    WHERE user_id = :uid AND gread_id = :gread_id AND gread_img_id = :gread_img_id";
+    WHERE user_id = :uid AND gread_id = :gread_id AND gread_img_id = :gread_img_id
+    AND date_recorded = :date_recorded";
     $delete_gread_stmt = $pdo->prepare($delete_gread_query);
     $delete_gread_stmt->execute(array(
         ':uid' => $user_id,
         ':gread_id' => $gread_id,
-        ':gread_img_id' => $gread_img_id
+        ':gread_img_id' => $gread_img_id,
+        ':date_recorded' => $old_date_recorded
     ));
     // Delete gread thumbnail record
     $delete_thumbnail_query = "DELETE FROM gread_img
-    WHERE gread_img_id = :gread_img_id AND filename = :thumbnail_name
-    AND size = :thumbnail_size AND filepath = :thumbnail_filepath AND error = :thumbnail_error";
+    WHERE gread_img_id = :img_id AND date_recorded = :old_date_recorded";
     $delete_thumbnail_stmt = $pdo->prepare($delete_thumbnail_query);
     $delete_thumbnail_stmt->execute(array(
-        ':gread_img_id' => $gread_img_id,
-        ':thumbnail_name' => $filename,
-        ':thumbnail_size' => $size,
-        ':thumbnail_filepath' => $filepath,
-        'thumbnail_error' => $error
+        ':img_id' => $gread_img_id,
+        ':old_date_recorded' => $old_date_recorded
     ));
     // Delete thumbnail file in directory
     $thumbnail_exists = file_exists($fullpath);
-    // clearstatcache($fullpath);
     if ($thumbnail_exists) {
-        $realpath = realpath($fullpath);
-        unlink($realpath);
+        // Check if there's some record that references the same image
+        $similar_img_query = "SELECT COUNT(*) FROM gread_img
+        WHERE filename = :filename AND size = :filesize AND filepath = :filepath";
+        $similar_img_stmt = $pdo->prepare($similar_img_query);
+        $similar_img_stmt->execute(array(
+            ':filename' => $filename,
+            ':filesize' => $size,
+            ':filepath' => $filepath
+        ));
+        $similar_references = $similar_img_stmt->fetch(PDO::FETCH_ASSOC);
+        if ($similar_references['COUNT(*)'] < 1) {
+            $realpath = realpath($fullpath);
+            unlink($realpath);
+        }
         return true;
     }
 }
