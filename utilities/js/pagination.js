@@ -5,7 +5,10 @@
     const currentPageURL = document.URL;
     const homePage = 'http://localhost/web_apps/gread/';
     if (currentPageURL !== homePage) {
-        paginationLinks[1].classList.remove('pagination-active');
+        const pageOne = paginationLinks[1];
+        if (pageOne !== undefined) {
+            pageOne.classList.remove('pagination-active');
+        } 
     }
     for (const pageLink of paginationLinks) {
         const classCount = pageLink.classList.length;

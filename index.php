@@ -7,7 +7,7 @@ require_once "./utilities/php_snippets/static_contents.php";
 require_once "./utilities/php_snippets/footer.php";
 if (isset($_SESSION['active_user'])) {
   // Fetch all data associated with current user
-  // Query gread table
+  // Query gread table DESCENDING
   $query = "SELECT gread_id, gread_img_id, title, date_recorded, description FROM gread
   WHERE user_id = :uid
   ORDER BY date_recorded DESC";
@@ -16,6 +16,34 @@ if (isset($_SESSION['active_user'])) {
     ':uid' => $_SESSION['user_id']
   ));
   $gread_rows = $gread_stmt->fetchAll(PDO::FETCH_ASSOC);
+  $currentFilter = 'Most recent';
+  // GET Filter 
+  if (isset($_GET['filter'])) {
+    $get_filter = $_GET['filter'];
+    if ($get_filter == 'recent') {
+      // Query gread table
+      $query = "SELECT gread_id, gread_img_id, title, date_recorded, description FROM gread
+      WHERE user_id = :uid
+      ORDER BY date_recorded DESC";
+      $gread_stmt = $pdo->prepare($query);
+      $gread_stmt->execute(array(
+        ':uid' => $_SESSION['user_id']
+      ));
+      $gread_rows = $gread_stmt->fetchAll(PDO::FETCH_ASSOC);
+      $currentFilter = 'Most recent';
+    } elseif ($get_filter == 'oldest') {
+      // Query gread table
+      $query = "SELECT gread_id, gread_img_id, title, date_recorded, description FROM gread
+      WHERE user_id = :uid
+      ORDER BY date_recorded ASC";
+      $gread_stmt = $pdo->prepare($query);
+      $gread_stmt->execute(array(
+        ':uid' => $_SESSION['user_id']
+      ));
+      $gread_rows = $gread_stmt->fetchAll(PDO::FETCH_ASSOC);
+      $currentFilter = 'Oldest';
+    }
+  }
   // Get total records count
   $query_count = "SELECT COUNT(*) FROM gread
       WHERE user_id = :uid";
@@ -26,7 +54,7 @@ if (isset($_SESSION['active_user'])) {
   $count_row = $query_stmt->fetch(PDO::FETCH_ASSOC);
   $record_count = $count_row['COUNT(*)'];
   // Record limit per page
-  $records_per_page = 10;
+  $records_per_page = 8;
   $pagination_count = ceil($record_count / $records_per_page);
   // Set previous row number
   if (
@@ -81,8 +109,9 @@ if (isset($_SESSION['active_user'])) {
           <!-- Mobile Search -->
           <div class="mobile-search-container d-nav-box">
             <div class="mobile-search-box">
-              <input class="mobile-search-field" type="text" name="mobile-search" placeholder="Search something..." aria-label="Mobile search">
-              <button type="button" class="search-button">
+            <form class="mobile-search-form" method="GET">
+              <input class="mobile-search-field" type="text" name="query" placeholder="Search something..." aria-label="Mobile search">
+              <button type="submit" class="search-button">
                 <i>
                   <svg class="mobile-search-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M13.125 22.3125C18.1991 22.3125 22.3125 18.1991 22.3125 13.125C22.3125 8.05088 18.1991 3.9375 13.125 3.9375C8.05088 3.9375 3.9375 8.05088 3.9375 13.125C3.9375 18.1991 8.05088 22.3125 13.125 22.3125Z" stroke="#959595" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -90,6 +119,7 @@ if (isset($_SESSION['active_user'])) {
                   </svg>
                 </i>
               </button>
+            </form>
             </div>
           </div>
           <!-- Actions -->
@@ -150,10 +180,14 @@ if (isset($_SESSION['active_user'])) {
           </div>
           <!-- Filter -->
           <div class="filter-box">
-            <span class="current-filter">Most recent</span>
+            <span class="current-filter">' . $currentFilter . '</span>
             <svg class="filter-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M19.7071 9.70711C20.0976 9.31658 20.0976 8.68342 19.7071 8.29289C19.3166 7.90237 18.6834 7.90237 18.2929 8.29289L19.7071 9.70711ZM12 16L11.2929 16.7071C11.4804 16.8946 11.7348 17 12 17C12.2652 17 12.5196 16.8946 12.7071 16.7071L12 16ZM5.70711 8.29289C5.31658 7.90237 4.68342 7.90237 4.29289 8.29289C3.90237 8.68342 3.90237 9.31658 4.29289 9.70711L5.70711 8.29289ZM18.2929 8.29289L11.2929 15.2929L12.7071 16.7071L19.7071 9.70711L18.2929 8.29289ZM12.7071 15.2929L5.70711 8.29289L4.29289 9.70711L11.2929 16.7071L12.7071 15.2929Z" fill="#4A4A4A" />
             </svg>
+            <form class="filter-form" method="GET">
+              <button class="filter border-bottom" type="submit" name="filter" value="recent">Most recent</button>
+              <button class="filter" type="submit" name="filter" value="oldest">Oldest</button>
+            </form>
           </div>
           <!-- Divider -->
           <hr class="gread-header-divider">
@@ -166,39 +200,77 @@ if (isset($_SESSION['active_user'])) {
         </div>
         <!-- GREADS -->
         <div class="gread-content-body">');
-    for ($i = $_SESSION['previous_row_number']; $i < count($gread_rows); $i++) {
-      // Check records per page limiter
-      if ($i >= $records_per_page + $_SESSION['previous_row_number']) {
-        $_SESSION['previous_row_number'] = $i;
-        break;
+    if (!isset($_GET['query'])) {
+      for ($i = $_SESSION['previous_row_number']; $i < count($gread_rows); $i++) {
+        // Check records per page limiter
+        if ($i >= $records_per_page + $_SESSION['previous_row_number']) {
+          $_SESSION['previous_row_number'] = $i;
+          break;
+        }
+        $row = $gread_rows[$i];
+        // Get gread image
+        $img_query = "SELECT filename, filepath FROM gread_img
+          WHERE gread_img_id = :gread_img_id";
+        $img_stmt = $pdo->prepare($img_query);
+        $img_stmt->execute(array(
+          ':gread_img_id' => $row['gread_img_id']
+        ));
+        $img_id = $img_stmt->fetch(PDO::FETCH_ASSOC);
+        // Display contents
+        $gread_id = $row['gread_id'];
+        $gread_img_id = $row['gread_img_id'];
+        $title = $row['title'];
+        $description = $row['description'];
+        $filename = rawurlencode($img_id['filename']);
+        $filepath = $img_id['filepath'] . $filename;
+        $date_recorded = $row['date_recorded'];
+        gread_entry($filepath, $title, $description, $gread_id, $gread_img_id, $date_recorded);
       }
-      $row = $gread_rows[$i];
-      // Get gread image
-      $img_query = "SELECT filename, filepath FROM gread_img
-        WHERE gread_img_id = :gread_img_id";
-      $img_stmt = $pdo->prepare($img_query);
-      $img_stmt->execute(array(
-        ':gread_img_id' => $row['gread_img_id']
+    } else {
+      // Display query result
+      // Get user data
+      $user_id = $_SESSION['user_id'];
+      $raw_search_query = $_GET['query'];
+      $search_query = htmlentities('%' . $raw_search_query . '%');
+      $user_data_query = "SELECT gread_img_id, title, description FROM gread WHERE
+      title LIKE :query AND user_id = :uid";
+      $query_stmt = $pdo->prepare($user_data_query);
+      $query_stmt->execute(array(
+        ':query' => $search_query,
+        ':uid' => $user_id
       ));
-      $img_id = $img_stmt->fetch(PDO::FETCH_ASSOC);
-      // Display contents
-      $gread_id = $row['gread_id'];
-      $gread_img_id = $row['gread_img_id'];
-      $title = $row['title'];
-      $description = $row['description'];
-      $filename = rawurlencode($img_id['filename']);
-      $filepath = $img_id['filepath'] . $filename;
-      $date_recorded = $row['date_recorded'];
-      gread_entry($filepath, $title, $description, $gread_id, $gread_img_id);
+      $query_result_rows = $query_stmt->fetchAll(PDO::FETCH_ASSOC);
+      // No result found.
+      if (count($query_result_rows) < 1) {
+        $_SESSION['success'] = "No result found.";
+      }
+      for ($i = 0; $i < count($query_result_rows); $i++) {
+        // print_r($query_result_rows[$i]);
+        $result_row = $query_result_rows[$i];
+        // Gread variables
+        $gread_img_id = $result_row['gread_img_id'];
+        $title = $result_row['title'];
+        $description = $result_row['description'];
+        // Get records thumbnail
+        $record_img_query = "SELECT filename, filepath FROM gread_img
+        WHERE gread_img_id = :img_id";
+        $record_img_stmt = $pdo->prepare($record_img_query);
+        $record_img_stmt->execute(array(
+          ':img_id' => $gread_img_id,
+        ));
+        $thumbnail_row = $record_img_stmt->fetch(PDO::FETCH_ASSOC);
+        // Thumbnail variables
+        $filename = rawurlencode($thumbnail_row['filename']);
+        $filepath = $thumbnail_row['filepath'];
+        $fullpath = $filepath . $filename;
+        gread_entry($fullpath, $title, $description);
+      }
     }
     // End <!-- GREADS -->
     echo ('</div>');
-    // Pagination
-    // There's an incomplete set
-    if ($record_count % $records_per_page > 0) {
+    if (!isset($_GET['query']) && !isset($_GET['filter'])) {
+      // Pagination
       pagination($pagination_count + 1);
-    } else {
-      pagination($pagination_count);
     }
   } else {
     // display landing page
@@ -221,9 +293,13 @@ if (isset($_SESSION['active_user'])) {
   echo ("</div>\n");
   ?>
   <script src="./utilities/js/index.js"></script>
-  <script src="./utilities/js/flash.js"></script>
-  <script src="./utilities/js/pagination.js"></script>
   <script src="./utilities/js/navigation.js"></script>
+  <?php
+  if (isset($_SESSION['active_user'])) {
+    echo ('<script src="./utilities/js/flash.js"></script>');
+    echo ('<script src="./utilities/js/pagination.js"></script>');
+  }
+  ?>
 </body>
 
 </html>

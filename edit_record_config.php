@@ -1,5 +1,5 @@
 <?php
-function edit_record($inpt_img_key, $old_thumbnail_data, $gread_id, $gread_img_id)
+function edit_record($inpt_img_key, $old_thumbnail_data, $gread_id, $gread_img_id, $old_date_recorded)
 {
     require_once "./utilities/pdo/pdo.php";
     require_once "./add_record_config.php";
@@ -26,19 +26,33 @@ function edit_record($inpt_img_key, $old_thumbnail_data, $gread_id, $gread_img_i
         }
     }
     // New thumbnail successfuly moved to user image dir
+    $new_date_recorded = date("Y-m-d H:i:s");
     if (isset($_SESSION['upload_success'])) {
         // Update gread img in database
         $update_query = "UPDATE gread_img
-            SET filename = :old_filename, size = :new_size, error = :new_error
-            WHERE gread_img_id = :img_id";
+            SET filename = :old_filename, size = :new_size, error = :new_error,
+            date_recorded = :new_date
+            WHERE gread_img_id = :img_id AND date_recorded = :old_date_recorded";
         $update_stmt = $pdo->prepare($update_query);
         $update_stmt->execute(array(
             ':old_filename' => $filename,
             ':new_size' => $size,
             ':new_error' => $error,
-            ':img_id' => $gread_img_id
+            ':new_date' => $new_date_recorded,
+            ':img_id' => $gread_img_id,
+            ':old_date_recorded' => $old_date_recorded
         ));
     }
+    // If there's no new image, sync the date recorded column to match with gread table
+    $update_date_recorded_query = "UPDATE gread_img
+    SET date_recorded = :new_date
+    WHERE gread_img_id = :img_id AND date_recorded = :old_date_recorded";
+    $update_date_stmt = $pdo->prepare($update_date_recorded_query);
+    $update_date_stmt->execute(array(
+        ':new_date' => $new_date_recorded,
+        ':img_id' => $gread_img_id,
+        ':old_date_recorded' => $old_date_recorded
+    ));
     // // Update gread title and description
     $update_query = "UPDATE gread
         SET title = :new_title, description = :new_description, date_recorded = :date_recorded
@@ -47,7 +61,7 @@ function edit_record($inpt_img_key, $old_thumbnail_data, $gread_id, $gread_img_i
     $update_stmt->execute(array(
         ':new_title' => $title,
         ':new_description' => $description,
-        ':date_recorded' => date("Y-m-d") . ' ' . date("H:i:s"),
+        ':date_recorded' => $new_date_recorded,
         ':gread_id' => $gread_id,
         ':img_id' => $gread_img_id,
         ':uid' => $user_id

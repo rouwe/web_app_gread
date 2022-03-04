@@ -4,7 +4,7 @@ function landing_page_content()
 {
   // Display the content of homepage if the user is not logged in
   echo ('<!-- Main -->
-    <main class="main-container">
+    <main id="default-home" class="main-container">
       <!-- Texts -->
       <div class="hero-texts-box">
         <h1 class="hero-heading">Keep track of your entertainment</h1>
@@ -42,7 +42,7 @@ function landing_page_content()
       </div>
     </main>');
 }
-function gread_entry($img_src = null, $title = null, $description = null, $gread_id = null, $img_id = null)
+function gread_entry($img_src = null, $title = null, $description = null, $gread_id = null, $img_id = null, $date_recorded = null)
 {
   // Template for gread
   echo ('<!-- Gread Container -->
@@ -60,7 +60,7 @@ function gread_entry($img_src = null, $title = null, $description = null, $gread
     </div>
     <!-- Select option box -->
     <form class="select-option-box" method="GET">
-      <a class="redirect-action" href=".php?record_id=' . $gread_id . '&img_id=' . $img_id . '">
+      <a class="redirect-action" href=".php?record_id=' . $gread_id . '&img_id=' . $img_id . '&dr=' . $date_recorded . '">
         <svg class="unchecked select-state-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M21.25 7.5H8.75C8.05964 7.5 7.5 8.05964 7.5 8.75V21.25C7.5 21.9404 8.05964 22.5 8.75 22.5H21.25C21.9404 22.5 22.5 21.9404 22.5 21.25V8.75C22.5 8.05964 21.9404 7.5 21.25 7.5Z" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </svg>

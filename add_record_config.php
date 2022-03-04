@@ -104,26 +104,31 @@ function add_record($inpt_img_key)
     // Check if image upload is successful
     if (isset($_SESSION['upload_success'])) {
         // Store img data in 'gread_img' table
-        $gread_img_query = "INSERT INTO gread_img (filename, size, filepath, error)
-        VALUES (:img_name, :img_size, :img_filepath, :img_error_code)";
+        $date_recorded = date("Y-m-d") . ' ' . date("H:i:s"); // initialize date
+        $gread_img_query = "INSERT INTO gread_img (filename, size, filepath, error, date_recorded)
+        VALUES (:img_name, :img_size, :img_filepath, :img_error_code, :img_date_recorded)";
         $img_stmt = $pdo->prepare($gread_img_query);
         $img_stmt->execute(array(
             ':img_name' => $filename,
             ':img_size' => $size,
             ':img_filepath' => $filepath,
-            ':img_error_code' => $error
+            ':img_error_code' => $error,
+            ':img_date_recorded' => $date_recorded
         ));
         // Get gread_img_id
-        $gread_img_id_query = "SELECT gread_img_id FROM gread_img
-        WHERE filename = :img_name AND size = :img_size AND filepath = :img_filepath";
+        $gread_img_id_query = "SELECT gread_img_id, date_recorded FROM gread_img
+        WHERE filename = :img_name AND size = :img_size AND filepath = :img_filepath
+        AND date_recorded = :img_date_recorded";
         $gread_img_id_stmt = $pdo->prepare($gread_img_id_query);
         $gread_img_id_stmt->execute(array(
             ':img_name' => $filename,
             ':img_size' => $size,
-            'img_filepath' => $filepath
+            'img_filepath' => $filepath,
+            ':img_date_recorded' => $date_recorded
         ));
         $gread_img_row = $gread_img_id_stmt->fetch(PDO::FETCH_ASSOC);
         $gread_img_id = $gread_img_row['gread_img_id'];
+        $img_date_recorded = $gread_img_row['date_recorded'];
         // Store title and description and  in 'gread' table
         $gread_query = "INSERT INTO gread (gread_img_id, user_id, title, description, date_recorded)
         VALUES(:gread_img_id, :user_id, :gread_title, :gread_description, :date_of_record)";
@@ -133,7 +138,7 @@ function add_record($inpt_img_key)
             ':user_id' => $user_id,
             ':gread_title' => $title,
             ':gread_description' => $description,
-            ':date_of_record' => date("Y-m-d") . ' ' . date("H:i:s")
+            ':date_of_record' => $img_date_recorded
         ));
         // Unset upload_success
         unset($_SESSION['upload_success']);
