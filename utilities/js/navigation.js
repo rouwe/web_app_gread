@@ -134,3 +134,35 @@ let menuIsOpen = false;
         }
     }
 })();
+(function addLogoutEvent() {
+    // Display logout confirmation
+    const isUserLoggedIn = document.getElementById('default-home') === null; 
+    if (isUserLoggedIn) {
+        const logoutButton = document.getElementById('btn-logout');
+        const overlay = document.getElementsByClassName('logout-overlay')[0];
+        logoutButton.addEventListener("click", proceedLogout);
+        overlay.addEventListener("click", overlayCloseLogout);
+    }
+})();
+function overlayCloseLogout() {
+    // When overlay is clicked/tap close
+    const overlay = document.getElementsByClassName('logout-overlay')[0];
+    hideLogout(overlay);
+}
+function proceedLogout() {
+    // Logout user
+    const overlay = document.getElementsByClassName('logout-overlay')[0];
+    displayLogout(overlay);
+}
+function displayLogout(overlay) {
+    // Display logout container
+    overlay.style.display = 'flex';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+}
+function hideLogout(overlay) {
+    // Hide logout container
+    overlay.style.display = 'none';
+    overlay.style.width = '0px';
+    overlay.style.height = '0px';
+}

@@ -17,7 +17,7 @@ This application allows you to save all of your favorite media entertainments ba
 
 #### Workflow
 
-I will start from the structure of the website using (HTML), followed by the aesthetics using (CSS) and lastly, the functionality through (JS). This process will be repeated over and over for each pages.
+I will start from the structure of the website using (HTML), followed by the aesthetics using (CSS), the functionality through (JS), and (PHP) as the backend. This process will be repeated over and over for each pages.
 
 #### Design Software
 
