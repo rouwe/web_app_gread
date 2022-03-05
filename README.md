@@ -2,6 +2,24 @@
 
 This application allows you to save all of your favorite media entertainments basic information.
 
+## Screenshot
+
+### Mobile Logged Out
+
+![Mobile - Logged out](./assets/preview-mobile-logged-out.png)
+
+### Mobile Logged In
+
+![Mobile - Logged in](./assets/preview-mobile-logged-in.png)
+
+### Desktop Logged Out
+
+![Desktop - Logged out](./assets/preview-desktop-logged-out.png)
+
+### Desktop Logged In
+
+![Desktop - Logged in](./assets/preview-desktop-logged-in.png)
+
 ## Building Process
 
 ### **Frontend Development**
@@ -44,7 +62,7 @@ I feel like I'm getting a hang of styling and using the fundamentals of CSS, but
 
 ### JavaScript
 
-I've written a lot of functions and I also get a taste of some ajax and xmlhttprequest. I have a pretty clear grasp of how JSON and fetchAPI and backend script function but I don't think It's necessary to use JSON for this project. Since most of the MVC(View) part are also generated through the backend, I just decided to use the backend itself for some features such as (Search, filter, and pagination). The scripts I've written using JavaScript mostly handles the UI and UX. I also used this language for some redirection. The mobile navigation has a lot of things going on since when a user clicks on the menu icon, the javascript will first calculate the height of the element and add an appropriate styling depending on devices viewport. Now I'm not that uncomfortable when creating some basic features and manipulating the DOM.
+I've written a lot of functions and I also get a taste of some ajax and xmlhttprequest. I have a pretty clear grasp of how JSON and fetchAPI and backend script function but I don't think It's necessary to use JSON for this project. Since most of the MVC(View) part are also generated through the backend, I just decided to use the backend itself for some features such as (Search, filter, and pagination, editing Live preview). The scripts I've written using JavaScript mostly handles the UI and UX. I also used this language for some redirection. The mobile navigation has a lot of things going on since when a user clicks on the menu icon, the javascript will first calculate the height of the element and add an appropriate styling depending on devices viewport. Now I'm not that uncomfortable when creating some basic features and manipulating the DOM.
 
 ### PHP
 
@@ -66,3 +84,32 @@ This are some of the main problem I've faced along the way:
   I needed to do add some selector helper column (date_recorded) and sync it with the actual record. Deleting the image from the user image file path requires some set of condition to be met as well to prevent other image that references to the same image return (not found).
 - Responsiveness (difference between px and rem in terms of responsiveness).
 - CRUD (Multi reference image deletion logic)
+
+## Future Developments
+
+There are still a lot of improvements that can be made for this application. Since this is just the early version there are still some bugs and fixes that needs to be done, but the original purpose of this app is working pretty well. After building this for almost three weeks, I know that it is a pretty simple application without too much going on. I will use this to measure my current skill and build a lot more useful and challenging projects in the near future in order to improve. Here are some of the features and improvements I'm considering for this project:
+
+- User profile
+- Settings (records-per-page, dark mode, account deletion, password recovery, password reset)
+- Hashing user name and using it to create the users directory instead of their emails
+- Upload script file input verification.
+- Image compression
+- Multiple addition, editing, deletion of records.
+- Code cleaning and structure
+- Namespace
+- Security
+- UI/UX
+- Use some Frameworks
+- Caching
+- Performance
+- SEO
+- Accessibility
+- PWA
+- Best Practices
+
+The last five (5) items came from google dev tools Lighthouse audit. Since I have my own circumstances and problems, I only priotized in making the audit above or equal to 90 (GREEN) for now.
+
+## Author
+
+- LinkedIn - [Roweme](https://www.linkedin.com/in/roweme-santos-389653230/)
+- Frontend Mentor - [Rouwe](https://www.frontendmentor.io/profile/rouwe)

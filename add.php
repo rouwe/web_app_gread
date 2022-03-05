@@ -10,6 +10,12 @@ if (!isset($_SESSION['active_user'])) {
   header("Location: ./login.php");
   return;
 }
+// Canceled deletion
+if (isset($_POST['cancel'])) {
+  $_SESSION['success'] = "Action has been successfuly aborted.";
+  header("Location: ./");
+  return;
+}
 // Validate input
 if (
   isset($_POST['add_title'])
@@ -170,7 +176,7 @@ if (
       <!-- Title -->
       <div class="form-box inpt-title-box">
         <label class="inpt-label" for="title">Title</label>
-        <input class="inpt-field inpt-title" type="text" id="title" name="add_title" placeholder="Gread title" required maxlength="128">
+        <input class="inpt-field inpt-title" type="text" id="title" name="add_title" placeholder="Gread title" maxlength="128">
       </div>
       <!-- Description -->
       <div class="form-box inpt-description-box">
