@@ -60,7 +60,7 @@ function gread_entry($img_src = null, $title = null, $description = null, $gread
     </div>
     <!-- Select option box -->
     <form class="select-option-box" method="GET">
-      <a class="redirect-action" href=".php?record_id=' . $gread_id . '&img_id=' . $img_id . '&dr=' . $date_recorded . '">
+      <a class="redirect-action" href=".php?record_id=' . $gread_id . '&img_id=' . $img_id . '&dr=' . $date_recorded . '" aria-label="Editing or deleting">
         <svg class="unchecked select-state-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M21.25 7.5H8.75C8.05964 7.5 7.5 8.05964 7.5 8.75V21.25C7.5 21.9404 8.05964 22.5 8.75 22.5H21.25C21.9404 22.5 22.5 21.9404 22.5 21.25V8.75C22.5 8.05964 21.9404 7.5 21.25 7.5Z" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
@@ -77,13 +77,13 @@ function pagination($pages_count = 1)
   echo ('<!-- Pagination -->
       <div class="pagination-box">
         <!-- Left Double -->
-        <a class="pagination-link multi-prev" href="">&laquo;</a>
+        <a class="pagination-link multi-prev" title="Previous" href="./?page=1">&laquo;</a>
         <a class="pagination-link pagination-active" href="./?page=1">1</a>
         <!-- Pages -->');
   for ($i = 2; $i < $pages_count; $i++) {
     echo ('<a class="pagination-link" href="./?' . "page=$i\">" . $i . "</a>\n");
   }
   echo ('<!-- Right double -->
-        <a class="pagination-link multi-next" href="#">&raquo;</a>
+        <a class="pagination-link multi-next" title="Next" href="./?page=' . $pages_count - 1 . '">&raquo;</a>
       </div>');
 }

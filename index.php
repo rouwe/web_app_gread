@@ -73,6 +73,8 @@ if (isset($_SESSION['active_user'])) {
 
 <head>
   <meta name="charset" content="utf-8">
+  <meta name="keywords" content="Entertainment, Anime, manga, novel, movie, books, podcast">
+  <meta name="description" content="Collect all of your favorite entertainment in one place.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Roweme B. Santos">
   <title>Gread | Your library of entertainment</title>
@@ -110,9 +112,10 @@ if (isset($_SESSION['active_user'])) {
           <div class="mobile-search-container d-nav-box">
             <div class="mobile-search-box">
             <form class="mobile-search-form" method="GET">
-              <input class="mobile-search-field" type="text" name="query" placeholder="Search something..." aria-label="Mobile search">
-              <button type="submit" class="search-button">
-                <i>
+              <label for="m-search" style="display: none">Open Search</label>
+              <input class="mobile-search-field" id="m-search" type="text" name="query" placeholder="Search something..." aria-label="Mobile search">
+              <button type="submit" class="search-button" aria-label="Submit search">
+                <i aria-hidden="true">
                   <svg class="mobile-search-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M13.125 22.3125C18.1991 22.3125 22.3125 18.1991 22.3125 13.125C22.3125 8.05088 18.1991 3.9375 13.125 3.9375C8.05088 3.9375 3.9375 8.05088 3.9375 13.125C3.9375 18.1991 8.05088 22.3125 13.125 22.3125Z" stroke="#959595" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M19.6875 19.6875L27.5625 27.5625" stroke="#959595" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -179,7 +182,7 @@ if (isset($_SESSION['active_user'])) {
             </svg>
           </div>
           <!-- Filter -->
-          <div class="filter-box">
+          <div class="filter-box" title="Filter">
             <span class="current-filter">' . $currentFilter . '</span>
             <svg class="filter-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M19.7071 9.70711C20.0976 9.31658 20.0976 8.68342 19.7071 8.29289C19.3166 7.90237 18.6834 7.90237 18.2929 8.29289L19.7071 9.70711ZM12 16L11.2929 16.7071C11.4804 16.8946 11.7348 17 12 17C12.2652 17 12.5196 16.8946 12.7071 16.7071L12 16ZM5.70711 8.29289C5.31658 7.90237 4.68342 7.90237 4.29289 8.29289C3.90237 8.68342 3.90237 9.31658 4.29289 9.70711L5.70711 8.29289ZM18.2929 8.29289L11.2929 15.2929L12.7071 16.7071L19.7071 9.70711L18.2929 8.29289ZM12.7071 15.2929L5.70711 8.29289L4.29289 9.70711L11.2929 16.7071L12.7071 15.2929Z" fill="#4A4A4A" />

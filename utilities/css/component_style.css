@@ -46,7 +46,6 @@
     color: var(--primary);
 }
 .header-signup-box {
-    cursor: pointer;
     padding: 5px 23px 7px 24px;
     border-radius: 20px;
     background-color: #FFFFFF;
@@ -59,7 +58,6 @@
     color: #FFFFFF;
 }
 .header-login-box {
-    cursor: pointer;
     padding: 5px 21px 7px 22px;
     border-radius: 20px;
     margin-right: 25px;

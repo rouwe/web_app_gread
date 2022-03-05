@@ -77,6 +77,8 @@ if (
 
 <head>
   <meta name="charset" content="utf-8">
+  <meta name="keywords" content="Entertainment, Anime, manga, novel, movie, books, podcast">
+  <meta name="description" content="Collect all of your favorite entertainment in one place.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Roweme B. Santos">
   <title>Delete Gread | Your library of entertainment</title>
@@ -193,7 +195,7 @@ if (
       <!-- Preview -->
       <div class="preview-box">
         <div class="preview-img-box">
-          <img class="preview-img" src="<?= htmlentities($thumbnail_src) ?>" alt="<?= htmlentities($record_row['title']) ?>">
+          <img class="preview-img gread-thumbnail" src="<?= htmlentities($thumbnail_src) ?>" alt="<?= htmlentities($record_row['title']) ?>">
         </div>
         <!-- Text box -->
         <div class="preview-text-box">
@@ -219,7 +221,7 @@ if (
       <!-- Upload Image thumbnail -->
       <div class="inpt-img-box">
         <label class="inpt-label" for="thumbnail">Upload Image</label>
-        <input class="inpt-file" type="file" name="add_thumbnail" accept="image/*, image/png, image/jpeg" disabled>
+        <input class="inpt-file" id="thumbnail" type="file" name="add_thumbnail" accept="image/*, image/png, image/jpeg" disabled>
       </div>
       <!-- Proceed and Cancel -->
       <div class="decision-box">

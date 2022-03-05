@@ -9,8 +9,9 @@ function validate_input_length($inputArray)
         ) {
             $_SESSION['error'] = 'All fields are required. Please try again.';
             header("Location: " . $_SERVER['PHP_SELF']);
-            return;
+            return false;
         }
+        return true;
     }
 }
 // Flash notification
@@ -23,5 +24,13 @@ function flash_message()
     } elseif (isset($_SESSION['success'])) {
         echo ('<p class="notification-message" style="color:green;">' . $_SESSION['success'] . "</p>\n");
         unset($_SESSION['success']);
+    }
+}
+function search_redirect($get_query = null)
+{
+    // Redirect back to homepage and search
+    if ($get_query !== null) {
+        header("Location: ./?query=" . $get_query);
+        return;
     }
 }
