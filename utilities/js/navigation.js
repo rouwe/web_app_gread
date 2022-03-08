@@ -44,10 +44,9 @@ let menuIsOpen = false;
         // Check if current page is About page
         if (aboutPath == currentPageLocationPath && menuIsOpen) {
             const navHeight = document.getElementsByClassName('navigation-outline')[0].offsetHeight;
-            const aboutContainer = document.getElementsByClassName('about-container')[0];
             marginTop = '0px';
-            aboutContainer.style.marginTop = `${navHeight}px`;
-            navigation.style.top = marginTop;
+            mainContainer.style.marginTop = `${navHeight}px`;
+            navigation.style.top = `${marginTop}px`;
         }
         else if (menuIsOpen) {
             // console.log(screenWidth, menuIsOpen);
@@ -74,7 +73,7 @@ let menuIsOpen = false;
         const screenWidthTrack = setInterval(() => {
             // console.log("Check screen width!");
             changeMarginTop(window.innerWidth);
-        }, 1000);
+        }, 250);
         if (window.innerWidth >= 836) {
             clearInterval(screenWidthTrack);
             changeMarginTop(window.innerWidth);
