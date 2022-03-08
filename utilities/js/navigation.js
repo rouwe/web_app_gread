@@ -73,7 +73,7 @@ let menuIsOpen = false;
         const screenWidthTrack = setInterval(() => {
             // console.log("Check screen width!");
             changeMarginTop(window.innerWidth);
-        }, 1000);
+        }, 250);
         if (window.innerWidth >= 836) {
             clearInterval(screenWidthTrack);
             changeMarginTop(window.innerWidth);
