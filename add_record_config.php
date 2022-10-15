@@ -7,6 +7,11 @@ function upload_image($inpt_img_key, $filename)
     */
     // Check and create image directory if it does not exist 
     // Directory where the image is going to be stored
+
+    if (!is_dir('./gread_images')) {
+        mkdir('./gread_images');
+        chmod('./gread_images', 0777);
+    }
     $upload_dir = "./gread_images/" . $_SESSION['active_user'] . '/';
     if (!is_dir($upload_dir)) {
         mkdir($upload_dir);
